@@ -6,10 +6,11 @@ export default function Folder({item, onAdd}){
             <label>{item.name}
                 <button className="addButton" onClick={()=>{onAdd(item)}}>+</button>
             </label>
-            
+            <div class="items">
             {item.bookmarks.map(bookmark => (
                 <Bookmark key={bookmark.id} bookmark={bookmark}/>                
             ))}
+            </div>
         </div>
     );
 }

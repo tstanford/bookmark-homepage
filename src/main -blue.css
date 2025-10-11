@@ -57,21 +57,35 @@ div.folder button.addButton {
     /*margin: .5rem;*/
 }
 
-.folder a {
-  display: block;
-  margin: 1rem;
+.folder div.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  gap: 16px;
+  padding: 16px; 
+}
+
+.folder div.items a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
   text-decoration: none;
 }
 
 .folder a img {
-    padding-right: 5px;
-    width: 16px;
-    height: 16px;
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
 }
 
 .folder a {color:white;}
 .folder a:visited {color:white;}
-.folder a:hover {color:yellow; text-decoration: underline;}
+.folder a:hover {
+  color:yellow;
+  text-decoration: underline;
+  filter: brightness(2);
+}
 .folder a:active {color:white;} 
 
 input#query {
@@ -108,8 +122,8 @@ div.dialog div.buttons {
   gap:1rem;
 }
 
-div.dialog button {
-  background-color: #375099;
+button.flat {
+  background-color: #000000;
   border: none;
   color: white;
   padding: 1rem;
@@ -119,10 +133,20 @@ div.dialog button {
   font-size: 16px;
   cursor: pointer;
   filter: brightness(1);
-  width: 7rem;
 }
 
-div.dialog button:Hover {
+div.dialog button.flat {
+  background-color: #375099;
+  width: 7rem;  
+}
+
+div.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.flat:Hover {
   filter: brightness(1.5);
 
 }

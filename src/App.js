@@ -13,8 +13,8 @@ export default function App() {
         showDialog: false
     });
 
-    //const serviceUrl = "http://192.168.0.30:8088";
-    const serviceUrl = "http://localhost:8080";
+    const serviceUrl = "http://192.168.0.30:8088";
+    //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
 
@@ -92,8 +92,21 @@ export default function App() {
             <PageHeading date={ new Date().toDateString()}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
 
-            <Dialog isOpen={data.showDialog} onDismiss={close} className="dialog">
+            <article id="folders">
+                {data.items
+                .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
+                .map(x => (
 
+                    <Folder key={x.id} item={x} onAdd={open}/>
+
+                ))}
+            </article>
+
+            <div class="center">
+                <button class="flat">Add Folder</button>
+            </div>
+
+            <Dialog isOpen={data.showDialog} onDismiss={close} className="dialog">
                 <h1>{data.selectedFolder != null ? data.selectedFolder.name : "blah"}</h1>
                 
                 <form onSubmit={onSubmit}>
@@ -106,22 +119,17 @@ export default function App() {
                         <input id="url" name="url" onChange={handleChange} />
                     </div>
 
-                <div class="buttons">
-                    <button onClick={close}>Cancel</button>
-                    <button>Ok</button>
-                </div>
-
+                    <div class="buttons">
+                        <button class="flat" onClick={close}>Cancel</button>
+                        <button class="flat">Ok</button>
+                    </div>
                 </form>
-
-                
             </Dialog>
+        </>
+    );
 
-            <article id="folders">
-            {data.items
-            .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
-            .map(x => (
 
-/*
+    /*
     {folder.bookmarks.filter(
             b => query === "" || 
             query.startsWith("g=") ||
@@ -132,14 +140,6 @@ export default function App() {
             <img src={bookmark.favicon}/>{bookmark.title}</a>
     ))}
 */
-
-
-
-                    <Folder key={x.id} item={x} onAdd={open}/>
-                ))}
-            </article>
-        </>
-    );
 
     /*
     render(){
