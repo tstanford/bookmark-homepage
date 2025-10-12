@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import "@reach/dialog/styles.css";
 import { Dialog } from "@reach/dialog";
-import Folder from "./Folder"
-import SearchBox from "./SearchBox"
-import PageHeading from './pageheading';
+import Folder from "./components/Folder"
+import SearchBox from "./components/SearchBox"
+import PageHeading from './components/pageheading';
 
 export default function App() {
     const [data, setData] = useState({
