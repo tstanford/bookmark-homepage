@@ -124,7 +124,7 @@ export default function App() {
             </article>
 
             <div class="center">
-                <button class="flat" onClick={()=>{openAddGroupDialog()}}>Add Folder</button>
+                <button class="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
             </div>
 
             <Dialog isOpen={data.showDialogAddBookmark} onDismiss={closeAddBookmarkDialog} className="dialog">
