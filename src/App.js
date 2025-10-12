@@ -1,22 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import { Dialog } from "@reach/dialog";
 import "@reach/dialog/styles.css";
+import { Dialog } from "@reach/dialog";
 import Folder from "./Folder"
 import SearchBox from "./SearchBox"
 import PageHeading from './pageheading';
 
 export default function App() {
     const [data, setData] = useState({
-        items :[],
         isLoaded: false,
+        items: [],
         selectedGroup: -1,
-        showDialog: false
+        showDialogAddBookmark: false,
+        showDialogAddGroup: false
     });
 
     const serviceUrl = "http://192.168.0.30:8088";
     //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
+    const [refreshKey, setRefreshKey] = useState(0);
 
     useEffect(() => {
         fetch(serviceUrl+"/bookmarks")
@@ -29,18 +31,23 @@ export default function App() {
             }
             setData({
                 isLoaded: true,
-                items: json,
                 filteredData: json,
+                items: json,
                 query: "",
-                showDialog: false,
-                selectedFolder: null
-            })
+                showDialogAddBookmark: false,
+                showDialogAddGroup: false,
+                selectedFolder: null,
+                changeMade : false
+            });
         });
-    }, []);
+    }, [refreshKey]);
 
 
-    const open = (folder) => setData((prev) => ({...prev, showDialog: true, selectedFolder: folder}));
-    const close = () => setData((prev) => ({...prev, showDialog: false}));
+    const openAddBookmarkDialog = (folder) => setData((prev) => ({...prev, showDialogAddBookmark: true, selectedFolder: folder}));
+    const closeAddBookmarkDialog = () => setData((prev) => ({...prev, showDialogAddBookmark: false}));
+
+    const openAddGroupDialog = (folder) => setData((prev) => ({...prev, showDialogAddGroup: true}));
+    const closeAddGroupDialog = () => setData((prev) => ({...prev, showDialogAddGroup: false}));
 
     const searchOnChange = (event) => {
         setData((prev) => ({
@@ -55,13 +62,8 @@ export default function App() {
     };
 
 
-    const onSubmit = (event) => {
+    const onSubmitBookmark = (event) => {
         event.preventDefault();
-        data.selectedFolder.bookmarks.push({
-            "url":formData.url,
-            "title":formData.title,
-            "favicon":null
-        });
         
         fetch(serviceUrl+"/bookmarks", {
             method: "POST",
@@ -73,9 +75,28 @@ export default function App() {
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        });
+        }).then(() => {setRefreshKey(oldKey => oldKey+1);});
 
-        close();
+        closeAddBookmarkDialog();
+
+        
+
+    };
+
+    const onSubmitGroup = (event) => {
+        event.preventDefault();
+        
+        fetch(serviceUrl+"/group", {
+            method: "POST",
+            body: formData.name,
+            headers: {
+                "Content-type": "text/plain; charset=UTF-8"
+            }
+        }).then(() => {setRefreshKey(oldKey => oldKey+1);});
+
+        closeAddGroupDialog();
+
+        setRefreshKey(oldKey => oldKey+1);
 
     };
 
@@ -97,19 +118,19 @@ export default function App() {
                 .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
                 .map(x => (
 
-                    <Folder key={x.id} item={x} onAdd={open}/>
+                    <Folder key={x.id} item={x} onAdd={openAddBookmarkDialog}/>
 
                 ))}
             </article>
 
             <div class="center">
-                <button class="flat">Add Folder</button>
+                <button class="flat" onClick={()=>{openAddGroupDialog()}}>Add Folder</button>
             </div>
 
-            <Dialog isOpen={data.showDialog} onDismiss={close} className="dialog">
+            <Dialog isOpen={data.showDialogAddBookmark} onDismiss={closeAddBookmarkDialog} className="dialog">
                 <h1>{data.selectedFolder != null ? data.selectedFolder.name : "blah"}</h1>
                 
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmitBookmark}>
                     <div class="field">
                         <label for="title">Title:</label>
                         <input id="title" name="title" onChange={handleChange} />
@@ -120,8 +141,25 @@ export default function App() {
                     </div>
 
                     <div class="buttons">
-                        <button class="flat" onClick={close}>Cancel</button>
                         <button class="flat">Ok</button>
+                        <button class="flat" onClick={closeAddBookmarkDialog}>Cancel</button>                        
+                    </div>
+                </form>
+            </Dialog>
+
+            <Dialog isOpen={data.showDialogAddGroup} onDismiss={closeAddGroupDialog} className="dialog">
+                <h1>Create new Group</h1>
+                
+                <form onSubmit={onSubmitGroup}>
+                    <div class="field">
+                        <label for="name">Name:</label>
+                        <input id="title" name="name" onChange={handleChange} />
+                    </div>
+                    
+
+                    <div class="buttons">
+                        <button class="flat">Ok</button>
+                        <button class="flat" onClick={closeAddGroupDialog}>Cancel</button>                        
                     </div>
                 </form>
             </Dialog>
