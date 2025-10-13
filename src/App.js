@@ -14,8 +14,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    //const serviceUrl = "http://192.168.0.30:8088";
-    const serviceUrl = "http://localhost:8080";
+    const serviceUrl = "http://192.168.0.30:8088";
+    //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
