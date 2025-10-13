@@ -39,10 +39,18 @@ export default function App() {
                 selectedFolder: null,
                 changeMade : false
             });
+            setFormData({});
         });
     }, [refreshKey]);
 
-    const openAddBookmarkDialog = (folder) => setData((prev) => ({...prev, showDialogAddBookmark: true, selectedFolder: folder}));
+    const openAddBookmarkDialog = (folder,url) => {
+        setData((prev) => ({
+        ...prev, showDialogAddBookmark: true, selectedFolder: folder, url: url})
+        );
+        setFormData((prev) =>  ({
+            ...prev, url: url})
+        );
+    };
     const closeAddBookmarkDialog = () => setData((prev) => ({...prev, showDialogAddBookmark: false}));
 
     const openAddGroupDialog = (folder) => setData((prev) => ({...prev, showDialogAddGroup: true}));
@@ -64,8 +72,8 @@ export default function App() {
         fetch(serviceUrl+"/bookmarks", {
             method: "PUT",
             body: JSON.stringify({
-                 bookmarkId: bookmarkId,
-                 groupName: folderName,
+                bookmarkId: bookmarkId,
+                groupName: folderName,
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -79,9 +87,9 @@ export default function App() {
         fetch(serviceUrl+"/bookmarks", {
             method: "POST",
             body: JSON.stringify({
-                 title: formData.title,
-                 url: formData.url,
-                 groupName: data.selectedFolder.name
+                title: formData.title,
+                url: formData.url,
+                groupName: data.selectedFolder.name
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -125,7 +133,8 @@ export default function App() {
                         item={x} 
                         onAdd={openAddBookmarkDialog}
                         onBookmarkDrop={moveBookmark}
-                     />
+                        onURIDrop={openAddBookmarkDialog}
+                    />
                 ))}
             </article>
 
@@ -134,7 +143,8 @@ export default function App() {
             </div>
             
             <AddNewBookmarkDialog 
-                folderName={data.selectedFolder}
+                folder={data.selectedFolder}
+                prepopulatedUrl={formData.url}
                 isOpen={data.showDialogAddBookmark}
                 onDismiss={closeAddBookmarkDialog}
                 onSubmit={onSubmitBookmark}
@@ -207,7 +217,7 @@ export default function App() {
                                 ).map(bookmark => (
                                 <a href={bookmark.url}
                                 target="_blank">
-                                 <img src={bookmark.favicon}/>{bookmark.title}</a>
+                                <img src={bookmark.favicon}/>{bookmark.title}</a>
                             ))}
                         </div>
                     ))}

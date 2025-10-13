@@ -1,6 +1,6 @@
 import Bookmark from "./Bookmark";
 
-export default function Folder({item, onAdd, onBookmarkDrop}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop}){
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
@@ -8,9 +8,20 @@ export default function Folder({item, onAdd, onBookmarkDrop}){
 
     const folderDropHandler = (ev) =>{
         ev.preventDefault();
-        const bookmarkId = ev.dataTransfer.getData("bookmark");
         const folderName = item.name;
-        onBookmarkDrop(bookmarkId, folderName);
+        const bookmarkId = ev.dataTransfer.getData("bookmark");
+        if(bookmarkId){
+            onBookmarkDrop(bookmarkId, folderName);
+        } else {
+            let url = ev.dataTransfer.getData('text/uri-list');
+            if(!url) {
+                url = ev.dataTransfer.getData('text/plain');
+            }
+            if(url) {
+                onURIDrop(item, url);
+            }
+        }        
+        
     };
 
     return(

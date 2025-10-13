@@ -7,15 +7,15 @@ export default function AddNewGroup({isOpen, onDismiss, onSubmit, onChange}){
             <h1>Create new Group</h1>
             
             <form onSubmit={onSubmit}>
-                <div class="field">
-                    <label for="name">Name:</label>
+                <div className="field">
+                    <label htmlFor="name">Name:</label>
                     <input id="title" name="name" onChange={onChange} />
                 </div>
                 
 
-                <div class="buttons">
-                    <button class="flat">Ok</button>
-                    <button class="flat" onClick={onDismiss}>Cancel</button>                        
+                <div className="buttons">
+                    <button className="flat">Ok</button>
+                    <button className="flat" onClick={onDismiss}>Cancel</button>                        
                 </div>
             </form>
         </Dialog>
