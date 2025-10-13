@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import "@reach/dialog/styles.css";
-import { Dialog } from "@reach/dialog";
 import Folder from "./components/Folder"
 import SearchBox from "./components/SearchBox"
 import PageHeading from './components/pageheading';
+import AddNewGroupDialog from './dialogs/AddNewGroupDialog'
+import AddNewBookmarkDialog from './dialogs/AddNewBookmarkDialog'
 
 export default function App() {
     const [data, setData] = useState({
@@ -61,7 +61,6 @@ export default function App() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-
     const onSubmitBookmark = (event) => {
         event.preventDefault();
         
@@ -78,9 +77,6 @@ export default function App() {
         }).then(() => {setRefreshKey(oldKey => oldKey+1);});
 
         closeAddBookmarkDialog();
-
-        
-
     };
 
     const onSubmitGroup = (event) => {
@@ -95,9 +91,6 @@ export default function App() {
         }).then(() => {setRefreshKey(oldKey => oldKey+1);});
 
         closeAddGroupDialog();
-
-        setRefreshKey(oldKey => oldKey+1);
-
     };
 
     if(!data.isLoaded){
@@ -106,10 +99,8 @@ export default function App() {
         );
     }
 
-    return(        
-
+    return( 
         <>
-
             <PageHeading date={ new Date().toDateString()}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
 
@@ -117,52 +108,28 @@ export default function App() {
                 {data.items
                 .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
                 .map(x => (
-
                     <Folder key={x.id} item={x} onAdd={openAddBookmarkDialog}/>
-
                 ))}
             </article>
 
             <div class="center">
                 <button class="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
             </div>
+            
+            <AddNewBookmarkDialog 
+                folderName={data.selectedFolder}
+                isOpen={data.showDialogAddBookmark}
+                onDismiss={closeAddBookmarkDialog}
+                onSubmit={onSubmitBookmark}
+                onChange={handleChange}>
+            </AddNewBookmarkDialog>
 
-            <Dialog isOpen={data.showDialogAddBookmark} onDismiss={closeAddBookmarkDialog} className="dialog">
-                <h1>{data.selectedFolder != null ? data.selectedFolder.name : "blah"}</h1>
-                
-                <form onSubmit={onSubmitBookmark}>
-                    <div class="field">
-                        <label for="title">Title:</label>
-                        <input id="title" name="title" onChange={handleChange} />
-                    </div>
-                    <div class="field">
-                        <label for="url">URL:</label>
-                        <input id="url" name="url" onChange={handleChange} />
-                    </div>
-
-                    <div class="buttons">
-                        <button class="flat">Ok</button>
-                        <button class="flat" onClick={closeAddBookmarkDialog}>Cancel</button>                        
-                    </div>
-                </form>
-            </Dialog>
-
-            <Dialog isOpen={data.showDialogAddGroup} onDismiss={closeAddGroupDialog} className="dialog">
-                <h1>Create new Group</h1>
-                
-                <form onSubmit={onSubmitGroup}>
-                    <div class="field">
-                        <label for="name">Name:</label>
-                        <input id="title" name="name" onChange={handleChange} />
-                    </div>
-                    
-
-                    <div class="buttons">
-                        <button class="flat">Ok</button>
-                        <button class="flat" onClick={closeAddGroupDialog}>Cancel</button>                        
-                    </div>
-                </form>
-            </Dialog>
+            <AddNewGroupDialog 
+                isOpen={data.showDialogAddGroup} 
+                onDismiss={closeAddGroupDialog} 
+                onSubmit={onSubmitGroup} 
+                onChange={handleChange}>
+            </AddNewGroupDialog>
         </>
     );
 
