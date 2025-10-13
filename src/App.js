@@ -120,7 +120,7 @@ export default function App() {
     }
 
     return( 
-        <>
+        <div>
             <PageHeading date={ new Date().toDateString()}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
 
@@ -159,7 +159,7 @@ export default function App() {
                 onChange={handleChange}
                 />
 
-        </>
+        </div>
     );
 
 

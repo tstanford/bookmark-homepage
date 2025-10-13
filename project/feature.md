@@ -12,9 +12,11 @@ x refactor dialogs into new components
 
 x Drag and drop links from one group to another
 
-- error handling for drag and drop
+x allow drag and drop of urls from browser, popup add new bookmark dialog
 
-- allow drag and drop of urls from browser, popup add new bookmark dialog
+- delete bookmark by dragging onto background
+
+- error handling for drag and drop
 
 - unit test moveBookmark
 
