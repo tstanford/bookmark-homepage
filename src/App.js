@@ -14,8 +14,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    const serviceUrl = "http://192.168.0.30:8088";
-    //const serviceUrl = "http://localhost:8080";
+    //const serviceUrl = "http://192.168.0.30:8088";
+    const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -42,7 +42,6 @@ export default function App() {
         });
     }, [refreshKey]);
 
-
     const openAddBookmarkDialog = (folder) => setData((prev) => ({...prev, showDialogAddBookmark: true, selectedFolder: folder}));
     const closeAddBookmarkDialog = () => setData((prev) => ({...prev, showDialogAddBookmark: false}));
 
@@ -59,6 +58,19 @@ export default function App() {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    };
+
+    const moveBookmark = (bookmarkId, folderName) => {
+        fetch(serviceUrl+"/bookmarks", {
+            method: "PUT",
+            body: JSON.stringify({
+                 bookmarkId: bookmarkId,
+                 groupName: folderName,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(() => {setRefreshKey(oldKey => oldKey+1);});
     };
 
     const onSubmitBookmark = (event) => {
@@ -108,12 +120,17 @@ export default function App() {
                 {data.items
                 .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
                 .map(x => (
-                    <Folder key={x.id} item={x} onAdd={openAddBookmarkDialog}/>
+                    <Folder 
+                        key={x.id} 
+                        item={x} 
+                        onAdd={openAddBookmarkDialog}
+                        onBookmarkDrop={moveBookmark}
+                     />
                 ))}
             </article>
 
-            <div class="center">
-                <button class="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
+            <div className="center">
+                <button className="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
             </div>
             
             <AddNewBookmarkDialog 
@@ -121,15 +138,17 @@ export default function App() {
                 isOpen={data.showDialogAddBookmark}
                 onDismiss={closeAddBookmarkDialog}
                 onSubmit={onSubmitBookmark}
-                onChange={handleChange}>
-            </AddNewBookmarkDialog>
+                onChange={handleChange}
+                />
+
 
             <AddNewGroupDialog 
                 isOpen={data.showDialogAddGroup} 
                 onDismiss={closeAddGroupDialog} 
                 onSubmit={onSubmitGroup} 
-                onChange={handleChange}>
-            </AddNewGroupDialog>
+                onChange={handleChange}
+                />
+
         </>
     );
 

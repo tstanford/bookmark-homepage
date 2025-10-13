@@ -3,8 +3,8 @@ export default function PageHeading({ date }) {
 
         <header>
             <h1>
-                <div class="titlecase">Tim's Home Page</div>
-                <div class="date">{date}</div>
+                <div className="titlecase">Tim's Home Page</div>
+                <div className="date">{date}</div>
             </h1>
         </header>
     )

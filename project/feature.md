@@ -10,13 +10,27 @@ x containerise the application
 
 x refactor dialogs into new components
 
+x Drag and drop links from one group to another
+
+- error handling for drag and drop
+
+- allow drag and drop of urls from browser, popup add new bookmark dialog
+
+- unit test moveBookmark
+
+- integration test moveBookmark
+
+- get search working
+
+- replace reach dialog with something else even home built.
+
 - setup jenkins pipeline for ci/cd - no k8s deployment yet
 
 - create helm chart for bookmark-homepage
 
 - update jenkins pipeline to deploy to k8s.
 
-- Drag and drop links from one group to another
+
 
 - edit bookmark
     change name
