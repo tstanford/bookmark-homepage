@@ -1,12 +1,15 @@
 import Bookmark from "./Bookmark";
 
-export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark}){
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
     };
 
     const folderDropHandler = (ev) =>{
+        if(!editMode){
+            return;
+        }
         ev.preventDefault();
         const folderName = item.name;
         const bookmarkId = ev.dataTransfer.getData("bookmark");
@@ -26,13 +29,13 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
 
     return(
         <div className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
-            <button className="addButton" onClick={()=>{onAdd(item)}}>+</button>
+            {editMode && <button className="addButton" onClick={()=>{onAdd(item)}}>+</button> }
             <label>{item.name}</label>
             
             <div className="items">
             {item.bookmarks.length > 0 ? 
-                item.bookmarks.map(bookmark => (
-                    <Bookmark key={bookmark.id} bookmark={bookmark} />                
+                item.bookmarks.filter(x => query == "" || x.title.toLowerCase().includes(query)).map(bookmark => (
+                    <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark}/>                
                 ))
             :
                 <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>

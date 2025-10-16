@@ -4,6 +4,7 @@ import SearchBox from "./components/SearchBox"
 import PageHeading from './components/pageheading';
 import AddNewGroupDialog from './dialogs/AddNewGroupDialog'
 import AddNewBookmarkDialog from './dialogs/AddNewBookmarkDialog'
+import EditBookmarkDialog from './dialogs/EditBookmarkDialog'
 
 export default function App() {
     const [data, setData] = useState({
@@ -14,11 +15,12 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    //const serviceUrl = "http://192.168.0.30:8088";
-    const serviceUrl = "http://localhost:8080";
+    const serviceUrl = "http://192.168.0.30:8088";
+    //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
+    var [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
         fetch(serviceUrl+"/bookmarks")
@@ -35,6 +37,7 @@ export default function App() {
                 items: json,
                 query: "",
                 showDialogAddBookmark: false,
+                showDialogEditBookmark: false,
                 showDialogAddGroup: false,
                 selectedFolder: null,
                 changeMade : false
@@ -51,10 +54,30 @@ export default function App() {
             ...prev, url: url})
         );
     };
-    const closeAddBookmarkDialog = () => setData((prev) => ({...prev, showDialogAddBookmark: false}));
 
+    const openEditBookmarkDialog = (bookmark, event) => {
+        if(!editMode){
+            return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("editing "+bookmark.id);
+
+        setData((prev) => ({
+            ...prev,
+            showDialogEditBookmark: true,
+            selectedBookmark: bookmark
+        }));
+    };
+
+    const toggleEditMode = () => setEditMode(!editMode);
+    const closeAddBookmarkDialog = () => setData((prev) => ({...prev, showDialogAddBookmark: false}));
     const openAddGroupDialog = (folder) => setData((prev) => ({...prev, showDialogAddGroup: true}));
     const closeAddGroupDialog = () => setData((prev) => ({...prev, showDialogAddGroup: false}));
+    const closeEditBookmarkDialog = () => setData((prev) => ({...prev, showDialogEditBookmark: false}));
+    
 
     const searchOnChange = (event) => {
         setData((prev) => ({
@@ -147,15 +170,15 @@ export default function App() {
     }
 
     return( 
-        // <div onDrop={appDropHandler} onDragOver={appDragoverHandler}>
         <div>
+
+            <button className={"edit flat " + (editMode ? "editmode" : "viewmode")} onClick={toggleEditMode}>Edit</button>
 
             <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
 
             <article id="folders">
                 {data.items
-                .filter(x => x.name.toLowerCase().includes(data.query.toLowerCase()))
                 .map(x => (
                     <Folder 
                         key={x.id} 
@@ -164,14 +187,19 @@ export default function App() {
                         onBookmarkDrop={moveBookmark}
                         onURIDrop={openAddBookmarkDialog}
                         onDelete={deleteFolder}
+                        query={data.query.toLowerCase()}
+                        editMode={editMode}
+                        editBookmark={openEditBookmarkDialog}
+                        
                     />
                 ))}
             </article>
 
+            { editMode &&
             <div className="center spaceabove">
                 <button className="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
             </div>
-            
+            }
             <AddNewBookmarkDialog 
                 folder={data.selectedFolder}
                 prepopulatedUrl={formData.url}
@@ -186,6 +214,15 @@ export default function App() {
                 isOpen={data.showDialogAddGroup} 
                 onDismiss={closeAddGroupDialog} 
                 onSubmit={onSubmitGroup} 
+                onChange={handleChange}
+                />
+
+            <EditBookmarkDialog 
+                folder={data.selectedFolder}
+                prepopulatedUrl={formData.url}
+                isOpen={data.showDialogEditBookmark}
+                onDismiss={closeEditBookmarkDialog}
+                onSubmit={onSubmitBookmark}
                 onChange={handleChange}
                 />
 

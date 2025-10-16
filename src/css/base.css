@@ -31,6 +31,7 @@ div.folder button.addButton {
 }
 
 .folder {
+    user-select : none;
     margin-bottom: 1rem;
     min-width: 20rem;
     margin: 1rem;
@@ -181,45 +182,26 @@ div.field input {
 }
 
 
-/* Element | http://localhost:3000/ */
-
 div.folder button:nth-child(1) {
   margin-top: 1em;
   margin-right: 1em;
 }
 
+.edit {
+  float: right;
+  margin-right: 2em;
+}
 
-.lds-hourglass {
-    display: block;
-    margin: auto;
-    padding: 10rem;
-    position: relative;
-    width: 80px;
-    height: 80px;
-  }
-  .lds-hourglass:after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 32px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    animation: lds-hourglass 1.2s infinite;
-  }
-  @keyframes lds-hourglass {
-    0% {
-      transform: rotate(0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-    50% {
-      transform: rotate(900deg);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    100% {
-      transform: rotate(1800deg);
-    }
-  }
-  
+button.editmode {
+  font-weight: 900;
+  color: inherit;
+  background-color: #ff0000;
+}
+
+button.viewmode {
+  font-weight: inherit;
+  color: #000000;
+  background-color: #e2e2e2;
+}
+
+

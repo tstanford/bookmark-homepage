@@ -1,4 +1,4 @@
-export default function Bookmark({bookmark}){
+export default function Bookmark({bookmark, editMode, editBookmark}){
     const dragstartHandler = (ev) => {
         ev.dataTransfer.setData("bookmark", bookmark.id);
     };
@@ -7,11 +7,12 @@ export default function Bookmark({bookmark}){
         <a
         href={bookmark.url}
         onDragStart={dragstartHandler}
-        draggable="true" 
+        draggable={editMode}
         target="_blank" 
+        onClick={(e) => editBookmark(bookmark,e)}
         key={bookmark.key}
         rel="noreferrer">
-            <img src={bookmark.favicon} alt="{bookmark.title} icon"/>
+            <img src={bookmark.favicon} alt="{bookmark.title} icon" draggable={editMode}/>
             {bookmark.title}
         </a>
     )
