@@ -136,6 +136,11 @@ button.flat {
   border-radius: 1rem;
 }
 
+.spaceabove {
+  margin-top: 2em;
+}
+
+
 div.dialog button.flat {
   background-color: #375099;
   width: 7rem;  
@@ -167,8 +172,21 @@ div.field input {
   font-size: 1.5rem;
 }
 
+#root {
+  height: 100%;
+}
+
+#root > div:nth-child(1) {
+  height: 100%;
+}
 
 
+/* Element | http://localhost:3000/ */
+
+div.folder button:nth-child(1) {
+  margin-top: 1em;
+  margin-right: 1em;
+}
 
 
 .lds-hourglass {

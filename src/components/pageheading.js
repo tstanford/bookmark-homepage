@@ -1,7 +1,7 @@
-export default function PageHeading({ date }) {
+export default function PageHeading({ date, appDropHandler, appDragoverHandler }) {
     return (
 
-        <header>
+        <header onDrop={appDropHandler} onDragOver={appDragoverHandler}>
             <h1>
                 <div className="titlecase">Tim's Home Page</div>
                 <div className="date">{date}</div>

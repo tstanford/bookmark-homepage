@@ -14,8 +14,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    const serviceUrl = "http://192.168.0.30:8088";
-    //const serviceUrl = "http://localhost:8080";
+    //const serviceUrl = "http://192.168.0.30:8088";
+    const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -81,6 +81,20 @@ export default function App() {
         }).then(() => {setRefreshKey(oldKey => oldKey+1);});
     };
 
+    const deleteBookmark = (bookmarkId) => {
+        fetch(serviceUrl+"/bookmarks/"+bookmarkId, {
+            method: "DELETE",
+        }).then(() => {setRefreshKey(oldKey => oldKey+1);});
+    };
+
+    const deleteFolder = (folder) => {
+        fetch(serviceUrl+"/group/"+folder.id, {
+            method: "DELETE",
+        }).then(() => {setRefreshKey(oldKey => oldKey+1);});
+
+    };
+
+
     const onSubmitBookmark = (event) => {
         event.preventDefault();
         
@@ -113,6 +127,19 @@ export default function App() {
         closeAddGroupDialog();
     };
 
+    const appDragoverHandler = (ev) => {
+        ev.preventDefault();
+    };
+
+    const appDropHandler = (ev) =>{
+        ev.preventDefault();
+        const bookmarkId = ev.dataTransfer.getData("bookmark");
+        if(bookmarkId){
+            deleteBookmark(bookmarkId);
+        } 
+        
+    };
+
     if(!data.isLoaded){
         return (
             <div className="lds-hourglass"></div>
@@ -120,8 +147,10 @@ export default function App() {
     }
 
     return( 
+        // <div onDrop={appDropHandler} onDragOver={appDragoverHandler}>
         <div>
-            <PageHeading date={ new Date().toDateString()}></PageHeading>
+
+            <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
 
             <article id="folders">
@@ -134,11 +163,12 @@ export default function App() {
                         onAdd={openAddBookmarkDialog}
                         onBookmarkDrop={moveBookmark}
                         onURIDrop={openAddBookmarkDialog}
+                        onDelete={deleteFolder}
                     />
                 ))}
             </article>
 
-            <div className="center">
+            <div className="center spaceabove">
                 <button className="flat" onClick={()=>{openAddGroupDialog()}}>Add New Group</button>
             </div>
             

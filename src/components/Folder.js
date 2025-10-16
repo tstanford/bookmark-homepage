@@ -1,6 +1,6 @@
 import Bookmark from "./Bookmark";
 
-export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete}){
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
@@ -26,13 +26,18 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop}){
 
     return(
         <div className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
-            <label>{item.name}
-                <button className="addButton" onClick={()=>{onAdd(item)}}>+</button>
-            </label>
+            <button className="addButton" onClick={()=>{onAdd(item)}}>+</button>
+            <label>{item.name}</label>
+            
             <div className="items">
-            {item.bookmarks.map(bookmark => (
-                <Bookmark key={bookmark.id} bookmark={bookmark} />                
-            ))}
+            {item.bookmarks.length > 0 ? 
+                item.bookmarks.map(bookmark => (
+                    <Bookmark key={bookmark.id} bookmark={bookmark} />                
+                ))
+            :
+                <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>
+            }
+
             </div>
         </div>
     );
