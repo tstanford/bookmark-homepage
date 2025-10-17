@@ -20,6 +20,10 @@ x change edit button toggle to switch
 
 x delete bookmark by clicking the bin badge on the icon
 
+x get search working
+
+- folder titles are jumping about in edit mode
+
 - edit bookmark
 
 - delete bookmark by clicking delete in the edit dialog
@@ -29,8 +33,6 @@ x delete bookmark by clicking the bin badge on the icon
 - unit test moveBookmark
 
 - integration test moveBookmark
-
-- get search working
 
 - replace reach dialog with something else even home built.
 
