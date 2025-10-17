@@ -15,8 +15,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    //const serviceUrl = "http://192.168.0.30:8088";
-    const serviceUrl = "http://localhost:8080";
+    const serviceUrl = "http://192.168.0.30:8088";
+    //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -26,11 +26,6 @@ export default function App() {
         fetch(serviceUrl+"/bookmarks")
         .then(res => res.json())
         .then(json => {
-            for(var folderKey in json) {
-                for(var bookmarkKey in json[folderKey].bookmarks){
-                    json[folderKey].bookmarks[bookmarkKey].favicon = "data:image/svg+xml;base64,"+json[folderKey].bookmarks[bookmarkKey].favicon;
-                }
-            }
             setData({
                 isLoaded: true,
                 filteredData: json,

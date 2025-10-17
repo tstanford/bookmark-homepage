@@ -28,6 +28,8 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     };
 
     return(
+        <>
+        {(query === "" || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
         <div className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
             {editMode && 
             <button className="addButton" onClick={()=>{onAdd(item)}}>
@@ -37,14 +39,20 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
             
             <div className="items">
             {item.bookmarks.length > 0 ? 
-                item.bookmarks.filter(x => query == "" || x.title.toLowerCase().includes(query)).map(bookmark => (
+                item.bookmarks.filter(x => query === "" || x.title.toLowerCase().includes(query)).map(bookmark => (
                     <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark} deleteBookmark={deleteBookmark}/>                
                 ))
             :
+            <>
+            {editMode &&
                 <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>
+            }
+            </>
             }
 
             </div>
         </div>
+        }
+        </>
     );
 }
