@@ -1,26 +1,26 @@
 # Feature List
 
-x add new group
+- ~~add new group~~
 
-x refresh data on add new bookmark
+- ~~refresh data on add new bookmark~~
 
-x refresh data on add new group
+- ~~refresh data on add new group~~
 
-x containerise the application
+- ~~containerise the application~~
 
-x refactor dialogs into new components
+- ~~refactor dialogs into new components~~
 
-x Drag and drop links from one group to another
+- ~~Drag and drop links from one group to another~~
 
-x allow drag and drop of urls from browser, popup add new bookmark dialog
+- ~~allow drag and drop of urls from browser, popup add new bookmark dialog~~
 
-x edit mode
+- ~~edit mode~~
 
-x change edit button toggle to switch
+- ~~change edit button toggle to switch~~
 
-x delete bookmark by clicking the bin badge on the icon
+- ~~delete bookmark by clicking the bin badge on the icon~~
 
-x get search working
+- ~~get search working~~
 
 - responsive mode for mobile browsing
 
@@ -44,13 +44,11 @@ x get search working
 
 - update jenkins pipeline to deploy to k8s.
 
-
+- edit bookmark
+    - change name
 
 - edit bookmark
-    change name
-
-- edit bookmark
-    change favicon
+    - change favicon
 
 - rename group
 
@@ -59,9 +57,9 @@ x get search working
 - delete bookmark
 
 - authentication
-    register
-    login
-    logout
+    - register
+    - login
+    - logout
 
 - Custom bookmarks per user
 

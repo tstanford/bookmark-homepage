@@ -4,6 +4,6 @@
 
 ## Feature Backlog:
 
-[text](project/feature.md)
+[Link to Backlog](project/feature.md)
 
 
