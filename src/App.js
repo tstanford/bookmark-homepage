@@ -173,12 +173,11 @@ export default function App() {
         <div>
 
             <div id="editSwitch">
-            <label class="switch">
+            <label className="switch">
                 <input type="checkbox" checked={editMode} onChange={toggleEditMode}/>
-                <span class="slider round"></span>
+                <span className="slider round"></span>
             </label>
             </div>
-
 
             <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>
@@ -196,6 +195,7 @@ export default function App() {
                         query={data.query.toLowerCase()}
                         editMode={editMode}
                         editBookmark={openEditBookmarkDialog}
+                        deleteBookmark={deleteBookmark}
                         
                     />
                 ))}

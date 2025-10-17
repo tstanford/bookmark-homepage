@@ -16,9 +16,13 @@ x allow drag and drop of urls from browser, popup add new bookmark dialog
 
 x edit mode
 
-- change edit button toggle to switch
+x change edit button toggle to switch
 
-- delete bookmark by dragging onto background
+x delete bookmark by clicking the bin badge on the icon
+
+- edit bookmark
+
+- delete bookmark by clicking delete in the edit dialog
 
 - error handling for drag and drop
 

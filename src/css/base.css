@@ -182,13 +182,44 @@ div.field input {
 }
 
 
-div.folder button:nth-child(1) {
-  margin-top: 1em;
+div.folder button.addButton {
+  margin-top: 0.7em;
   margin-right: 1em;
 }
 
 #editSwitch{
   float: right;
   margin-right: 2em;
+}
+
+header {
+  user-select: none;
+}
+
+button.deletebookmark, button.addButton {
+  all: unset;
+}
+
+button.deletebookmark:hover, button.addButton:hover {
+  cursor: pointer;
+}
+
+button.deletebookmark:hover {
+  color: red;
+}
+
+button.addButton:hover {
+  color: yellow;
+}
+
+button.deletebookmark {
+  position: absolute;
+  text-align: right;
+  margin-left: 3rem;
+  margin-top: -1rem;
+}
+
+button:focus {
+  outline: revert;
 }
 
