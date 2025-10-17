@@ -72,7 +72,6 @@ export default function App() {
     const openAddGroupDialog = (folder) => setData((prev) => ({...prev, showDialogAddGroup: true}));
     const closeAddGroupDialog = () => setData((prev) => ({...prev, showDialogAddGroup: false}));
     const closeEditBookmarkDialog = () => setData((prev) => ({...prev, showDialogEditBookmark: false}));
-    
 
     const searchOnChange = (event) => {
         setData((prev) => ({
@@ -111,7 +110,6 @@ export default function App() {
         }).then(() => {setRefreshKey(oldKey => oldKey+1);});
 
     };
-
 
     const onSubmitBookmark = (event) => {
         event.preventDefault();
@@ -229,69 +227,4 @@ export default function App() {
 
         </div>
     );
-
-
-    /*
-    {folder.bookmarks.filter(
-            b => query === "" || 
-            query.startsWith("g=") ||
-            b.title.toLowerCase().includes(query.toLowerCase())
-        ).map(bookmark => (
-        <a href={bookmark.url}
-        target="_blank">
-            <img src={bookmark.favicon}/>{bookmark.title}</a>
-    ))}
-*/
-
-    /*
-    render(){
-        var {isLoaded, items, query, showDialog, selectedFolder} = this.state;
-        var filteredFolders = items.filter(i => query === "" || i.name.startsWith(query));
-        if (filteredFolders.length === 0 ) filteredFolders = items
-        if(!isLoaded){
-            return (
-                <div className="lds-hourglass"></div>
-            );
-        }
-        else {
-            return (
-            <div id="app">
-                <SearchBox onChange={this.searchOnChange}/>
-                <Dialog isOpen={showDialog} onDismiss={this.close}>
-                    <p>{selectedFolder != null && selectedFolder.name}</p>
-                    <button onClick={this.close}>
-                    Cancel
-                    </button>
-                    <button onClick={this.addBookmark}>
-                    Ok
-                    </button>
-                </Dialog>   
-                
-                <article id="folders">
-                    {filteredFolders.filter(
-                            f => query === "" || 
-                            f.bookmarks.filter(b => b.title.toLowerCase().includes(query.toLowerCase())).length > 0 ||
-                            (query.startsWith("g=") && query.length > 2 && f.name.toLowerCase().startsWith(query.replace("g=","").toLowerCase()))
-                        ).map(folder => (
-                        <div className="folder">
-                            <label>{folder.name}
-                                <button className="addButton" onClick={() => this.open(folder)}>+</button>
-                            </label>
-                            
-                            {folder.bookmarks.filter(
-                                    b => query === "" || 
-                                    query.startsWith("g=") ||
-                                    b.title.toLowerCase().includes(query.toLowerCase())
-                                ).map(bookmark => (
-                                <a href={bookmark.url}
-                                target="_blank">
-                                <img src={bookmark.favicon}/>{bookmark.title}</a>
-                            ))}
-                        </div>
-                    ))}
-                </article>
-            </div>
-            );
-        }
-    }*/
 }
