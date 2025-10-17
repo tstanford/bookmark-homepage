@@ -22,6 +22,8 @@ x delete bookmark by clicking the bin badge on the icon
 
 x get search working
 
+- responsive mode for mobile browsing
+
 - folder titles are jumping about in edit mode
 
 - edit bookmark
