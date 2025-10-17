@@ -172,7 +172,13 @@ export default function App() {
     return( 
         <div>
 
-            <button className={"edit flat " + (editMode ? "editmode" : "viewmode")} onClick={toggleEditMode}>Edit</button>
+            <div id="editSwitch">
+            <label class="switch">
+                <input type="checkbox" checked={editMode} onChange={toggleEditMode}/>
+                <span class="slider round"></span>
+            </label>
+            </div>
+
 
             <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange}></SearchBox>

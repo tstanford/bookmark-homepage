@@ -14,6 +14,10 @@ x Drag and drop links from one group to another
 
 x allow drag and drop of urls from browser, popup add new bookmark dialog
 
+x edit mode
+
+- change edit button toggle to switch
+
 - delete bookmark by dragging onto background
 
 - error handling for drag and drop
