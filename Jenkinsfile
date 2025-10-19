@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+                image 'node:7.4'
+        }
+    }
+
     environment {
         // NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         // PATH = "$NODEJS_HOME/bin:${env.PATH}"
@@ -14,20 +19,20 @@ pipeline {
           daysToKeepStr: '30',
           numToKeepStr: '10'
         ))
-      }
+    }
 
     stages {
-        stage('Prebuild') { 
+        stage('Prebuild') {
             steps {
                 sh 'sudo apt-get install -y nodejs npm'
             }
         }
-        stage('Build') { 
+        stage('Build') {
             steps {
                 sh 'find -name "*.js" | xargs node -c'
             }
         }
-        stage('Test') { 
+        stage('Test') {
             steps {
                     sh 'CI=true npm test'
             }
@@ -47,15 +52,15 @@ pipeline {
             }
         }
 
-        // stage('Deploy to Kubernetes') {
-        //     steps {
-        //         script {
-        //             withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
-        //                 sh "curl https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz | tar zxf - "
-        //                 sh "linux-amd64/helm upgrade --install bookmark-service ./chart --set bookmarkService.tag=${IMAGE_TAG}"
-        //             }
-        //         }
-        //     }
-        // }
+    // stage('Deploy to Kubernetes') {
+    //     steps {
+    //         script {
+    //             withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
+    //                 sh "curl https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz | tar zxf - "
+    //                 sh "linux-amd64/helm upgrade --install bookmark-service ./chart --set bookmarkService.tag=${IMAGE_TAG}"
+    //             }
+    //         }
+    //     }
+    // }
     }
 }
