@@ -1,9 +1,7 @@
 pipeline {
     agent {
-        docker {
-                image 'tjstanford/buildagent:latest'
-                args "-v /var/run/docker.sock:/var/run/docker.sock"
-                args "-v /var/jenkins_home/:/var/jenkins_home/"
+        dockerfile {
+            dir 'build_image'
         }
     }
 
