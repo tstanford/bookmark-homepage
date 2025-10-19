@@ -1,4 +1,5 @@
 replicaCount: 3
+namespace: bookmark-homepage
 
 image:
   repository: tjstanford/bookmark-homepage
