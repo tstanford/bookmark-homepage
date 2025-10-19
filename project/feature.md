@@ -22,6 +22,12 @@
 
 - ~~get search working~~
 
+- ~~setup jenkins pipeline for ci/cd - no k8s deployment yet~~
+
+- ~~create helm chart for bookmark-homepage~~
+
+- ~~update jenkins pipeline to deploy to k8s.~~
+
 - responsive mode for mobile browsing
 
 - folder titles are jumping about in edit mode
@@ -37,12 +43,6 @@
 - integration test moveBookmark
 
 - replace reach dialog with something else even home built.
-
-- setup jenkins pipeline for ci/cd - no k8s deployment yet
-
-- create helm chart for bookmark-homepage
-
-- update jenkins pipeline to deploy to k8s.
 
 - edit bookmark
     - change name
