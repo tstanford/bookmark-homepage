@@ -1,11 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            dir 'build_image'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
-
+    agent none    
     environment {
         DOCKERHUB_CREDENTIALS = "dockerHubCredentials"
         KUBECONFIG = "/var/jenkins_home/.kube/config"
@@ -23,6 +17,12 @@ pipeline {
 
     stages {
         stage('Build') {
+            agent {
+                dockerfile {
+                    dir 'build_image'
+                }
+            }
+
             steps {
                 sh "mkdir -p $HOME"
                 sh "yarn install"
@@ -30,6 +30,12 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                dockerfile {
+                    dir 'build_image'
+                }
+            }
+            
             steps {
                     sh 'CI=true npm test'
             }
