@@ -22,8 +22,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "npm install --prefer-offline --no-audit"
-                //sh 'find -name "*.js" | xargs node -c'
+                sh "npm install yarn -g"
             }
         }
         stage('Test') {
