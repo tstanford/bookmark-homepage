@@ -1,5 +1,5 @@
 pipeline {
-    agent none    
+    agent none
     environment {
         DOCKERHUB_CREDENTIALS = "dockerHubCredentials"
         KUBECONFIG = "/var/jenkins_home/.kube/config"
@@ -56,6 +56,7 @@ pipeline {
         }
 
     stage('Deploy to Kubernetes') {
+        agent any
         steps {
             script {
                 withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
