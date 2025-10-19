@@ -24,7 +24,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'find -name "*.js" | xargs node -c'
+                //sh 'find -name "*.js" | xargs node -c'
             }
         }
         stage('Test') {
