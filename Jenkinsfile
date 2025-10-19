@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        PATH = "$NODEJS_HOME/bin:${env.PATH}"
+        // NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        // PATH = "$NODEJS_HOME/bin:${env.PATH}"
         DOCKERHUB_CREDENTIALS = "dockerHubCredentials"
         KUBECONFIG = "/var/jenkins_home/.kube/config"
         IMAGE_NAME = "bookmark-homepage"
