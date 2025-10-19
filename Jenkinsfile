@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "npm install yarn -g"
+                sh "yarn build"
             }
         }
         stage('Test') {
