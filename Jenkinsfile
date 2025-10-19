@@ -10,6 +10,7 @@ pipeline {
         KUBECONFIG = "/var/jenkins_home/.kube/config"
         IMAGE_NAME = "bookmark-homepage"
         IMAGE_TAG = "1.0.${BUILD_NUMBER}"
+        HOME = "${env.WORKSPACE}"
     }
 
     options {
@@ -22,6 +23,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh "mkdir -p $HOME"
                 sh "yarn install"
                 sh "yarn build"
             }
