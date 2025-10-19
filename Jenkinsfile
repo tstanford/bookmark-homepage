@@ -2,7 +2,8 @@ pipeline {
     agent {
         docker {
                 image 'tjstanford/buildagent:latest'
-                args "-v /var/run/docker.sock:/var/run/docker.sock ${env.WORKSPACE}:${env.WORKSPACE}"
+                //args "-v /var/run/docker.sock:/var/run/docker.sock"
+                reuseNode true
         }
     }
 
