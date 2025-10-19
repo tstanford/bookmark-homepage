@@ -24,7 +24,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "hello"
+                sh "npm install"
                 //sh 'find -name "*.js" | xargs node -c'
             }
         }
