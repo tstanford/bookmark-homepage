@@ -22,11 +22,6 @@ pipeline {
     }
 
     stages {
-        stage('Prebuild') {
-            steps {
-                sh 'sudo apt-get install -y nodejs npm'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'find -name "*.js" | xargs node -c'
