@@ -1,5 +1,5 @@
 FROM debian
-RUN apt-get update
+RUN apt-get -y update
 #RUN apt-get -y install ca-certificates curl gpg
 
 # 3. install docker

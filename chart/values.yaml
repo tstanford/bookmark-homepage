@@ -1,0 +1,12 @@
+replicaCount: 3
+
+image:
+  repository: tjstanford/bookmark-homepage
+  tag: "1.0.32"
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 8091
+
+containerPort: 80
