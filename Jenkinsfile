@@ -6,8 +6,6 @@ pipeline {
     }
 
     environment {
-        // NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        // PATH = "$NODEJS_HOME/bin:${env.PATH}"
         DOCKERHUB_CREDENTIALS = "dockerHubCredentials"
         KUBECONFIG = "/var/jenkins_home/.kube/config"
         IMAGE_NAME = "bookmark-homepage"
@@ -24,7 +22,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "npm install"
+                sh "npm install --prefer-offline --no-audit"
                 //sh 'find -name "*.js" | xargs node -c'
             }
         }
