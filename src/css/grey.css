@@ -13,6 +13,7 @@ body {
 .folder {
   border: inherit;
   background-color: rgb(32 33 36 / 20%);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 header {
@@ -32,5 +33,6 @@ header {
   background-position-x: 1em;
 }
 
-
-
+#query {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
