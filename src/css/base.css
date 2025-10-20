@@ -20,7 +20,7 @@ body {
   display: none
 }
 
-div.folder button.addButton {
+section.folder button.addButton {
   float: right
 }
 
@@ -182,7 +182,7 @@ div.field input {
 }
 
 
-div.folder button.addButton {
+section.folder button.addButton {
   margin-top: 0.7em;
   margin-right: 1em;
 }

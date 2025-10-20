@@ -30,7 +30,7 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     return(
         <>
         {(editMode || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
-        <div className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
+        <section className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
             {editMode && 
             <button className="addButton" onClick={()=>{onAdd(item)}}>
                 <span className="material-symbols-outlined">bookmark_add</span>
@@ -47,7 +47,7 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
             }
 
             </div>
-        </div>
+        </section>
         }
         </>
     );
