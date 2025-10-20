@@ -28,7 +28,7 @@
 
 - ~~update jenkins pipeline to deploy to k8s.~~
 
-- responsive mode for mobile browsing
+- ~~responsive mode for mobile browsing~~
 
 - folder titles are jumping about in edit mode
 
