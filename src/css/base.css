@@ -223,3 +223,14 @@ button:focus {
   outline: revert;
 }
 
+@media only screen and (max-width: 900px) {
+  div.date {
+    display: none;
+  }
+
+  header{
+    height: 2.5em;
+    margin-bottom: .5em;    
+  }
+}
+
