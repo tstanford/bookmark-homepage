@@ -33,7 +33,7 @@ section.folder button.addButton {
 .folder {
     user-select : none;
     margin-bottom: 1rem;
-    min-width: 20rem;
+    min-width: 25rem;
     margin: 1rem;
     width: 20%;
     padding: 0rem;
