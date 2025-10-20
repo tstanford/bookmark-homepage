@@ -80,6 +80,16 @@ export default function App() {
             );
     };
 
+    const onSearchSubmit = (query) => {
+        window.location = "https://duckduckgo.com/?q="+ encodeURI(query)+"&ia=web";
+    };
+
+    const searchOnKeyUp = (event) => {
+        if(event.key === 'Enter'){
+            onSearchSubmit(event.target.value)
+      }
+    };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -173,7 +183,7 @@ export default function App() {
             </div>
 
             <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
-            <SearchBox onChange={searchOnChange}></SearchBox>
+            <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
 
             <article id="folders">
                 {data.items
