@@ -30,7 +30,13 @@
 
 - ~~responsive mode for mobile browsing~~
 
-- folder titles are jumping about in edit mode
+- ~~folder titles are jumping about in edit mode~~
+
+- ~~rename group~~
+
+- migrate project to next.js framework
+
+- replace reach dialog with standard one
 
 - edit bookmark
 
@@ -49,8 +55,6 @@
 
 - edit bookmark
     - change favicon
-
-- rename group
 
 - delete group
 
