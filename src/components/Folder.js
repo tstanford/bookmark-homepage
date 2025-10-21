@@ -1,5 +1,5 @@
 import Bookmark from "./Bookmark";
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, deleteBookmark, renameFolderName}){
 
