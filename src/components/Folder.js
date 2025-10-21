@@ -31,7 +31,6 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
 
     const onChangeFolderName = (e) => {
         setFolderName(e.target.value);
-        item.name = folderName;
     };
 
     return(
