@@ -205,6 +205,10 @@ section.folder input.titleTextBox {
   border: 0;
 }
 
+section.folder input.titleTextBox {
+  color: red;
+}
+
 #editSwitch{
   float: right;
   margin-right: 2em;
