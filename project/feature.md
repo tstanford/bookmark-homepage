@@ -34,6 +34,10 @@
 
 - ~~rename group~~
 
+- ~~delete group~~
+
+- export bookmarks to yaml file
+
 - migrate project to next.js framework
 
 - replace reach dialog with standard one
@@ -56,10 +60,6 @@
 - edit bookmark
     - change favicon
 
-- delete group
-
-- delete bookmark
-
 - authentication
     - register
     - login
@@ -68,8 +68,6 @@
 - Custom bookmarks per user
 
 - change colour themes
-
-- export bookmarks to yaml file
 
 - package bookmark-service and bookmark-homepage together as one deployment
 
