@@ -15,8 +15,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    const serviceUrl = "http://192.168.0.30:8088";
-    //const serviceUrl = "http://localhost:8080";
+    //const serviceUrl = "http://192.168.0.30:8088";
+    const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -40,6 +40,16 @@ export default function App() {
             setFormData({});
         });
     }, [refreshKey]);
+
+    const renameFolderName = (folderId, newName) => {
+        console.log("rename "+folderId+ " to "+newName);
+
+        fetch(serviceUrl+"/group/"+folderId, {
+                method: "PUT",
+                body: newName
+            }).then(() => {setRefreshKey(oldKey => oldKey+1);});
+    }
+
 
     const openAddBookmarkDialog = (folder,url) => {
         setData((prev) => ({
@@ -87,7 +97,7 @@ export default function App() {
     const searchOnKeyUp = (event) => {
         if(event.key === 'Enter'){
             onSearchSubmit(event.target.value)
-      }
+        }
     };
 
     const handleChange = (event) => {
@@ -199,7 +209,7 @@ export default function App() {
                         editMode={editMode}
                         editBookmark={openEditBookmarkDialog}
                         deleteBookmark={deleteBookmark}
-                        
+                        renameFolderName={renameFolderName}                       
                     />
                 ))}
             </article>

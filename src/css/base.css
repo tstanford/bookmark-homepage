@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto Serif&display=swap');
 
+App, html, body {
+  height: 100%;
+  margin: 0;
+}
+
 header {
     text-align: center;
     color: #ffffff;
@@ -21,8 +26,17 @@ body {
 }
 
 section.folder button.addButton {
-  float: right
+  display:block;
+  position: absolute;
+  right: 0;
 }
+
+.folder .titleTextBox {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 #folders {
     display: flex;
@@ -42,7 +56,7 @@ section.folder button.addButton {
     border-radius: 1rem;
 }
 
-.folder label {
+.folder label, .folder .titleTextBox {
     padding:0.5rem;
     font-weight: 900;
     font-size: 1.5rem;
@@ -185,6 +199,10 @@ div.field input {
 section.folder button.addButton {
   margin-top: 0.7em;
   margin-right: 1em;
+}
+
+section.folder input.titleTextBox {
+  border: 0;
 }
 
 #editSwitch{

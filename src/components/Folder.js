@@ -1,10 +1,13 @@
 import Bookmark from "./Bookmark";
+import React, { useState, useRef } from 'react';
 
-export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, deleteBookmark}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, deleteBookmark, renameFolderName}){
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
     };
+
+    const [folderName, setFolderName] = useState(item.name);
 
     const folderDropHandler = (ev) =>{
         if(!editMode){
@@ -23,20 +26,31 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
             if(url) {
                 onURIDrop(item, url);
             }
-        }        
-        
+        }         
+    };
+
+    const onChangeFolderName = (e) => {
+        setFolderName(e.target.value);
+        item.name = folderName;
     };
 
     return(
         <>
         {(editMode || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
         <section className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
-            {editMode && 
-            <button className="addButton" onClick={()=>{onAdd(item)}}>
-                <span className="material-symbols-outlined">bookmark_add</span>
-            </button> }
-            <label>{item.name}</label>
+
+            {editMode ?
+            <>
+                <button className="addButton" onClick={()=>{onAdd(item)}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
+                <input className="titleTextBox" value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item.id, folderName)}/>
+                
+            </>
+            :
+                <label>{item.name}</label>
+            }   
+
             
+
             <div className="items">
             {item.bookmarks.length > 0 ? 
                 item.bookmarks.filter(x => query === "" || x.title.toLowerCase().includes(query)).map(bookmark => (

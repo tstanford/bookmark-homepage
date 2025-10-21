@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './css/spinner.css';
 import './css/slider.css';
 import './css/base.css';
-import './css/grey.css';
+import './css/forest.css';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
