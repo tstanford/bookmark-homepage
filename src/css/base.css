@@ -25,18 +25,11 @@ body {
   display: none
 }
 
-section.folder button.addButton {
-  display:block;
-  position: absolute;
-  right: 0;
-}
-
 .folder .titleTextBox {
   display: block;
   width: 100%;
   box-sizing: border-box;
 }
-
 
 #folders {
     display: flex;
@@ -194,7 +187,6 @@ div.field input {
 #root > div:nth-child(1) {
   height: 100%;
 }
-
 
 section.folder button.addButton {
   margin-top: 0.7em;
