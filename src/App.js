@@ -41,7 +41,7 @@ export default function App() {
         });
     }, [refreshKey]);
 
-    const renameFolderName = (folder, newName) => {
+    const renameFolderName = async (folder, newName, setFolderName) => {
 
         if(folder.name === newName) {
             console.log("name hasn't changed.")
@@ -50,10 +50,17 @@ export default function App() {
 
         console.log("rename "+folder.id+ " to "+newName);
 
-        fetch(serviceUrl+"/group/"+folder.id, {
+        let response = await fetch(serviceUrl+"/group/"+folder.id, {
                 method: "PUT",
                 body: newName
-            }).then(() => {setRefreshKey(oldKey => oldKey+1);});
+        });
+
+        if(response.status === 200){
+            setRefreshKey(oldKey => oldKey+1);
+        } else {
+            setFolderName(folder.name);
+            alert(await response.text());            
+        }
     }
 
 
