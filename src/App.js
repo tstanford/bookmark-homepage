@@ -15,8 +15,8 @@ export default function App() {
         showDialogAddGroup: false
     });
 
-    const serviceUrl = "http://192.168.0.30:8088";
-    //const serviceUrl = "http://localhost:8080";
+    //const serviceUrl = "http://192.168.0.30:8088";
+    const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -63,6 +63,9 @@ export default function App() {
         }
     }
 
+    const downloadExportFile = () => {
+        window.location = serviceUrl+"/export";
+    };
 
     const openAddBookmarkDialog = (folder,url) => {
         setData((prev) => ({
@@ -199,11 +202,18 @@ export default function App() {
         <div>
 
             <div id="editSwitch">
-            <label className="switch">
-                <input type="checkbox" checked={editMode} onChange={toggleEditMode}/>
-                <span className="slider round"></span>
-            </label>
+                <label className="switch">
+                    <input type="checkbox" checked={editMode} onChange={toggleEditMode}/>
+                    <span className="slider round"></span>
+                </label>
             </div>
+
+            <div class="exportfile">
+                <button>
+                    <span class="material-symbols-outlined" onClick={downloadExportFile}>file_save</span>
+                </button>
+            </div>
+
 
             <PageHeading date={ new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>

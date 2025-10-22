@@ -36,6 +36,8 @@
 
 - ~~delete group~~
 
+- Bug: add bookmark icon breaks out of container and right aligned to the document
+
 - export bookmarks to yaml file
 
 - migrate project to next.js framework
