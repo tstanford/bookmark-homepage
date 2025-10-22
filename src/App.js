@@ -41,10 +41,16 @@ export default function App() {
         });
     }, [refreshKey]);
 
-    const renameFolderName = (folderId, newName) => {
-        console.log("rename "+folderId+ " to "+newName);
+    const renameFolderName = (folder, newName) => {
 
-        fetch(serviceUrl+"/group/"+folderId, {
+        if(folder.name === newName) {
+            console.log("name hasn't changed.")
+            return;
+        }
+
+        console.log("rename "+folder.id+ " to "+newName);
+
+        fetch(serviceUrl+"/group/"+folder.id, {
                 method: "PUT",
                 body: newName
             }).then(() => {setRefreshKey(oldKey => oldKey+1);});
