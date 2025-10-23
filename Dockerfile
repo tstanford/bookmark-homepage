@@ -1,12 +1,12 @@
 # Stage 1: Build the React app
-FROM node:18-alpine AS builder
+FROM node:lts AS builder
 
 # Set working directory
 WORKDIR /app
 
 # Install dependencies
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --ignore-engines
+RUN yarn install --frozen-lockfile 
 
 # Copy source files and build
 COPY . .
