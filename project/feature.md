@@ -38,11 +38,11 @@
 
 - Bug: add bookmark icon breaks out of container and right aligned to the document
 
-- export bookmarks to yaml file
+- ~~export bookmarks to yaml file~~
 
-- migrate project to next.js framework
+- ~~migrate project to something newer~~
 
-- replace reach dialog with standard one
+- ~~replace reach dialog with standard one~~
 
 - edit bookmark
 
@@ -53,8 +53,6 @@
 - unit test moveBookmark
 
 - integration test moveBookmark
-
-- replace reach dialog with something else even home built.
 
 - edit bookmark
     - change name
