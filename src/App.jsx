@@ -7,14 +7,13 @@ import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
 import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
 
 function App() {
+    const serviceUrl = import.meta.env.VITE_SERVICE_URL;
+
     const [data, setData] = useState({
         isLoaded: false,
         items: [],
         selectedGroup: -1,
     });
-
-    const serviceUrl = "http://192.168.0.30:8088";
-    //const serviceUrl = "http://localhost:8080";
 
     const [formData, setFormData] = useState();
     const [refreshKey, setRefreshKey] = useState(0);
@@ -37,7 +36,7 @@ function App() {
                 });
                 setFormData({});
             });
-    }, [refreshKey]);
+    }, [refreshKey, serviceUrl]);
 
     const renameFolderName = async (folder, newName, setFolderName) => {
         if (folder.name === newName) {
@@ -222,9 +221,9 @@ function App() {
                 </label>
             </div>
 
-            <div class="exportfile">
+            <div className="exportfile">
                 <button>
-                    <span class="material-symbols-outlined" onClick={downloadExportFile}>file_save</span>
+                    <span className="material-symbols-outlined" onClick={downloadExportFile}>file_save</span>
                 </button>
             </div>
 
