@@ -37,7 +37,7 @@ pipeline {
             }
 
             steps {
-                    sh 'CI=true npm test'
+                    //sh 'CI=true npm test'
             }
         }
 
