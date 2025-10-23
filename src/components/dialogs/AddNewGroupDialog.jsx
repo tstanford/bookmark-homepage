@@ -1,9 +1,9 @@
-import "@reach/dialog/styles.css";
-import { Dialog } from "@reach/dialog";
 
-export default function AddNewGroup({isOpen, onDismiss, onSubmit, onChange}){
+
+export default function AddNewGroup({dialogRef, onDismiss, onSubmit, onChange}){
     return(
-        <Dialog isOpen={isOpen} onDismiss={onDismiss} className="dialog">
+
+        <dialog ref={dialogRef}>
             <h1>Create new Group</h1>
             
             <form onSubmit={onSubmit}>
@@ -18,6 +18,7 @@ export default function AddNewGroup({isOpen, onDismiss, onSubmit, onChange}){
                     <button className="flat" onClick={onDismiss}>Cancel</button>                        
                 </div>
             </form>
-        </Dialog>
+        </dialog>
+
     );
 }

@@ -1,9 +1,7 @@
-import "@reach/dialog/styles.css";
-import { Dialog } from "@reach/dialog";
-
-export default function EditBookmark({folder, prepopulatedUrl, isOpen, onDismiss, onSubmit, onChange}){
+export default function EditBookmark({dialogRef, folder, prepopulatedUrl, onDismiss, onSubmit, onChange}){
     return(
-        <Dialog isOpen={isOpen} onDismiss={onDismiss} className="dialog">
+
+        <dialog ref={dialogRef}>
                 
                 <form onSubmit={onSubmit}>
                     <div className="field">
@@ -21,6 +19,7 @@ export default function EditBookmark({folder, prepopulatedUrl, isOpen, onDismiss
                         <button className="flat" onClick={onDismiss}>Cancel</button>                        
                     </div>
                 </form>
-        </Dialog>
+        </dialog>
+
     );
 }
