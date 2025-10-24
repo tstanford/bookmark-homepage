@@ -42,9 +42,11 @@
 
 - ~~replace reach dialog with standard one~~
 
-- Bug: add bookmark icon breaks out of container and right aligned to the document
+- ~~Change dockerfile to use environment variables for service url. when it starts the container, it should edit the urls in the code.~~
 
-- Change dockerfile to use environment variables for service url. when it starts the container, it should edit the urls in the code.
+- ~~Add footer with github link and build number~~
+
+- Bug: add bookmark icon breaks out of container and right aligned to the document
 
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
 
