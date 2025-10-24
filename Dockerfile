@@ -10,7 +10,6 @@ RUN yarn install --frozen-lockfile
 
 # Copy source files and build
 COPY . .
-RUN ls -R /app
 RUN yarn build
 
 # Stage 2: Serve the app with a lightweight web server
@@ -24,7 +23,6 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 RUN mkdir -p /opt/bookmark-service/
 COPY --from=builder /app/updateVars.sh /opt/bookmark-service/updateVars.sh
 RUN chmod 755 /opt/bookmark-service/updateVars.sh
-RUN ls -Rl /opt
 
 # Copy custom nginx config (optional)
 # COPY nginx.conf /etc/nginx/nginx.conf
