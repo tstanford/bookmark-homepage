@@ -1,6 +1,7 @@
 var env = {
-    SERVICE_URL: "http://192.168.0.30:8088",
-    SEARCH_URL: "https://duckduckgo.com/?q="
+    BMS_SERVICE_URL: "http://localhost:8080",
+    BMS_SEARCH_URL: "https://google.com?q=",
+    BMS_VERSION: "1.0.0"
 };
 
 window.env = env;

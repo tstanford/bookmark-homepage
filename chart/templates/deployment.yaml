@@ -19,3 +19,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.containerPort }}
+          env:
+            - name: BMS_SERVICE_URL
+              value: {{ .Values.env.BMS_SERVICE_URL }}
+            - name: BMS_SEARCH_URL
+              value: {{ .Values.env.BMS_SEARCH_URL }}
+            - name: BMS_VERSION
+              value: {{ .Values.image.tag }}
+                

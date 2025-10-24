@@ -7,8 +7,9 @@ import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
 import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
 
 function App() {
-    const SERVICE_URL = window.env.SERVICE_URL;
-    const SEARCH_URL = window.env.SEARCH_URL;
+    const SERVICE_URL = window.env.BMS_SERVICE_URL;
+    const SEARCH_URL = window.env.BMS_SEARCH_URL;
+    const APP_VERSION = window.env.BMS_VERSION;
 
     const [data, setData] = useState({
         isLoaded: false,
@@ -229,7 +230,7 @@ function App() {
             </div>
 
 
-            <PageHeading date={new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
+            <PageHeading version={APP_VERSION} date={new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
 
             <article id="folders">
