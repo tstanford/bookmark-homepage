@@ -1,17 +1,17 @@
 pipeline {
     agent none
     environment {
-        DOCKERHUB_CREDENTIALS = "dockerHubCredentials"
-        KUBECONFIG = "/var/jenkins_home/.kube/config"
-        IMAGE_NAME = "bookmark-homepage"
+        DOCKERHUB_CREDENTIALS = 'dockerHubCredentials'
+        KUBECONFIG = '/var/jenkins_home/.kube/config'
+        IMAGE_NAME = 'bookmark-homepage'
         IMAGE_TAG = "1.0.${BUILD_NUMBER}"
         HOME = "${env.WORKSPACE}"
     }
 
     options {
         buildDiscarder(logRotator(
-          daysToKeepStr: '30',
-          numToKeepStr: '10'
+            daysToKeepStr: '30',
+            numToKeepStr: '10'
         ))
     }
 
@@ -25,8 +25,8 @@ pipeline {
 
             steps {
                 sh "mkdir -p $HOME"
-                sh "yarn install"
-                sh "yarn build"
+                sh 'yarn install'
+                sh 'yarn build'
             }
         }
         stage('Test') {
@@ -37,8 +37,8 @@ pipeline {
             }
 
             steps {
-                print("do nothing")
-                    //sh 'CI=true npm test'
+                print('do nothing')
+            //sh 'CI=true npm test'
             }
         }
 
@@ -56,16 +56,16 @@ pipeline {
             }
         }
 
-    stage('Deploy to Kubernetes') {
-        agent any
-        steps {
-            script {
-                withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
-                    sh "curl https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz | tar zxf - "
-                    sh "linux-amd64/helm upgrade --install bookmark-homepage ./chart --set image.tag=${IMAGE_TAG}"
+        stage('Deploy to Kubernetes') {
+            agent any
+            steps {
+                script {
+                    withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
+                        sh 'curl https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz | tar zxf - '
+                        sh "linux-amd64/helm upgrade --install bookmark-homepage ./chart --set image.tag=${IMAGE_TAG}"
+                    }
                 }
             }
         }
-    }
     }
 }
