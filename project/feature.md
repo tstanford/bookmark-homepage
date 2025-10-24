@@ -46,22 +46,21 @@
 
 - ~~Add footer with github link and build number~~
 
+- ~~edit bookmark~~
+    - ~~change name~~
+    - ~~change url~~
+
+- ~~delete bookmark by clicking delete in the edit dialog~~
+
 - Bug: add bookmark icon breaks out of container and right aligned to the document
 
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
-
-- edit bookmark
-
-- delete bookmark by clicking delete in the edit dialog
 
 - error handling for drag and drop
 
 - unit test moveBookmark
 
 - integration test moveBookmark
-
-- edit bookmark
-    - change name
 
 - edit bookmark
     - change favicon
