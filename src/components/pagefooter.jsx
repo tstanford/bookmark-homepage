@@ -3,7 +3,7 @@ export default function PageFooter({ version }) {
 
         <footer>
             <h1>
-                <div>Created By Tim Stanford - <a href="https://github.com/tstanford/bookmark-homepage">Github Project</a></div>
+                <div>Copyright &copy;2025 Tim Stanford - <a href="https://github.com/tstanford/bookmark-homepage">Github Project</a></div>
                 <div className="version">bookmark-homepage {version}</div>
             </h1>
         </footer>
