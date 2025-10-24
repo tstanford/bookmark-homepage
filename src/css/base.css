@@ -234,6 +234,9 @@ footer a {
   text-decoration: none;
 }
 
+div.field input {
+  font-size: 1rem;
+}
 
 @media only screen and (max-width: 900px) {
   div.date {
