@@ -6,11 +6,11 @@ export default function Bookmark({bookmark, editMode, editBookmark, deleteBookma
     return (
         <>
         <div className="bookmarkicon">
-            {editMode &&
+            {/* {editMode &&
             <button onClick={() => deleteBookmark(bookmark.id)} className="deletebookmark">
                 <span className="material-symbols-outlined">delete</span>
             </button>
-            }
+            } */}
             <a
             href={bookmark.url}
             onDragStart={dragstartHandler}
