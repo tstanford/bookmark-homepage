@@ -219,6 +219,22 @@ button:focus {
   float: right;
 }
 
+footer {
+  font-size: 0.4em;
+  color: white;
+  border-top: solid white 1px;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  margin-top: 15em;
+  opacity: 0.25;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+
 @media only screen and (max-width: 900px) {
   div.date {
     display: none;

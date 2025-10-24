@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Folder from "./components/Folder"
 import SearchBox from "./components/SearchBox"
 import PageHeading from './components/pageheading';
+import PageFooter from './components/pagefooter';
 import AddNewGroupDialog from './components/dialogs/AddNewGroupDialog'
 import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
 import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
@@ -230,7 +231,7 @@ function App() {
             </div>
 
 
-            <PageHeading version={APP_VERSION} date={new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
+            <PageHeading date={new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
 
             <article id="folders">
@@ -282,6 +283,8 @@ function App() {
                 onSubmit={onSubmitBookmark}
                 onChange={handleChange}
             />
+
+            <PageFooter version={APP_VERSION}/>
 
         </div>
     );
