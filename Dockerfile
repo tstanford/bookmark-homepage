@@ -24,12 +24,8 @@ RUN mkdir -p /opt/bookmark-service/
 COPY --from=builder /app/updateVars.sh /opt/bookmark-service/updateVars.sh
 RUN chmod 755 /opt/bookmark-service/updateVars.sh
 
-# Copy custom nginx config (optional)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
 # Expose port 80
 EXPOSE 80
 
 # Start nginx
 CMD ["sh", "-c", "/opt/bookmark-service/updateVars.sh;nginx -g 'daemon off;'"]
-#CMD ["nginx", "-g", "daemon off;"]
