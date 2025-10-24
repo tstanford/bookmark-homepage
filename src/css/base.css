@@ -225,9 +225,8 @@ footer {
   border-top: solid white 1px;
   width: 50%;
   text-align: center;
-  margin: auto;
-  margin-top: 15em;
-  margin-bottom: 15em;
+  margin: 15em auto;
+  padding-bottom: 15em;
   opacity: 0.25;
 }
 
