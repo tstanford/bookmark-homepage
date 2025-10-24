@@ -52,6 +52,8 @@
 
 - ~~delete bookmark by clicking delete in the edit dialog~~
 
+- Bug: CORS error when opening edit dialog. local only.
+
 - Bug: add bookmark icon breaks out of container and right aligned to the document
 
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
