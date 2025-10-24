@@ -93,14 +93,19 @@ function App() {
             selectedBookmark: bookmark
         }));
 
+        setFormData(() => ({
+            title: bookmark.title,
+            url: bookmark.url,
+        }));
+
         editBookmarkDialogRef.current.showModal();
     };
 
+    const toggleEditMode = () => setEditMode(!editMode);
+
     const openAddGroupDialog = () => {
         addNewGroupDialogRef.current.showModal();
-    };
-
-    const toggleEditMode = () => setEditMode(!editMode);
+    };    
 
     const closeAddBookmarkDialog = () => {
         addNewBookmarkDialogRef.current.close()
@@ -150,6 +155,11 @@ function App() {
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     };
 
+    const deleteBookmarkBeingEdited = (id) => {
+        deleteBookmark(id)
+        closeEditBookmarkDialog();
+    };
+
     const deleteBookmark = (bookmarkId) => {
         fetch(SERVICE_URL + "/bookmarks/" + bookmarkId, {
             method: "DELETE",
@@ -181,6 +191,23 @@ function App() {
         closeAddBookmarkDialog();
     };
 
+    const onSubmitEditBookmark = (event) => {
+        event.preventDefault();
+
+        fetch(SERVICE_URL + "/bookmark/" + data.selectedBookmark.id, {
+            method: "PUT",
+            body: JSON.stringify({
+                title: formData.title,
+                url: formData.url,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+
+        closeEditBookmarkDialog();
+    };
+
     const onSubmitGroup = (event) => {
         event.preventDefault();
 
@@ -205,7 +232,6 @@ function App() {
         if (bookmarkId) {
             deleteBookmark(bookmarkId);
         }
-
     };
 
     if (!data.isLoaded) {
@@ -276,12 +302,14 @@ function App() {
             />
 
             <EditBookmarkDialog
-                folder={data.selectedFolder}
-                prepopulatedUrl={formData.url}
                 dialogRef={editBookmarkDialogRef}
+                bookmark={data.selectedBookmark}
+                prepopulatedName={formData.title}
+                prepopulatedUrl={formData.url}
                 onDismiss={closeEditBookmarkDialog}
-                onSubmit={onSubmitBookmark}
+                onSubmit={onSubmitEditBookmark}
                 onChange={handleChange}
+                onDelete={deleteBookmarkBeingEdited}
             />
 
             <PageFooter version={APP_VERSION}/>

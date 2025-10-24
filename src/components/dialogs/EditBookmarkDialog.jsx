@@ -1,4 +1,4 @@
-export default function EditBookmark({dialogRef, folder, prepopulatedUrl, onDismiss, onSubmit, onChange}){
+export default function EditBookmark({dialogRef, bookmark, prepopulatedName, prepopulatedUrl, onDismiss, onSubmit, onChange, onDelete}){
     return(
 
         <dialog ref={dialogRef}>
@@ -6,7 +6,7 @@ export default function EditBookmark({dialogRef, folder, prepopulatedUrl, onDism
                 <form onSubmit={onSubmit}>
                     <div className="field">
                         <label htmlFor="title">Title:</label>
-                        <input id="title" name="title" onChange={onChange}  />
+                        <input id="title" name="title" value={prepopulatedName} onChange={onChange}  />
                     </div>
                     <div className="field">
                         <label htmlFor="url">URL:</label>
@@ -14,8 +14,8 @@ export default function EditBookmark({dialogRef, folder, prepopulatedUrl, onDism
                     </div>
 
                     <div className="buttons">
-                        <button className="flat">Apply Changes</button>
-                        <button className="flat">Delete</button>
+                        <button className="flat" onClick={onSubmit}>Apply Changes</button>
+                        <button className="flat" onClick={() => onDelete(bookmark.id)}>Delete</button>
                         <button className="flat" onClick={onDismiss}>Cancel</button>                        
                     </div>
                 </form>
