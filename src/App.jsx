@@ -7,7 +7,8 @@ import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
 import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
 
 function App() {
-    const serviceUrl = import.meta.env.VITE_SERVICE_URL;
+    const SERVICE_URL = window.env.SERVICE_URL;
+    const SEARCH_URL = window.env.SEARCH_URL;
 
     const [data, setData] = useState({
         isLoaded: false,
@@ -23,7 +24,7 @@ function App() {
     var addNewGroupDialogRef = useRef();
 
     useEffect(() => {
-        fetch(serviceUrl + "/bookmarks")
+        fetch(SERVICE_URL + "/bookmarks")
             .then(res => res.json())
             .then(json => {
                 setData({
@@ -36,7 +37,7 @@ function App() {
                 });
                 setFormData({});
             });
-    }, [refreshKey, serviceUrl]);
+    }, [refreshKey, SERVICE_URL]);
 
     const renameFolderName = async (folder, newName, setFolderName) => {
         if (folder.name === newName) {
@@ -46,7 +47,7 @@ function App() {
 
         console.log("rename " + folder.id + " to " + newName);
 
-        let response = await fetch(serviceUrl + "/group/" + folder.id, {
+        let response = await fetch(SERVICE_URL + "/group/" + folder.id, {
             method: "PUT",
             body: newName
         });
@@ -60,7 +61,7 @@ function App() {
     };
 
     const downloadExportFile = () => {
-        window.location = serviceUrl + "/export";
+        window.location = SERVICE_URL + "/export";
     };
 
     const openAddBookmarkDialog = (folder, url) => {
@@ -108,7 +109,7 @@ function App() {
     };
 
     const closeEditBookmarkDialog = () => {
-        editNewBookmarkDialogRef.current.close();
+        editBookmarkDialogRef.current.close();
     };
 
     const searchOnChange = (event) => {
@@ -120,7 +121,7 @@ function App() {
     };
 
     const onSearchSubmit = (query) => {
-        window.location = "https://duckduckgo.com/?q=" + encodeURI(query) + "&ia=web";
+        window.location = SEARCH_URL + encodeURI(query) + "&ia=web";
     };
 
     const searchOnKeyUp = (event) => {
@@ -135,7 +136,7 @@ function App() {
     };
 
     const moveBookmark = (bookmarkId, folderName) => {
-        fetch(serviceUrl + "/bookmarks", {
+        fetch(SERVICE_URL + "/bookmarks", {
             method: "PUT",
             body: JSON.stringify({
                 bookmarkId: bookmarkId,
@@ -148,13 +149,13 @@ function App() {
     };
 
     const deleteBookmark = (bookmarkId) => {
-        fetch(serviceUrl + "/bookmarks/" + bookmarkId, {
+        fetch(SERVICE_URL + "/bookmarks/" + bookmarkId, {
             method: "DELETE",
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     };
 
     const deleteFolder = (folder) => {
-        fetch(serviceUrl + "/group/" + folder.id, {
+        fetch(SERVICE_URL + "/group/" + folder.id, {
             method: "DELETE",
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
@@ -163,7 +164,7 @@ function App() {
     const onSubmitBookmark = (event) => {
         event.preventDefault();
 
-        fetch(serviceUrl + "/bookmarks", {
+        fetch(SERVICE_URL + "/bookmarks", {
             method: "POST",
             body: JSON.stringify({
                 title: formData.title,
@@ -181,7 +182,7 @@ function App() {
     const onSubmitGroup = (event) => {
         event.preventDefault();
 
-        fetch(serviceUrl + "/group", {
+        fetch(SERVICE_URL + "/group", {
             method: "POST",
             body: formData.name,
             headers: {
