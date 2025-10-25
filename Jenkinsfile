@@ -38,8 +38,10 @@ pipeline {
 
             steps {
                 print('do nothing')
-                sh "git tag ${IMAGE_TAG}"
-                sh "git push HEAD:main HEAD:main"
+                sshagent(['sparky']) {
+                    sh "git tag -fa ${IMAGE_TAG} -m 'Release version ${IMAGE_TAG}'"
+                }
+
             //sh 'CI=true npm test'
             }
         }
