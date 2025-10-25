@@ -52,6 +52,12 @@
 
 - ~~delete bookmark by clicking delete in the edit dialog~~
 
+- ~~add git tagging to pipeline~~
+
+- Bug: page not loading on LG smart TV
+
+- create some basic react tests and run them as part of pipeline
+
 - Bug: CORS error when opening edit dialog. local only.
 
 - Bug: add bookmark icon breaks out of container and right aligned to the document
