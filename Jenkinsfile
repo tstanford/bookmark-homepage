@@ -42,7 +42,7 @@ pipeline {
             }
         }
 
-        stage('Tag and Push') {
+        stage('Create git tag') {
             agent any
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
