@@ -38,17 +38,22 @@ pipeline {
 
             steps {
                 print('do nothing')
+                //sh 'CI=true npm test'
+            }
+        }
 
+        stage('Tag and Push') {
+            steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
-                        sh """
-                            git config user.email "jenkins@timcloud.uk"
-                            git config user.name "Jenkins CI"
-                            git tag ${IMAGE_TAG} -m "Release version ${IMAGE_TAG}"
-                            GIT_SSH_COMMAND='ssh -i \$SSH_KEY -o StrictHostKeyChecking=no' git push git@github.com:tstanford/bookmark-homepage.git ${IMAGE_TAG}
-                        """
-                }
+                    sh """
+                        git config user.email "jenkins@example.com"
+                        git config user.name "Jenkins CI"
 
-            //sh 'CI=true npm test'
+                        git tag ${IMAGE_TAG}
+
+                        GIT_SSH_COMMAND='ssh -i \$SSH_KEY -o StrictHostKeyChecking=no' git push origin ${IMAGE_TAG}
+                    """
+                }
             }
         }
 
