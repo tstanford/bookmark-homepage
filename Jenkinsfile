@@ -43,6 +43,7 @@ pipeline {
         }
 
         stage('Tag and Push') {
+            agent any
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
                     sh """
