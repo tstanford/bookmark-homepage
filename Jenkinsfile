@@ -44,7 +44,7 @@ pipeline {
                             git config user.email "jenkins@timcloud.uk"
                             git config user.name "Jenkins CI"
                             git tag ${IMAGE_TAG} -m "Release version ${IMAGE_TAG}"
-                            git push git@github.com:tstanford/bookmark-homepage.git ${GIT_TAG_NAME}
+                            git push git@github.com:tstanford/bookmark-homepage.git ${IMAGE_TAG}
                         """
                 }
 
