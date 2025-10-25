@@ -8,6 +8,10 @@ Front end react client for the [bookmark service](https://github.com/tstanford/b
 
 ![Alt text](project/Screenshot.png "screenshot of homepage running in a browser")
 
+## Screenshot in edit mode
+
+![Alt text](project/Screenshot2.png "screenshot of homepage running in a browser")
+
 ## Feature Backlog:
 
 [Link to Backlog](project/feature.md)
