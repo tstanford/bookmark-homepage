@@ -39,7 +39,7 @@ pipeline {
             steps {
                 print('do nothing')
                 sh "git tag ${IMAGE_TAG}"
-                sh "git push HEAD:main"
+                sh "git push HEAD:main HEAD:main"
             //sh 'CI=true npm test'
             }
         }
