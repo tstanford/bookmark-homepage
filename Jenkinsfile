@@ -40,8 +40,7 @@ pipeline {
             }
 
             steps {
-                print('do nothing')
-                //sh 'CI=true npm test'
+                sh 'CI=true yarn test'
             }
         }
 
