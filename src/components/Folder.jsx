@@ -40,15 +40,13 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
 
             {editMode ?
             <>
-                <button className="addButton" onClick={()=>{onAdd(item)}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
+                <button className="addButton" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
                 <input className="titleTextBox" value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
                 
             </>
             :
                 <label>{item.name}</label>
-            }   
-
-            
+            }            
 
             <div className="items">
             {item.bookmarks.length > 0 ? 

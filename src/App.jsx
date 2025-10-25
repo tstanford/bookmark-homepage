@@ -71,9 +71,9 @@ function App() {
             ...prev, selectedFolder: folder, url: url
         })
         );
-        setFormData((prev) => ({
-            ...prev, url: url
-        })
+        setFormData(() => ({
+            url: url
+            })
         );
         addNewBookmarkDialogRef.current.showModal();
     };

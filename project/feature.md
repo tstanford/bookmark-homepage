@@ -54,6 +54,8 @@
 
 - ~~add git tagging to pipeline~~
 
+- Bug: add bookmark dialog has an old URL use in the edit dialog
+
 - Bug: page not loading on LG smart TV
 
 - create some basic react tests and run them as part of pipeline
