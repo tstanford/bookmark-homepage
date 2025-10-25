@@ -27,8 +27,8 @@ pipeline {
                 sh "mkdir -p $HOME"
                 sh 'rm -rf build'
                 sh 'rm -rf dist'
-                sh 'rm package-lock.json'
-                sh 'rm yarn.lock'
+                sh 'rm -f package-lock.json'
+                sh 'rm -f yarn.lock'
                 sh 'yarn install'
                 sh 'yarn lint'
                 sh 'yarn build'
