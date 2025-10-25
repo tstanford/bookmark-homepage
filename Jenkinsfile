@@ -16,11 +16,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            git branch: 'main',
-            credentialsId: 'sparky',
-            url: 'ssh://git@bitbucket.org:company/repo.git'
-        }
         stage('Build') {
             agent {
                 dockerfile {
