@@ -27,6 +27,8 @@ pipeline {
                 sh "mkdir -p $HOME"
                 sh 'rm -rf build'
                 sh 'rm -rf dist'
+                sh 'rm -f package-lock.json'
+                sh 'rm -f yarn.lock'
                 sh 'yarn install'
                 sh 'yarn lint'
                 sh 'yarn build'
@@ -40,8 +42,8 @@ pipeline {
             }
 
             steps {
-                print('do nothing')
-                //sh 'CI=true npm test'
+                sh 'yarn install'
+                sh 'CI=true yarn test'
             }
         }
 
@@ -60,7 +62,6 @@ pipeline {
                 }
             }
         }
-
 
         stage('Build and Push Docker Image') {
             steps {
