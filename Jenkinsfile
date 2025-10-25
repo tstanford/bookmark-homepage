@@ -38,6 +38,8 @@ pipeline {
 
             steps {
                 print('do nothing')
+                sh "git tag -d ${IMAGE_TAG}"
+                sh "git push"
             //sh 'CI=true npm test'
             }
         }
