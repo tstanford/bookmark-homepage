@@ -42,21 +42,21 @@ pipeline {
             }
         }
 
-        // stage('Tag and Push') {
-        //     agent any
-        //     steps {
-        //         withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
-        //             sh """
-        //                 git config user.email "jenkins@example.com"
-        //                 git config user.name "Jenkins CI"
+        stage('Tag and Push') {
+            agent any
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
+                    sh """
+                        git config user.email "jenkins@example.com"
+                        git config user.name "Jenkins CI"
 
-        //                 git tag ${IMAGE_TAG}
+                        git tag ${IMAGE_TAG}
 
-        //                 GIT_SSH_COMMAND='ssh -i \$SSH_KEY -o StrictHostKeyChecking=no' git push origin ${IMAGE_TAG}
-        //             """
-        //         }
-        //     }
-        // }
+                        GIT_SSH_COMMAND='ssh -i \$SSH_KEY -o StrictHostKeyChecking=no' git push origin ${IMAGE_TAG}
+                    """
+                }
+            }
+        }
 
         stage('Build and Push Docker Image') {
             steps {
