@@ -38,7 +38,7 @@ pipeline {
 
             steps {
                 print('do nothing')
-                sshagent(['sparky']) {
+                ssh(['sparky']) {
                     sh "git tag -fa ${IMAGE_TAG} -m 'Release version ${IMAGE_TAG}'"
                 }
 
