@@ -26,6 +26,7 @@ pipeline {
             steps {
                 sh "mkdir -p $HOME"
                 sh 'yarn install'
+                sh 'yarn lint'
                 sh 'yarn build'
             }
         }
