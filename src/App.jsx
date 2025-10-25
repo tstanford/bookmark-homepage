@@ -273,7 +273,6 @@ function App() {
                             query={data.query.toLowerCase()}
                             editMode={editMode}
                             editBookmark={openEditBookmarkDialog}
-                            deleteBookmark={deleteBookmark}
                             renameFolderName={renameFolderName}
                         />
                     ))}

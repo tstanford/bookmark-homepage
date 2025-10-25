@@ -1,4 +1,4 @@
-export default function Bookmark({bookmark, editMode, editBookmark, deleteBookmark}){
+export default function Bookmark({bookmark, editMode, editBookmark}){
     const dragstartHandler = (ev) => {
         ev.dataTransfer.setData("bookmark", bookmark.id);
     };
@@ -6,11 +6,6 @@ export default function Bookmark({bookmark, editMode, editBookmark, deleteBookma
     return (
         <>
         <div className="bookmarkicon">
-            {/* {editMode &&
-            <button onClick={() => deleteBookmark(bookmark.id)} className="deletebookmark">
-                <span className="material-symbols-outlined">delete</span>
-            </button>
-            } */}
             <a
             href={bookmark.url}
             onDragStart={dragstartHandler}

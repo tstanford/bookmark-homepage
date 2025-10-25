@@ -1,7 +1,7 @@
 import Bookmark from "./Bookmark";
 import React, { useState } from 'react';
 
-export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, deleteBookmark, renameFolderName}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, renameFolderName}){
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
@@ -53,7 +53,7 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
             <div className="items">
             {item.bookmarks.length > 0 ? 
                 item.bookmarks.filter(x => query === "" || x.title.toLowerCase().includes(query)).map(bookmark => (
-                    <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark} deleteBookmark={deleteBookmark}/>                
+                    <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark} />                
                 ))
             :
                 <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>
