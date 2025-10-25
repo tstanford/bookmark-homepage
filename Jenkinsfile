@@ -16,6 +16,11 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            git branch: 'main',
+            credentialsId: 'sparky',
+            url: 'ssh://git@bitbucket.org:company/repo.git'
+        }
         stage('Build') {
             agent {
                 dockerfile {
@@ -38,8 +43,14 @@ pipeline {
 
             steps {
                 print('do nothing')
-                ssh(['sparky']) {
-                    sh "git tag -fa ${IMAGE_TAG} -m 'Release version ${IMAGE_TAG}'"
+
+                sshagent(credentials: ['tim']) {
+                        sh """
+                            git config user.email "jenkins@timcloud.uk"
+                            git config user.name "Jenkins CI"
+                            git tag ${IMAGE_TAG} -m "Release version ${IMAGE_TAG}"
+                            git push git@github.com:tstanford/bookmark-homepage.git ${GIT_TAG_NAME}
+                        """
                 }
 
             //sh 'CI=true npm test'
