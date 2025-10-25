@@ -42,7 +42,7 @@ pipeline {
             }
 
             steps {
-                sh 'npm install -g vitest'
+                sh 'yarn add --dev vitest'
                 sh 'CI=true yarn test'
             }
         }
