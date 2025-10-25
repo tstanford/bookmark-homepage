@@ -39,7 +39,7 @@ pipeline {
             steps {
                 print('do nothing')
 
-                withCredentials([sshUserPrivateKey(credentialsId: 'tim', keyFileVariable: 'SSH_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'sparky', keyFileVariable: 'SSH_KEY')]) {
                         sh """
                             git config user.email "jenkins@timcloud.uk"
                             git config user.name "Jenkins CI"
