@@ -254,19 +254,22 @@ function App() {
                 </label>
             </div>
 
-            <div className="exportfile">
-                <button>
-                    <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>
-                </button>
-            </div>
+            {editMode && 
+                <>
+                    <div className="exportfile">
+                        <button>
+                            <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>
+                        </button>
+                    </div>
 
-            <div className="importfile">
-                <input type='file' id='file' ref={inputFile} onChange={uploadImportFile} accept=".yaml" style={{display: 'none'}}/>
-                <button>
-                    <span className="material-symbols-outlined" onClick={selectedImportFile}>upload</span>
-                </button>
-            </div>           
-
+                    <div className="importfile">
+                        <input type='file' id='file' ref={inputFile} onChange={uploadImportFile} accept=".yaml" style={{ display: 'none' }} />
+                        <button>
+                            <span className="material-symbols-outlined" onClick={selectedImportFile}>upload</span>
+                        </button>
+                    </div>
+                </>
+            }
 
             <PageHeading date={new Date().toDateString()}></PageHeading>
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
