@@ -24,6 +24,7 @@ function App() {
     var addNewBookmarkDialogRef = useRef();
     var editBookmarkDialogRef = useRef();
     var addNewGroupDialogRef = useRef();
+    const inputFile = useRef(null);
 
     useEffect(() => {
         fetch(SERVICE_URL + "/bookmarks")
@@ -62,9 +63,24 @@ function App() {
         }
     };
 
+    const selectedImportFile = () => {
+        inputFile.current.click();
+    };
+
     const downloadExportFile = () => {
         window.location = SERVICE_URL + "/export";
     };
+
+    const uploadImportFile = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            fetch(SERVICE_URL + "/import", {
+                method: "POST",
+                body: file
+            }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+        }
+    };
+
 
     const openAddBookmarkDialog = (folder, url) => {
         setData((prev) => ({
@@ -222,18 +238,6 @@ function App() {
         closeAddGroupDialog();
     };
 
-    const appDragoverHandler = (ev) => {
-        ev.preventDefault();
-    };
-
-    const appDropHandler = (ev) => {
-        ev.preventDefault();
-        const bookmarkId = ev.dataTransfer.getData("bookmark");
-        if (bookmarkId) {
-            deleteBookmark(bookmarkId);
-        }
-    };
-
     if (!data.isLoaded) {
         return (
             <div className="lds-hourglass"></div>
@@ -252,12 +256,19 @@ function App() {
 
             <div className="exportfile">
                 <button>
-                    <span className="material-symbols-outlined" onClick={downloadExportFile}>file_save</span>
+                    <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>
                 </button>
             </div>
 
+            <div className="importfile">
+                <input type='file' id='file' ref={inputFile} onChange={uploadImportFile} accept=".yaml" style={{display: 'none'}}/>
+                <button>
+                    <span className="material-symbols-outlined" onClick={selectedImportFile}>upload</span>
+                </button>
+            </div>           
 
-            <PageHeading date={new Date().toDateString()} onDrop={appDropHandler} onDragOver={appDragoverHandler}></PageHeading>
+
+            <PageHeading date={new Date().toDateString()}></PageHeading>
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
 
             <article id="folders">

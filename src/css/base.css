@@ -214,7 +214,7 @@ button:focus {
   outline: revert;
 }
 
-.exportfile {
+.exportfile, .importfile {
   padding-right: 1em;
   float: right;
 }

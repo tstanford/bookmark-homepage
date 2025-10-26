@@ -54,6 +54,8 @@
 
 - ~~add git tagging to pipeline~~
 
+- ~~file upload option~~
+
 - Bug: add bookmark dialog has an old URL use in the edit dialog
 
 - Bug: page not loading on LG smart TV
