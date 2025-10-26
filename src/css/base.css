@@ -214,9 +214,18 @@ button:focus {
   outline: revert;
 }
 
-.exportfile, .importfile {
-  padding-right: 1em;
-  float: right;
+div.actionbutton {
+  padding-right: 0.5em;
+  float: right;  
+}
+
+div.actionbutton button {
+  height: 34px;
+  width: 34px;
+}
+
+.actionbutton button span {
+  display: block;
 }
 
 footer {

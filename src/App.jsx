@@ -71,6 +71,12 @@ function App() {
         window.location = SERVICE_URL + "/export";
     };
 
+    const deleteAll = () => {
+        fetch(SERVICE_URL + "/all", {
+            method: "DELETE"
+        }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+    };
+
     const uploadImportFile = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -256,16 +262,22 @@ function App() {
 
             {editMode && 
                 <>
-                    <div className="exportfile">
-                        <button>
+                    <div className="actionbutton exportfile">
+                        <button role="actionbutton">
                             <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>
                         </button>
                     </div>
 
-                    <div className="importfile">
+                    <div className="actionbutton importfile">
                         <input type='file' id='file' ref={inputFile} onChange={uploadImportFile} accept=".yaml" style={{ display: 'none' }} />
-                        <button>
+                        <button role="actionbutton">
                             <span className="material-symbols-outlined" onClick={selectedImportFile}>upload</span>
+                        </button>
+                    </div>
+
+                    <div className="actionbutton deleteAll">
+                        <button role="actionbutton">
+                            <span className="material-symbols-outlined" onClick={deleteAll}>clear_all</span>
                         </button>
                     </div>
                 </>

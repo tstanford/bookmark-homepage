@@ -18,7 +18,7 @@ body {
 }
 
 section.folder button.addButton {
-  display:block;
+  display: block;
   position: absolute;
   right: 0;
 }
@@ -26,7 +26,7 @@ section.folder button.addButton {
 header {
   text-shadow: inherit;
   font-family: inherit;
-  background-image: url("/public/images/logo.svg");
+  background-image: url("/images/logo.svg");
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position-x: 1em;
