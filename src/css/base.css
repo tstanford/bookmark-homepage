@@ -6,11 +6,12 @@ App, html, body {
   margin: 0;
 }
 
-header {
+div.date {
     text-align: center;
     color: #ffffff;
     text-shadow: 2px 2px black;
-    font-family: Noto Serif
+    font-family: Noto Serif;
+    font-size: 2em;    
 }
 
 body {
@@ -180,7 +181,7 @@ section.folder input.titleTextBox {
 
 #editSwitch{
   float: right;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 header {
@@ -243,8 +244,25 @@ footer a {
   text-decoration: none;
 }
 
+heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 3em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+heading div.buttons {
+  align-content: center;
+}
+
 div.field input {
   font-size: 1rem;
+}
+
+div.date {
+  display: absolute;
+  margin: auto;
 }
 
 @media only screen and (max-width: 900px) {
@@ -252,9 +270,13 @@ div.field input {
     display: none;
   }
 
-  header{
-    height: 2.5em;
-    margin-bottom: .5em;    
+  heading {
+  grid-template-columns: 1fr 1fr;
+}
+
+  heading{
+    height: 1.5em;
+    margin-bottom: 1em;    
   }
 }
 
