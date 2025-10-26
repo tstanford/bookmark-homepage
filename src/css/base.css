@@ -184,7 +184,7 @@ section.folder input.titleTextBox {
   margin-right: 1em;
 }
 
-header {
+header * {
   user-select: none;
 }
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 body {
-  background: linear-gradient(45deg, #221193, #3cbcc1);
+  background: radial-gradient(#b9b9b9, #393846);
   background-attachment: fixed;
   height: 100%;
 }
