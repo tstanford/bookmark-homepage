@@ -1,7 +1,7 @@
 
 export default function Login({clickLogin, login}) {
     return (
-        <dialog open id="logindialog">
+        <dialog open class="logindialog">
             <form onSubmit={login}>
                     <div className="field">
                         <label htmlFor="title">Username:</label>
