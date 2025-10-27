@@ -4,12 +4,19 @@ import './css/spinner.css';
 import './css/slider.css';
 import './css/dialog.css';
 import './css/base.css';
-import './css/blue.css';
+import './css/grey.css';
 import App from './App.jsx'
+import Login from "./components/dialogs/Login"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+
+    {window.env.enableLogin ? 
+      <Login />
+    :
+      <App />
+    }
+
   </StrictMode>,
 )
 
