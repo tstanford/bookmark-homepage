@@ -245,6 +245,7 @@ footer a {
 }
 
 heading {
+  user-select: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 3em;
