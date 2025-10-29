@@ -1,19 +1,32 @@
 
-export default function Login({clickLogin, login}) {
+import { useState } from 'react';
+
+export default function Login({onSubmit}) {
+
+    const [form, setForm] = useState({
+        username:"",
+        password:""
+        });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setForm((prevFormData) => ({ ...prevFormData, [name]: value }));
+    };
+
     return (
         <dialog open class="logindialog">
-            <form onSubmit={login}>
+            <form>
                     <div className="field">
                         <label htmlFor="title">Username:</label>
-                        <input id="username" name="username" />
+                        <input id="username" name="username" onChange={handleChange} />
                     </div>
                     <div className="field">
                         <label htmlFor="url">Password:</label>
-                        <input id="password" type="password" name="password" />
+                        <input id="password" type="password" name="password" onChange={handleChange} />
                     </div>
 
                     <div className="buttons">
-                        <button className="flat" onClick={clickLogin}>Login</button>
+                        <button className="flat" onClick={(e) => onSubmit(e, form.username, form.password)}>Login</button>
                     </div>
                 </form>
         </dialog>

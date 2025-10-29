@@ -1,4 +1,4 @@
-export default function PageHeading({ editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll }) {
+export default function PageHeading({ editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
     return (
         <heading>
             <div className="logo"></div>
@@ -14,6 +14,12 @@ export default function PageHeading({ editMode, toggleEditMode, downloadExportFi
 
                 {editMode &&
                     <>
+                        <div className="actionbutton logout">
+                            <button role="actionbutton">
+                                <span className="material-symbols-outlined" onClick={logout}>logout</span>
+                            </button>
+                        </div>
+
                         <div className="actionbutton exportfile">
                             <button role="actionbutton">
                                 <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>

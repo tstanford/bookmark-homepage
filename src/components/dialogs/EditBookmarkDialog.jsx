@@ -1,8 +1,7 @@
 export default function EditBookmark({dialogRef, bookmark, prepopulatedName, prepopulatedUrl, onDismiss, onSubmit, onChange, onDelete}){
     return(
 
-        <dialog ref={dialogRef}>
-                
+        <dialog ref={dialogRef}>                
                 <form onSubmit={onSubmit}>
                     <div className="field">
                         <label htmlFor="title">Title:</label>
