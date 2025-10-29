@@ -1,8 +1,8 @@
 
-export default function Login({clickLogin, login}) {
+export default function Login({login}) {
     return (
         <dialog open class="logindialog">
-            <form onSubmit={login}>
+            <form>
                     <div className="field">
                         <label htmlFor="title">Username:</label>
                         <input id="username" name="username" />
@@ -13,7 +13,7 @@ export default function Login({clickLogin, login}) {
                     </div>
 
                     <div className="buttons">
-                        <button className="flat" onClick={clickLogin}>Login</button>
+                        <button className="flat" onClick={() => login(form.username, form.password)}>Login</button>
                     </div>
                 </form>
         </dialog>
