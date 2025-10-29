@@ -83,7 +83,7 @@ pipeline {
                 script {
                     withEnv(["KUBECONFIG=${KUBECONFIG}"]) {
                         //sh 'curl https://get.helm.sh/helm-v3.19.0-linux-amd64.tar.gz | tar zxf - '
-                        sh "linux-amd64/helm upgrade --install bookmark-homepage ./chart --set image.tag=${IMAGE_TAG}"
+                        sh "helm upgrade --install bookmark-homepage ./chart --set image.tag=${IMAGE_TAG}"
                     }
                 }
             }
