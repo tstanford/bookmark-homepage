@@ -7,7 +7,7 @@ import AddNewGroupDialog from './components/dialogs/AddNewGroupDialog'
 import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
 import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
 
-function BookmarksPage({loginStatus, setLoginStatus}) {
+function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
     const SEARCH_URL = window.env.BMS_SEARCH_URL;
     const APP_VERSION = window.env.BMS_VERSION;
@@ -27,7 +27,9 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
     const inputFile = useRef(null);
 
     useEffect(() => {
-        fetch(SERVICE_URL + "/bookmarks")
+        fetch(SERVICE_URL + "/bookmarks", 
+            {headers: {'Authorization': "Bearer "+loginStatus.token}}
+        )
             .then(res => {
                 if(res.status == 401 || res.status == 403) {
                     console.log("logged out?");
@@ -58,6 +60,7 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
 
         let response = await fetch(SERVICE_URL + "/group/" + folder.id, {
             method: "PUT",
+            headers: {'Authorization': "Bearer "+loginStatus.token},
             body: newName
         });
 
@@ -79,6 +82,7 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
 
     const deleteAll = () => {
         fetch(SERVICE_URL + "/all", {
+            headers: {'Authorization': "Bearer "+loginStatus.token},
             method: "DELETE"
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     };
@@ -87,6 +91,7 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
         const file = event.target.files[0];
         if (file) {
             fetch(SERVICE_URL + "/import", {
+                headers: {'Authorization': "Bearer "+loginStatus.token},
                 method: "POST",
                 body: file
             }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
@@ -172,14 +177,15 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
 
     const moveBookmark = (bookmarkId, folderName) => {
         fetch(SERVICE_URL + "/bookmarks", {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "application/json; charset=UTF-8"
+            },
             method: "PUT",
             body: JSON.stringify({
                 bookmarkId: bookmarkId,
                 groupName: folderName,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
+            })            
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     };
 
@@ -190,12 +196,14 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
 
     const deleteBookmark = (bookmarkId) => {
         fetch(SERVICE_URL + "/bookmarks/" + bookmarkId, {
+            headers: {'Authorization': "Bearer "+loginStatus.token},
             method: "DELETE",
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     };
 
     const deleteFolder = (folder) => {
         fetch(SERVICE_URL + "/group/" + folder.id, {
+            headers: {'Authorization': "Bearer "+loginStatus.token},
             method: "DELETE",
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
@@ -205,15 +213,16 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
         event.preventDefault();
 
         fetch(SERVICE_URL + "/bookmarks", {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "application/json; charset=UTF-8"
+            },
             method: "POST",
             body: JSON.stringify({
                 title: formData.title,
                 url: formData.url,
                 groupName: data.selectedFolder.name
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
+            })            
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
         closeAddBookmarkDialog();
@@ -223,14 +232,15 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
         event.preventDefault();
 
         fetch(SERVICE_URL + "/bookmark/" + data.selectedBookmark.id, {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "application/json; charset=UTF-8"
+            },
             method: "PUT",
             body: JSON.stringify({
                 title: formData.title,
                 url: formData.url,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
+            })
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
         closeEditBookmarkDialog();
@@ -240,11 +250,12 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
         event.preventDefault();
 
         fetch(SERVICE_URL + "/group", {
-            method: "POST",
-            body: formData.name,
             headers: {
+                'Authorization': "Bearer "+loginStatus.token,
                 "Content-type": "text/plain; charset=UTF-8"
-            }
+            },
+            method: "POST",
+            body: formData.name
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
         closeAddGroupDialog();
@@ -267,6 +278,7 @@ function BookmarksPage({loginStatus, setLoginStatus}) {
                 uploadImportFile={uploadImportFile}
                 selectedImportFile={selectedImportFile}
                 deleteAll={deleteAll}
+                logout={logout}
             />
             
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
