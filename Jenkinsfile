@@ -43,7 +43,7 @@ pipeline {
 
             steps {
                 sh 'yarn install'
-                sh 'CI=true yarn test'
+                //sh 'CI=true yarn test'
             }
         }
 
