@@ -42,9 +42,9 @@ describe('AppComponent', () => {
     };
 
     render(<App />);
-    // await waitFor(() => screen.getByPlaceholderText('search'));
+    await waitFor(() => screen.getByPlaceholderText('search'));
     
-    // const footer = await screen.findByRole('copyright');
-    // expect(footer).toHaveTextContent('Copyright ©2025 Tim Stanford');
+    const footer = await screen.findByRole('copyright');
+    expect(footer).toHaveTextContent('Copyright ©2025 Tim Stanford');
   })
 });
