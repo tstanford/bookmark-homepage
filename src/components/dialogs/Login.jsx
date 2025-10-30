@@ -14,8 +14,10 @@ export default function Login({onSubmit}) {
     };
 
     return (
+
         <dialog open class="logindialog">
-            <form>
+            <div class="logo"></div>
+                <form>
                     <div className="field">
                         <label htmlFor="title">Username:</label>
                         <input id="username" name="username" onChange={handleChange} />
@@ -30,5 +32,6 @@ export default function Login({onSubmit}) {
                     </div>
                 </form>
         </dialog>
+
     );
 }

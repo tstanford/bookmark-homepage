@@ -21,20 +21,6 @@ export default function App(){
     const login = async (event, username, password) => {
         event.preventDefault();
         
-        var userRegistered = false;
-
-        var registerResponse = await fetch(SERVICE_URL + "/register", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                }),
-                headers: {"Content-type": "application/json; charset=UTF-8"}
-            });
-        if(registerResponse.status==200) {
-            userRegistered = true;
-        }        
-
         var loginResponse = await fetch(SERVICE_URL + "/login", {
                 method: "POST",
                 body: JSON.stringify({
@@ -50,10 +36,6 @@ export default function App(){
             var token = await loginResponse.text();
             setLoginStatus((prev) => ({...prev, isLoggedIn: true, token: token }));
             localStorage.setItem('token', token);
-        }
-
-        if(userRegistered) {
-            alert("New user created");
         }
 
     };
