@@ -40,7 +40,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             })
             .then(json => {
                 setData({
-                    //isLoaded: true,
+                    isLoaded: true,
                     filteredData: json,
                     items: json,
                     query: "",
