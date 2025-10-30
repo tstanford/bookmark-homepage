@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Suspense } from 'react';
-const Folder = React.lazy(() => import("./components/Folder"));
+import Folder from "./components/Folder";
 const SearchBox = React.lazy(() => import("./components/SearchBox"));
 const PageHeading = React.lazy(() => import('./components/pageheading'));
 const PageFooter = React.lazy(() => import('./components/pagefooter'));
@@ -289,7 +289,6 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             <article id="folders">
                 {data.items
                     .map(x => (
-                        <Suspense>
                         <Folder
                             key={x.id}
                             item={x}
@@ -302,7 +301,6 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                             editBookmark={openEditBookmarkDialog}
                             renameFolderName={renameFolderName}
                         />
-                        </Suspense>
                     ))}
             </article>
 
