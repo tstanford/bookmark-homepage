@@ -296,6 +296,8 @@ dialog.logindialog{
   dialog.logindialog{
     min-width: inherit;
     margin: 1em;
+    width: auto;
   }
+  
 }
 
