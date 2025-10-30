@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Suspense } from 'react';
 import Folder from "./components/Folder";
-const SearchBox = React.lazy(() => import("./components/SearchBox"));
-const PageHeading = React.lazy(() => import('./components/pageheading'));
-const PageFooter = React.lazy(() => import('./components/pagefooter'));
+import SearchBox from "./components/SearchBox";
+import PageHeading from './components/pageheading';
+import PageFooter from './components/pagefooter';
 const AddNewGroupDialog = React.lazy(() => import('./components/dialogs/AddNewGroupDialog'));
 const AddNewBookmarkDialog = React.lazy(() => import('./components/dialogs/AddNewBookmarkDialog'));
 const EditBookmarkDialog = React.lazy(() => import('./components/dialogs/EditBookmarkDialog'));
