@@ -90,13 +90,18 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
     const uploadImportFile = (event) => {
         const file = event.target.files[0];
-        if (file) {
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            console.log(e.target.result);
             fetch(SERVICE_URL + "/import", {
-                headers: {'Authorization': "Bearer "+loginStatus.token},
-                method: "POST",
-                body: file
-            }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
-        }
+                 headers: {'Authorization': "Bearer "+loginStatus.token},
+                 method: "POST",
+                 body: file
+             }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+        };
+
+        reader.readAsText(file);
     };
 
 
