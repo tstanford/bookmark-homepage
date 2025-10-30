@@ -56,13 +56,21 @@
 
 - ~~file upload option~~
 
+- ~~authentication~~
+    ~~- register~~
+    ~~- login~~
+    ~~- logout~~
+
+- ~~Custom bookmarks per user~~
+
+- ~~Bug: CORS error when opening edit dialog. local only.~~
+
 - Bug: add bookmark dialog has an old URL use in the edit dialog
 
 - Bug: page not loading on LG smart TV
 
 - create some basic react tests and run them as part of pipeline
 
-- Bug: CORS error when opening edit dialog. local only.
 
 - Bug: add bookmark icon breaks out of container and right aligned to the document
 
@@ -76,13 +84,6 @@
 
 - edit bookmark
     - change favicon
-
-- authentication
-    - register
-    - login
-    - logout
-
-- Custom bookmarks per user
 
 - change colour themes
 
