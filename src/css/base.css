@@ -287,6 +287,18 @@ dialog.logindialog div.logo {
   margin-bottom: 2em;
 }
 
+
+/* Inline | https://home.timcloud.uk/ */
+
+div.loginscreen footer {
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+}
+
+
 @media only screen and (max-width: 900px) {
   div.date {
     display: none;
