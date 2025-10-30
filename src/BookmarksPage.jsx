@@ -78,6 +78,13 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     };
 
     const downloadExportFile = () => {
+        fetch(SERVICE_URL + "/export", {
+            headers: {'Authorization': "Bearer "+loginStatus.token},
+        }).then((res) => {
+            var exportedData = res.text();
+            console.log(exportedData);
+        });
+
         window.location = SERVICE_URL + "/export";
     };
 
@@ -93,11 +100,11 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            console.log(e.target.result);
+            var importData = e.target.result;
             fetch(SERVICE_URL + "/import", {
                  headers: {'Authorization': "Bearer "+loginStatus.token},
                  method: "POST",
-                 body: file
+                 body: importData
              }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
         };
 
