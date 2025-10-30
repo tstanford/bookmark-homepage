@@ -292,5 +292,10 @@ dialog.logindialog{
     height: 1.5em;
     margin-bottom: 1em;    
   }
+
+  dialog.logindialog{
+    min-width: inherit;
+    margin: 1em;
+  }
 }
 
