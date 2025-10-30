@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Suspense } from 'react';
 const BookmarksPage = React.lazy(() => import('./BookmarksPage'));
 const Login = React.lazy(() => import('./components/dialogs/Login'));
+const PageFooter = React.lazy(() => import('./components/pagefooter'));
 
 export default function App(){
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
+    const APP_VERSION = window.env.BMS_VERSION;
 
     var storedToken = localStorage.getItem("token");
 
@@ -44,6 +46,9 @@ export default function App(){
         return (
             <Suspense>
                 <Login onSubmit={login}/>
+                <div class="loginscreen">
+                    <PageFooter version={APP_VERSION}></PageFooter>
+                </div>
             </Suspense>
         );
     }
