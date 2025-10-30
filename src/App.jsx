@@ -20,9 +20,7 @@ export default function App(){
 
     const login = async (event, username, password) => {
         event.preventDefault();
-
-        console.log(username);
-        console.log(password);
+        
         var userRegistered = false;
 
         var registerResponse = await fetch(SERVICE_URL + "/register", {
