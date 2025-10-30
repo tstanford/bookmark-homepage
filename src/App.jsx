@@ -1,6 +1,6 @@
-import BookmarksPage from "./BookmarksPage";
-import Login from "./components/dialogs/Login";
-import { useState } from 'react';
+import React, { useState } from 'react';
+const BookmarksPage = React.lazy(() => import('./BookmarksPage'));
+const Login = React.lazy(() => import('./components/dialogs/Login'));
 
 export default function App(){
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
@@ -61,12 +61,16 @@ export default function App(){
 
     if (!loginStatus.isLoggedIn) {
         return (
-            <Login onSubmit={login}/>
+            <Suspense>
+                <Login onSubmit={login}/>
+            </Suspense>
         );
     }
 
     return (
-        <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+        <Suspense fallback={<div>Loading...</div>}>
+            <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+        </Suspense>
     );
     
 };

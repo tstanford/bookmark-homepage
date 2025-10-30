@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Folder from "./components/Folder"
-import SearchBox from "./components/SearchBox"
-import PageHeading from './components/pageheading';
-import PageFooter from './components/pagefooter';
-import AddNewGroupDialog from './components/dialogs/AddNewGroupDialog'
-import AddNewBookmarkDialog from './components/dialogs/AddNewBookmarkDialog'
-import EditBookmarkDialog from './components/dialogs/EditBookmarkDialog'
+import { Suspense } from 'react';
+const Folder = React.lazy(() => import("./components/Folder"));
+const SearchBox = React.lazy(() => import("./components/SearchBox"));
+const PageHeading = React.lazy(() => import('./components/pageheading'));
+const PageFooter = React.lazy(() => import('./components/pagefooter'));
+const AddNewGroupDialog = React.lazy(() => import('./components/dialogs/AddNewGroupDialog'));
+const AddNewBookmarkDialog = React.lazy(() => import('./components/dialogs/AddNewBookmarkDialog'));
+const EditBookmarkDialog = React.lazy(() => import('./components/dialogs/EditBookmarkDialog'));
 
 function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
@@ -48,7 +49,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 });
                 setFormData({});
             });
-    }, [refreshKey, SERVICE_URL]);
+    }, [refreshKey, SERVICE_URL, loginStatus.token, setLoginStatus]);
 
     const renameFolderName = async (folder, newName, setFolderName) => {
         if (folder.name === newName) {
@@ -270,6 +271,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     return (
         <div>
             
+            <Suspense>
             <PageHeading
                 editMode={editMode} 
                 toggleEditMode={toggleEditMode} 
@@ -280,12 +282,14 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 deleteAll={deleteAll}
                 logout={logout}
             />
-            
+            </Suspense>
+
             <SearchBox onChange={searchOnChange} onKeyUp={searchOnKeyUp}></SearchBox>
 
             <article id="folders">
                 {data.items
                     .map(x => (
+                        <Suspense>
                         <Folder
                             key={x.id}
                             item={x}
@@ -298,6 +302,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                             editBookmark={openEditBookmarkDialog}
                             renameFolderName={renameFolderName}
                         />
+                        </Suspense>
                     ))}
             </article>
 
@@ -306,6 +311,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                     <button className="flat" onClick={() => { openAddGroupDialog() }}>Add New Group</button>
                 </div>
             }
+            <Suspense>
             <AddNewBookmarkDialog
                 folder={data.selectedFolder}
                 prepopulatedUrl={formData.url}
@@ -314,15 +320,18 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 onSubmit={onSubmitBookmark}
                 onChange={handleChange}
             />
+            </Suspense>
 
-
+            <Suspense>
             <AddNewGroupDialog
                 dialogRef={addNewGroupDialogRef}
                 onDismiss={closeAddGroupDialog}
                 onSubmit={onSubmitGroup}
                 onChange={handleChange}
             />
+            </Suspense>
 
+            <Suspense>
             <EditBookmarkDialog
                 dialogRef={editBookmarkDialogRef}
                 bookmark={data.selectedBookmark}
@@ -333,8 +342,11 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 onChange={handleChange}
                 onDelete={deleteBookmarkBeingEdited}
             />
+            </Suspense>
 
+            <Suspense>
             <PageFooter version={APP_VERSION}/>
+            </Suspense>
 
         </div>
     );
