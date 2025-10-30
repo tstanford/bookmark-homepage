@@ -285,12 +285,16 @@ dialog.logindialog{
   }
 
   heading {
-  grid-template-columns: 1.2fr 1.8fr;
+  grid-template-columns: 1fr 2fr;
 }
 
   heading{
     height: 1.5em;
     margin-bottom: 1em;    
+  }
+
+  heading div.logo {
+    height: 1.2em
   }
 
   dialog.logindialog{
