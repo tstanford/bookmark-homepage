@@ -101,8 +101,12 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         const reader = new FileReader();
         reader.onload = (e) => {
             var importData = e.target.result;
+            console.log(importData);
             fetch(SERVICE_URL + "/import", {
-                 headers: {'Authorization': "Bearer "+loginStatus.token},
+                 headers: {
+                    'Authorization': "Bearer "+loginStatus.token,
+                    'Content-type': "text/plain"
+                 },
                  method: "POST",
                  body: importData
              }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
