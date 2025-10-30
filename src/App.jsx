@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Suspense } from 'react';
 const BookmarksPage = React.lazy(() => import('./BookmarksPage'));
 const Login = React.lazy(() => import('./components/dialogs/Login'));
 
@@ -68,7 +69,7 @@ export default function App(){
     }
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
             <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
         </Suspense>
     );
