@@ -77,15 +77,21 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         inputFile.current.click();
     };
 
-    const downloadExportFile = () => {
+    const downloadExportFile =  () => {
         fetch(SERVICE_URL + "/export", {
             headers: {'Authorization': "Bearer "+loginStatus.token},
-        }).then((res) => {
-            var exportedData = res.text();
+        }).then(async (res) => {
+            var exportedData = await res.text();
             console.log(exportedData);
+            const dataUrl = 'data:text/plain;base64,' + btoa(exportedData);
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            const epochSecondsString = Math.floor(Date.now() / 1000).toString();
+            link.download = 'export_'+epochSecondsString+'.yml'
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);  
         });
-
-        window.location = SERVICE_URL + "/export";
     };
 
     const deleteAll = () => {
