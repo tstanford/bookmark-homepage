@@ -1,7 +1,7 @@
 replicaCount: 3
 namespace: bookmark-homepage
 env:
-  BMS_SERVICE_URL: "http://192.168.0.30:8088"
+  BMS_SERVICE_URL: "https://home.timcloud.uk/api"
   BMS_SEARCH_URL: "https://google.com/search?q="
 
 image:
