@@ -284,6 +284,17 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         closeAddGroupDialog();
     };
 
+    const moveFolder = (targetFolder, draggedFolder) => {
+        fetch(SERVICE_URL + "/group", {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "application/json"
+            },
+            method: "PUT",
+            body: JSON.stringify({sourceGroupId:draggedFolder, targetGroupId: targetFolder})
+        }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+    }
+
     if (!data.isLoaded) {
         return (
             <div className="lds-hourglass"></div>
@@ -322,6 +333,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                             editMode={editMode}
                             editBookmark={openEditBookmarkDialog}
                             renameFolderName={renameFolderName}
+                            onFolderDrop={moveFolder}
                         />
                     ))}
             </article>
