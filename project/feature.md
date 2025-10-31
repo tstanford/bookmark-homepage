@@ -1,5 +1,39 @@
 # Feature List
 
+- Bug: add bookmark dialog has an old URL use in the edit dialog
+
+- Bug: add group dialog has an old name use in the edit dialog
+
+- Bug: page not loading on LG smart TV
+
+- Bug: add bookmark icon breaks out of container and right aligned to the document
+
+- Allow reordering of groups using drag and drop
+
+- Admin accounts, 
+    - provide a different view
+    - see list of users
+        - browser users bookmarks and groups
+        - change password
+        - create new user    
+
+- create some basic react tests and run them as part of pipeline
+
+- experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
+
+- error handling for drag and drop
+
+- unit test moveBookmark
+
+- integration test moveBookmark
+
+- edit bookmark
+    - change favicon
+
+- change colour themes
+
+- package bookmark-service and bookmark-homepage together as an all in one deployment
+
 - ~~add new group~~
 
 - ~~refresh data on add new bookmark~~
@@ -65,28 +99,6 @@
 
 - ~~Bug: CORS error when opening edit dialog. local only.~~
 
-- Bug: add bookmark dialog has an old URL use in the edit dialog
 
-- Bug: page not loading on LG smart TV
-
-- create some basic react tests and run them as part of pipeline
-
-
-- Bug: add bookmark icon breaks out of container and right aligned to the document
-
-- experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
-
-- error handling for drag and drop
-
-- unit test moveBookmark
-
-- integration test moveBookmark
-
-- edit bookmark
-    - change favicon
-
-- change colour themes
-
-- package bookmark-service and bookmark-homepage together as one deployment
 
 
