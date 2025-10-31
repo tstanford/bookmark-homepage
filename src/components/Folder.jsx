@@ -4,14 +4,27 @@ import React, { useState } from 'react';
 export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, renameFolderName, onFolderDrop}){
 
     const folderDragstartHandler = (ev) => {
+        ev.stopPropagation();
+        console.log("drag start folder");
         ev.dataTransfer.setData("groupid", item.id);
+        ev.dataTransfer.effectAllowed = "move";
+    };
+
+    const folderDragEnterHandler = (ev) => {
+        ev.stopPropagation();
+        ev.preventDefault();
     };
 
     const folderDragoverHandler = (ev) => {
+        ev.stopPropagation();
+        ev.preventDefault();
+        console.log("drag over folder");
         setBeingDraggedOver(true);
     };
 
     const folderDragoutHander = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
         setBeingDraggedOver(false);
     }
 
@@ -73,13 +86,13 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
         onDragOver={folderDragoverHandler} 
         onDragStart={folderDragstartHandler} 
         onDragLeave={folderDragoutHander} 
+        onDragEnd={folderDragEnterHandler}
         draggable={editMode}>
 
             {editMode ?
             <>
                 <button className="addButton" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
-                <input className="titleTextBox" value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
-                
+                <input className="titleTextBox" draggable={false} value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
             </>
             :
                 <label>{item.name}</label>

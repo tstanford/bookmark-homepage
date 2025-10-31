@@ -8,7 +8,11 @@
 
 - Bug: add bookmark icon breaks out of container and right aligned to the document
 
-- Allow reordering of groups using drag and drop
+- Bug: Drag and drop showing not allowed cursor
+
+- Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts
+
+x Allow reordering of groups using drag and drop
 
 - Admin accounts, 
     - provide a different view

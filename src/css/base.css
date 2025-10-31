@@ -287,8 +287,9 @@ dialog.logindialog div.logo {
   margin-bottom: 2em;
 }
 
-
-/* Inline | https://home.timcloud.uk/ */
+[draggable=true]:active {
+  cursor: move;
+}
 
 div.loginscreen footer {
   margin: 0;
@@ -324,6 +325,7 @@ div.loginscreen footer {
     top: inherit;
     translate: inherit
   }
+
   
 }
 
