@@ -12,8 +12,6 @@
 
 - Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts
 
-x Allow reordering of groups using drag and drop
-
 - Admin accounts, 
     - provide a different view
     - see list of users
@@ -37,6 +35,10 @@ x Allow reordering of groups using drag and drop
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~Bug: when folder drag over the top of itself it results in a api call where source and target are the same.~~
+
+- ~~Allow reordering of groups using drag and drop~~
 
 - ~~add new group~~
 
