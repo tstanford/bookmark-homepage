@@ -8,16 +8,23 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     };
 
     const folderDragoverHandler = (ev) => {
-        ev.preventDefault();
+        setBeingDraggedOver(true);
     };
 
+    const folderDragoutHander = (ev) => {
+        setBeingDraggedOver(false);
+    }
+
     const [folderName, setFolderName] = useState(item.name);
+    const [beingDraggedOver, setBeingDraggedOver] = useState(false);
 
     const folderDropHandler = (ev) =>{
         if(!editMode){
             return;
         }
         ev.preventDefault();
+
+        setBeingDraggedOver(false);
 
         if(ev.dataTransfer.getData("bookmark").length>0) {
             handleBookmarkDrop(item, ev);
@@ -60,7 +67,13 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     return(
         <>
         {(editMode || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
-        <section className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler} onDragStart={folderDragstartHandler} draggable={editMode}>
+        <section 
+        className={beingDraggedOver ? 'folder dragover' : 'folder'} 
+        onDrop={folderDropHandler} 
+        onDragOver={folderDragoverHandler} 
+        onDragStart={folderDragstartHandler} 
+        onDragLeave={folderDragoutHander} 
+        draggable={editMode}>
 
             {editMode ?
             <>
