@@ -48,10 +48,14 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
         }                 
     };
 
-    const handleFolderDrop = (folder, ev) => {
+const handleFolderDrop = (folder, ev) => {
         const groupid = ev.dataTransfer.getData("groupid");
         if(groupid){
-            onFolderDrop(item.id, groupid);
+            let sourceGroupId = parseInt(item.id);
+            let targetGroupId = parseInt(groupid);
+            if(sourceGroupId != targetGroupId) {
+                onFolderDrop(sourceGroupId, targetGroupId);
+            }
         } 
     };
 
