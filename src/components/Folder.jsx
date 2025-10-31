@@ -1,7 +1,11 @@
 import Bookmark from "./Bookmark";
 import React, { useState } from 'react';
 
-export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, renameFolderName}){
+export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete, query, editMode, editBookmark, renameFolderName, onFolderDrop}){
+
+    const folderDragstartHandler = (ev) => {
+        ev.dataTransfer.setData("groupid", item.id);
+    };
 
     const folderDragoverHandler = (ev) => {
         ev.preventDefault();
@@ -14,19 +18,39 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
             return;
         }
         ev.preventDefault();
-        const folderName = item.name;
+
+        if(ev.dataTransfer.getData("bookmark").length>0) {
+            handleBookmarkDrop(item, ev);
+        } else if(ev.dataTransfer.getData("groupid").length>0) {
+            handleFolderDrop(item, ev);
+        } else {
+            handleOtherDrop(item, ev);
+        }                 
+    };
+
+    const handleFolderDrop = (folder, ev) => {
+        const groupid = ev.dataTransfer.getData("groupid");
+        if(groupid){
+            onFolderDrop(item.id, groupid);
+        } 
+    };
+
+    const handleBookmarkDrop = (folder, ev) => {
+        const folderName = folder.name;
         const bookmarkId = ev.dataTransfer.getData("bookmark");
         if(bookmarkId){
             onBookmarkDrop(bookmarkId, folderName);
-        } else {
-            let url = ev.dataTransfer.getData('text/uri-list');
-            if(!url) {
-                url = ev.dataTransfer.getData('text/plain');
-            }
-            if(url) {
-                onURIDrop(item, url);
-            }
-        }         
+        } 
+    };
+
+    const handleOtherDrop = (folder, ev) => {
+        let url = ev.dataTransfer.getData('text/uri-list');
+        if(!url) {
+            url = ev.dataTransfer.getData('text/plain');
+        }
+        if(url) {
+            onURIDrop(folder, url);
+        }
     };
 
     const onChangeFolderName = (e) => {
@@ -36,7 +60,7 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     return(
         <>
         {(editMode || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
-        <section className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler}>
+        <section className="folder" onDrop={folderDropHandler} onDragOver={folderDragoverHandler} onDragStart={folderDragstartHandler} draggable={editMode}>
 
             {editMode ?
             <>
