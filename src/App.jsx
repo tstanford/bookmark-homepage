@@ -46,7 +46,7 @@ export default function App(){
         return (
             <Suspense>
                 <Login onSubmit={login}/>
-                <div class="loginscreen">
+                <div className="loginscreen">
                     <PageFooter version={APP_VERSION}></PageFooter>
                 </div>
             </Suspense>
