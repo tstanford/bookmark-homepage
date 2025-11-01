@@ -1,62 +1,63 @@
 import React, { useState } from 'react';
 import { Suspense } from 'react';
+import { UserController } from './UserController';
+const AdminPage = React.lazy(() => import('./AdminPage'));
 const BookmarksPage = React.lazy(() => import('./BookmarksPage'));
 const Login = React.lazy(() => import('./components/dialogs/Login'));
 const PageFooter = React.lazy(() => import('./components/pagefooter'));
 
-export default function App(){
-    const SERVICE_URL = window.env.BMS_SERVICE_URL;
+export default function App() {
     const APP_VERSION = window.env.BMS_VERSION;
-
-    var storedToken = localStorage.getItem("token");
+    var userController = new UserController()
 
     const [loginStatus, setLoginStatus] = useState({
-            isLoggedIn: storedToken != null,
-            token: storedToken
+        isLoggedIn: userController.token !== null,
+        token: userController.token,
+        isAdmin: userController.token !== null && userController.isAdmin()
     });
-
-    const logout = () => {
-        localStorage.clear();
-        setLoginStatus({});
-    }
 
     const login = async (event, username, password) => {
         event.preventDefault();
-        
-        var loginResponse = await fetch(SERVICE_URL + "/login", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                }),
-                headers: {"Content-type": "application/json; charset=UTF-8"}
-            });            
 
-        if(loginResponse.status!=200) {
-            setLoginStatus((prev) => ({...prev, isLoggedIn: false }));
-        } else {
-            var token = await loginResponse.text();
-            setLoginStatus((prev) => ({...prev, isLoggedIn: true, token: token }));
-            localStorage.setItem('token', token);
-        }
-
+        //todo: change this to fluent interface.
+        userController.login(username, password, (token, isAdmin) => {
+            setLoginStatus(() => ({ isLoggedIn: true, token: token, isAdmin: isAdmin }));
+            console.log("logged in");
+        }, () => {
+            setLoginStatus(() => ({ isLoggedIn: false, token: null, isAdmin: false }));
+            console.log("login failed");
+        });
     };
+
+    const logout = () => {
+        userController.logout()
+        setLoginStatus({ isLoggedIn: false, token: null, isAdmin: false });
+    }
 
     if (!loginStatus.isLoggedIn) {
         return (
             <Suspense>
-                <Login onSubmit={login}/>
+                <Login onSubmit={login} />
                 <div className="loginscreen">
                     <PageFooter version={APP_VERSION}></PageFooter>
                 </div>
             </Suspense>
         );
+    } else {
+        console.log(loginStatus);
+        if (loginStatus.isAdmin) {
+            return (
+                <Suspense>
+                    <AdminPage logout={logout} />
+                </Suspense>
+            );
+        } else {
+            return (
+                <Suspense>
+                    <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+                </Suspense>
+            );
+        }
     }
 
-    return (
-        <Suspense>
-            <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
-        </Suspense>
-    );
-    
 };

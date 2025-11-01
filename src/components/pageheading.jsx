@@ -1,18 +1,28 @@
-export default function PageHeading({ editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
+export default function PageHeading({ adminMode, editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
     return (
         <heading>
             <div className="logo"></div>
             <div className="date">{new Date().toDateString()}</div>
 
             <div class="buttons">
-                <div id="editSwitch">
-                    <label className="switch">
-                        <input type="checkbox" checked={editMode} onChange={toggleEditMode} />
-                        <span className="slider round"></span>
-                    </label>
-                </div>
+                {!adminMode && 
+                    <div id="editSwitch">
+                        <label className="switch">
+                            <input type="checkbox" checked={editMode} onChange={toggleEditMode} />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                }
 
-                {editMode &&
+                {adminMode &&
+                    <div className="actionbutton logout">
+                        <button role="actionbutton">
+                            <span className="material-symbols-outlined" onClick={logout}>logout</span>
+                        </button>
+                    </div>
+                }
+
+                {!adminMode && editMode &&
                     <>
                         <div className="actionbutton logout">
                             <button role="actionbutton">

@@ -34,7 +34,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             .then(res => {
                 if(res.status == 401 || res.status == 403) {
                     console.log("logged out?");
-                    setLoginStatus(false);
+                    setLoginStatus(() => ({isLoggedIn: false, token: null, isAdmin: false }));
                 }
                 return res.json()
             })

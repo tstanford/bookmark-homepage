@@ -12,6 +12,8 @@
 
 - Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts
 
+- hamburger menu on mobile device
+
 - Admin accounts, 
     - provide a different view
     - see list of users
