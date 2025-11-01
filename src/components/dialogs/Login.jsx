@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 
-export default function Login({onSubmit}) {
+export default function Login({onSubmit, isShaking}) {
 
     const [form, setForm] = useState({
         username:"",
@@ -15,7 +15,7 @@ export default function Login({onSubmit}) {
 
     return (
 
-        <dialog open class="logindialog">
+        <dialog open class={isShaking?"logindialog error":"logindialog"}>
             <div class="logo"></div>
                 <form>
                     <div className="field">

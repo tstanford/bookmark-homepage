@@ -2,6 +2,8 @@ import PageFooter from "./components/pagefooter";
 import PageHeading from "./components/pageheading";
 
 export default function Admin({logout}){
+    const APP_VERSION = window.env.BMS_VERSION;
+
     return (
 
         <>
@@ -9,7 +11,7 @@ export default function Admin({logout}){
             
             <h1>Hello admin</h1>
 
-            <PageFooter></PageFooter>
+            <PageFooter version={APP_VERSION}></PageFooter>
         </>
 
     );

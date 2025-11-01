@@ -16,6 +16,10 @@ export default function App() {
         isAdmin: userController.isAdminVar
     });
 
+    const [loginDialogState, setLoginDialogState] = useState({
+        shaking: false
+    })
+
     const login = async (event, username, password) => {
         event.preventDefault();
 
@@ -26,6 +30,11 @@ export default function App() {
         }, () => {
             setLoginStatus(() => ({ isLoggedIn: false, token: null, isAdmin: false }));
             console.log("login failed");
+            setLoginDialogState({shaking: true});
+            setTimeout(() => {
+                setLoginDialogState({shaking: false});
+            }, 1000);
+
         });
     };
 
@@ -37,7 +46,7 @@ export default function App() {
     if (!loginStatus.isLoggedIn) {
         return (
             <Suspense>
-                <Login onSubmit={login} />
+                <Login onSubmit={login} isShaking={loginDialogState.shaking} />
                 <div className="loginscreen">
                     <PageFooter version={APP_VERSION}></PageFooter>
                 </div>
