@@ -279,6 +279,7 @@ dialog.logindialog{
   border-radius: 1rem;
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 dialog.logindialog div.logo {
@@ -300,7 +301,7 @@ div.loginscreen footer {
 }
 
 dialog.logindialog.error {
-  background-color: #b90000;
+  background-color: rgba(255, 0, 0, 0.5);
   animation: tilt-shaking 0.20s linear infinite;
 }
 
