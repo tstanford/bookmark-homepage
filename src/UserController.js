@@ -56,6 +56,8 @@ class UserController{
 
     logout = () => {
         this.token = null
+        this.tokenExistedInStorage = false;
+        this.isAdminVar = false;
         localStorage.clear();
     };
 }
