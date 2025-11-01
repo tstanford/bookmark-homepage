@@ -15,8 +15,8 @@ export default function Login({onSubmit, isShaking}) {
 
     return (
 
-        <dialog open class={isShaking?"logindialog error":"logindialog"}>
-            <div class="logo"></div>
+        <dialog open className={isShaking?"logindialog error":"logindialog"}>
+            <div className="logo"></div>
                 <form>
                     <div className="field">
                         <label htmlFor="title">Username:</label>

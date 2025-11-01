@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Suspense } from 'react';
-import { UserController } from './UserController';
-const AdminPage = React.lazy(() => import('./AdminPage'));
-const BookmarksPage = React.lazy(() => import('./BookmarksPage'));
+import { UserController } from './controllers/UserController';
+const AdminPage = React.lazy(() => import('./pageComponents/AdminPage'));
+const BookmarksPage = React.lazy(() => import('./pageComponents/BookmarksPage'));
 const Login = React.lazy(() => import('./components/dialogs/Login'));
 const PageFooter = React.lazy(() => import('./components/pagefooter'));
 
@@ -33,10 +33,8 @@ export default function App() {
         //todo: change this to fluent interface.
         userController.login(username, password, (token, isAdmin) => {
             setLoginStatus(() => ({ isLoggedIn: true, token: token, isAdmin: isAdmin }));
-            console.log("logged in");
         }, () => {
             setLoginStatus(() => ({ isLoggedIn: false, token: null, isAdmin: false }));
-            console.log("login failed");
             setLoginDialogState({shaking: true});
             setTimeout(() => {
                 setLoginDialogState({shaking: false});
@@ -60,7 +58,6 @@ export default function App() {
             </Suspense>
         );
     } else {
-        console.log("X:"+ loginStatus.isAdmin);
         if (loginStatus.isAdmin === true) {
             return (
                 <Suspense>

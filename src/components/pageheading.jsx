@@ -1,10 +1,10 @@
 export default function PageHeading({ adminMode, editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
     return (
-        <heading>
+        <header>
             <div className="logo"></div>
             <div className="date">{new Date().toDateString()}</div>
 
-            <div class="buttons">
+            <div className="buttons">
                 {!adminMode && 
                     <div id="editSwitch">
                         <label className="switch">
@@ -51,6 +51,6 @@ export default function PageHeading({ adminMode, editMode, toggleEditMode, downl
                     </>
                 }
             </div>
-        </heading>
+        </header>
     )
 }

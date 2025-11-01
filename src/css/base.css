@@ -244,7 +244,7 @@ footer a {
   text-decoration: none;
 }
 
-heading {
+header {
   user-select: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -253,7 +253,7 @@ heading {
   margin-top: 1em;
 }
 
-heading div.buttons {
+header div.buttons {
   align-content: center;
 }
 
@@ -319,16 +319,16 @@ dialog.logindialog.error {
     display: none;
   }
 
-  heading {
+  header {
   grid-template-columns: 1fr 2fr;
 }
 
-  heading{
+  header{
     height: 1.5em;
     margin-bottom: 1em;    
   }
 
-  heading div.logo {
+  header div.logo {
     height: 1.2em
   }
 
