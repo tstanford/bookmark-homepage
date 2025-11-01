@@ -6,20 +6,21 @@
 
 - Bug: page not loading on LG smart TV
 
-- Bug: add bookmark icon breaks out of container and right aligned to the document
+- Bug: login dialog is not centred vertically on Samsung TV
 
-- Bug: Drag and drop showing not allowed cursor
+- Bug: add bookmark icon breaks out of container and right aligned to the document
 
 - Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts
 
+- Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
+
 - hamburger menu on mobile device
 
-- Admin accounts, 
-    - provide a different view
-    - see list of users
-        - browser users bookmarks and groups
-        - change password
-        - create new user    
+- in admin view: Show list of users
+
+- in admin view: change any password
+
+- in admin view: create new user
 
 - create some basic react tests and run them as part of pipeline
 
@@ -31,12 +32,17 @@
 
 - integration test moveBookmark
 
-- edit bookmark
-    - change favicon
+- edit bookmark: change favicon
 
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~Introduce role base security, with admin users and separate admin screen when logging in.~~
+
+- ~~Bug: Drag and drop showing not allowed cursor~~
+
+- ~~Bug IsAdmin variable can be tampered with in local storage resulting in ability to view admin section without the role.~~
 
 - ~~Bug: when folder drag over the top of itself it results in a api call where source and target are the same.~~
 
