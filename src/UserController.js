@@ -5,7 +5,7 @@ class UserController{
     constructor() {
         this.#SERVICE_URL = window.env.BMS_SERVICE_URL;
         this.name = "UserController";
-        this.token = null;//localStorage.getItem('token');
+        this.token = localStorage.getItem('token');
     }
 
     isAdmin = async () => {
