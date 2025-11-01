@@ -1,11 +1,16 @@
 class UserController{
     token = null;
-    #SERVICE_URL = "";    
+    #SERVICE_URL = "";   
+    isAdminVar = false; 
 
     constructor() {
         this.#SERVICE_URL = window.env.BMS_SERVICE_URL;
         this.name = "UserController";
         this.token = localStorage.getItem('token');
+        this.isAdminVar = localStorage.getItem('isAdminVar') === 'true';
+
+        console.log("From storage: ");
+        console.log(this.isAdminVar);
     }
 
     isAdmin = async () => {
@@ -35,10 +40,13 @@ class UserController{
             });            
 
         if(loginResponse.status!=200) {
+            localStorage.setItem('token', null);
+            localStorage.setItem("isAdminVar", false);
             failureAction();
         } else {
             this.token = await loginResponse.text();
             localStorage.setItem('token', this.token);
+            localStorage.setItem("isAdminVar", await this.isAdmin())
             successAction(this.token, await this.isAdmin());
             
         }

@@ -13,7 +13,7 @@ export default function App() {
     const [loginStatus, setLoginStatus] = useState({
         isLoggedIn: userController.token !== null,
         token: userController.token,
-        isAdmin: userController.token !== null && userController.isAdmin()
+        isAdmin: userController.isAdminVar
     });
 
     const login = async (event, username, password) => {
@@ -44,8 +44,8 @@ export default function App() {
             </Suspense>
         );
     } else {
-        console.log(loginStatus);
-        if (loginStatus.isAdmin) {
+        console.log("X:"+ loginStatus.isAdmin);
+        if (loginStatus.isAdmin === true) {
             return (
                 <Suspense>
                     <AdminPage logout={logout} />
