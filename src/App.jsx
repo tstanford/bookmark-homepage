@@ -13,8 +13,15 @@ export default function App() {
     const [loginStatus, setLoginStatus] = useState({
         isLoggedIn: userController.token !== null,
         token: userController.token,
-        isAdmin: userController.isAdminVar
+        isAdmin: userController.isAdminVar,
+        isChecked: false
     });
+
+    if(!loginStatus.isChecked) {
+        userController.isAdmin().then((x) => {
+            setLoginStatus((prev) => ({...prev, isAdmin:x, isChecked:true}));
+        });
+    }
 
     const [loginDialogState, setLoginDialogState] = useState({
         shaking: false
