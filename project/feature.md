@@ -16,6 +16,8 @@
 
 - Bug: when searching, all folders still show. should only show folders with found bookmarks.
 
+- Refactor: extra all API calls in bookmarkspage to a new BookmarksController class.
+
 - hamburger menu on mobile device
 
 - in admin view: Show list of users

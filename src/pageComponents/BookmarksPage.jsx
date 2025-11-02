@@ -321,10 +321,11 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
             <article id="folders">
                 {data.items
-                    .map(x => (
+                    .filter(folder => data.query == null || data.query.length==0 || folder.bookmarks.filter(bookmark => bookmark.title.toLowerCase().includes(data.query.toLowerCase())).length > 0)
+                    .map(filterFolder => (
                         <Folder
-                            key={x.id}
-                            item={x}
+                            key={filterFolder.id}
+                            item={filterFolder}
                             onAdd={openAddBookmarkDialog}
                             onBookmarkDrop={moveBookmark}
                             onURIDrop={openAddBookmarkDialog}
