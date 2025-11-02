@@ -14,6 +14,8 @@
 
 - Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
 
+- Bug: when searching, all folders still show. should only show folders with found bookmarks.
+
 - hamburger menu on mobile device
 
 - in admin view: Show list of users
@@ -30,7 +32,11 @@
 
 - unit test moveBookmark
 
+- unit test moveGroup
+
 - integration test moveBookmark
+
+- integration test moveGroup
 
 - edit bookmark: change favicon
 
