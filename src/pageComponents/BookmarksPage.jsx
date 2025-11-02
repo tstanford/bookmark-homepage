@@ -321,7 +321,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
             <article id="folders">
                 {data.items
-                    .filter(folder => data.query == null || data.query.length==0 || folder.bookmarks.filter(bookmark => bookmark.title.toLowerCase().includes(data.query.toLowerCase())).length > 0)
+                    .filter(folder => editMode || data.query == null || data.query.length==0 || folder.bookmarks.filter(bookmark => bookmark.title.toLowerCase().includes(data.query.toLowerCase())).length > 0)
                     .map(filterFolder => (
                         <Folder
                             key={filterFolder.id}

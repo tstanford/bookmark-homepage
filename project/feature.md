@@ -14,7 +14,6 @@
 
 - Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
 
-- Bug: when searching, all folders still show. should only show folders with found bookmarks.
 
 - Refactor: extra all API calls in bookmarkspage to a new BookmarksController class.
 
@@ -45,6 +44,8 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~Bug: when searching, all folders still show. should only show folders with found bookmarks.~~
 
 - ~~Introduce role base security, with admin users and separate admin screen when logging in.~~
 
