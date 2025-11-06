@@ -14,6 +14,7 @@
 
 - Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
 
+- Bookmark service: fix integration tests with login and use bearer token
 
 - Refactor: extra all API calls in bookmarkspage to a new BookmarksController class.
 
