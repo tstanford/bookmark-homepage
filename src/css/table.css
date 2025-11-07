@@ -1,17 +1,19 @@
 table {
-  border: none;
   border-collapse: collapse;
   width: 75%;
   margin: auto;
+  padding: 2em;
+  border-color: rgba(0,0,0,0.3);
 }
 
 th{
   font-weight: 900;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.2);
+  color: rgba(0,0,0,0.6);
   text-align: left;
 }
 
-tr:nth-child(even) {background-color: rgba(255,255,255,0.1);}
+tr:nth-child(even) {background-color: rgba(255,255,255,0.05);}
 
 th, td {
   border: none;
