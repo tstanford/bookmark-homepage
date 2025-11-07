@@ -29,7 +29,6 @@ pipeline {
                 sh 'rm -rf dist'
                 sh 'rm -f package-lock.json'
                 sh 'rm -f yarn.lock'
-                sh 'npm install patch-package'
                 sh 'yarn install'
                 sh 'yarn lint'
                 sh 'yarn build'
