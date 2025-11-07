@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json ./
+RUN npm install -g patch-package
 RUN yarn install
 
 # Copy source files and build
