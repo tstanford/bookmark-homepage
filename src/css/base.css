@@ -166,6 +166,12 @@ div.field input {
   height: 100%;
 }
 
+aside:has(button.addNewUser) {
+  padding-top: 1em;
+  display: block;
+  margin: auto;
+}
+
 section.folder button.addButton {
   margin-top: 0.7em;
   margin-right: 1em;

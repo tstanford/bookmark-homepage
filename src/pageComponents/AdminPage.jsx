@@ -8,6 +8,7 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
 
     const [data, setData] = useState({
         items: [],
+        isLoaded: false
     });
 
     useEffect(() => {
@@ -23,10 +24,18 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
             })
             .then(json => {
                 setData({
-                    items: json
+                    items: json,
+                    isLoaded: true,
                 });
             });
     }, []);
+
+
+    if (!data.isLoaded) {
+        return (
+            <div className="lds-hourglass"></div>
+        );
+    }
 
     return (
 
@@ -63,6 +72,10 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
                     
                 </tbody>
                 </table>
+
+                <aside>
+                <button class="addNewUser flat">Add User</button>
+                </aside>
 
             </article>
 
