@@ -1,0 +1,32 @@
+table {
+  border: none;
+  border-collapse: collapse;
+  width: 75%;
+  margin: auto;
+}
+
+th{
+  font-weight: 900;
+  background-color: rgba(255,255,255,0.1);
+  text-align: left;
+}
+
+tr:nth-child(even) {background-color: rgba(255,255,255,0.1);}
+
+th, td {
+  border: none;
+  padding: 10px;
+}
+
+td.actions, th.actions {
+    width: auto;
+    text-align: right;
+}
+
+article.headingspacer{
+    margin-top: 4em;
+}
+
+article.tablecontainer {
+  overflow-x: auto;
+}

@@ -61,7 +61,7 @@ export default function App() {
         if (loginStatus.isAdmin === true) {
             return (
                 <Suspense>
-                    <AdminPage logout={logout} />
+                    <AdminPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
                 </Suspense>
             );
         } else {

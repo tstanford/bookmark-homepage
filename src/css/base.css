@@ -313,7 +313,6 @@ dialog.logindialog.error {
   100% { transform: rotate(0deg); }
 }
 
-
 @media only screen and (max-width: 900px) {
   div.date {
     display: none;
