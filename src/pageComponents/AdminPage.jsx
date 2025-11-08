@@ -101,8 +101,10 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
                         <td>{item.emailAddress}</td>
                         <td>{item.bookmarkCount}</td>
                         <td className="actions">
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <div>
+                                <button class="flat mini">Edit</button>
+                                <button class="flat mini">Delete</button>
+                            </div>
                         </td>
                     </tr>
 
