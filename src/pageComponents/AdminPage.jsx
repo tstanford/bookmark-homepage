@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PageFooter from "../components/pagefooter";
 import PageHeading from "../components/pageheading";
+import { Suspense } from 'react';
+const RegisterUserDialog = React.lazy(() => import('../components/dialogs/RegisterUserDialog'));
 
 export default function Admin({logout, loginStatus, setLoginStatus}){
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
@@ -10,6 +12,11 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
         items: [],
         isLoaded: false
     });
+
+    const [formData, setFormData] = useState({});
+    const [refreshKey, setRefreshKey] = useState(0);
+
+    var registerUserDialogRef = useRef();
 
     useEffect(() => {
         fetch(SERVICE_URL + "/admin/users", 
@@ -28,7 +35,7 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
                     isLoaded: true,
                 });
             });
-    }, []);
+    }, [refreshKey]);
 
 
     if (!data.isLoaded) {
@@ -36,6 +43,26 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
             <div className="lds-hourglass"></div>
         );
     }
+
+    var openRegisterUserDialog = () => {
+        setFormData( () => {});
+        registerUserDialogRef.current.showModal();
+    };
+
+    var closeRegisterUser = () => {
+        registerUserDialogRef.current.close()
+    };
+
+    var onSubmitRegisterUser = () => {
+        setRefreshKey(oldKey => oldKey + 1);
+        console.log(formData);
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    };
+
 
     return (
 
@@ -74,10 +101,20 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
                 </table>
 
                 <aside>
-                <button class="addNewUser flat">Add User</button>
+                    <button class="addNewUser flat" onClick={openRegisterUserDialog}>Add User</button>
                 </aside>
 
             </article>
+
+            
+            <Suspense>
+            <RegisterUserDialog
+                dialogRef={registerUserDialogRef}
+                onDismiss={closeRegisterUser}
+                onSubmit={onSubmitRegisterUser}
+                onChange={handleChange}
+            />
+            </Suspense>
 
             
             <PageFooter version={APP_VERSION}></PageFooter>

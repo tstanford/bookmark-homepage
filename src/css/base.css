@@ -168,8 +168,8 @@ div.field input {
 
 aside:has(button.addNewUser) {
   padding-top: 1em;
-  display: block;
-  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 section.folder button.addButton {
