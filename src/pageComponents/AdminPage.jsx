@@ -4,7 +4,7 @@ import PageHeading from "../components/pageheading";
 import { Suspense } from 'react';
 const RegisterUserDialog = React.lazy(() => import('../components/dialogs/RegisterUserDialog'));
 
-export default function Admin({logout, loginStatus, setLoginStatus}){
+export default function Admin({userController, logout, loginStatus, setLoginStatus}){
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
     const APP_VERSION = window.env.BMS_VERSION;
 
@@ -57,12 +57,13 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
         registerUserDialogRef.current.close()
     };
 
-    var onSubmitRegisterUser = (event) => {
+    var onSubmitRegisterUser = async (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log(formData);
 
         if(formData.username != "" && formData.email != "" && formData.password != ""){
+            await userController.register(formData.username, formData.email, formData.password);
             setRefreshKey(oldKey => oldKey + 1);
             registerUserDialogRef.current.close()        
         } else{
@@ -75,9 +76,7 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-
     return (
-
         <>
             <PageHeading logout={logout} adminMode={true}></PageHeading>
 
@@ -132,6 +131,5 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
             
             <PageFooter version={APP_VERSION}></PageFooter>
         </>
-
     );
 }

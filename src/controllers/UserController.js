@@ -24,6 +24,19 @@ class UserController{
         return body == "true";
     }
 
+    register = async (username, email, password) => {
+        var response = await fetch(this.#SERVICE_URL + "/admin/user", {
+            method: "POST",
+            headers: {
+                'Authorization': "Bearer "+this.token,           
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify({username:username, emailAddress:email, password:password}),
+        });
+        var body = await response.text();
+        return body;
+    };
+
     login = async (username, password, successAction, failureAction) => {
         var loginResponse = await fetch(this.#SERVICE_URL + "/login", {
                 method: "POST",

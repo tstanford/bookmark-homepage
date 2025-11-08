@@ -14,17 +14,18 @@
 
 - Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
 
-- ~~Bookmark service: fix integration tests with login and use bearer token~~
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
 - hamburger menu on mobile device
 
-- in admin view: Show list of users
+- in admin view: when adding a user with a duplicate username, show an error rather than silently shallowing the 500 response.
 
 - in admin view: change any password
 
-- in admin view: create new user
+- in admin view: delete a user
+
+- in admin view: edit a user.
 
 - create some basic react tests and run them as part of pipeline
 
@@ -45,6 +46,12 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~in admin view: Show list of users~~
+
+- ~~in admin view: create new user~~
+
+- ~~Bookmark service: fix integration tests with login and use bearer token~~
 
 - ~~Bug: when searching, all folders still show. should only show folders with found bookmarks.~~
 
