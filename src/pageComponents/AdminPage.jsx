@@ -44,18 +44,30 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
         );
     }
 
-    var openRegisterUserDialog = () => {
-        setFormData( () => {});
+    var openRegisterUserDialog = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setFormData( () => ({username:"", email:"", password:""}));
         registerUserDialogRef.current.showModal();
     };
 
-    var closeRegisterUser = () => {
+    var closeRegisterUser = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         registerUserDialogRef.current.close()
     };
 
-    var onSubmitRegisterUser = () => {
-        setRefreshKey(oldKey => oldKey + 1);
+    var onSubmitRegisterUser = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         console.log(formData);
+
+        if(formData.username != "" && formData.email != "" && formData.password != ""){
+            setRefreshKey(oldKey => oldKey + 1);
+            registerUserDialogRef.current.close()        
+        } else{
+            alert("Please complete all fields");
+        }
     };
 
     const handleChange = (event) => {
@@ -109,6 +121,7 @@ export default function Admin({logout, loginStatus, setLoginStatus}){
             
             <Suspense>
             <RegisterUserDialog
+                form={formData}
                 dialogRef={registerUserDialogRef}
                 onDismiss={closeRegisterUser}
                 onSubmit={onSubmitRegisterUser}

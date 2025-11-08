@@ -1,5 +1,5 @@
 
-export default function RegisterUser({dialogRef, onDismiss, onSubmit, onChange}){
+export default function RegisterUser({form, dialogRef, onDismiss, onSubmit, onChange}){
     return(
         <dialog ref={dialogRef}>
 
@@ -7,18 +7,18 @@ export default function RegisterUser({dialogRef, onDismiss, onSubmit, onChange})
                 
                 <form onSubmit={onSubmit}>
                     <div className="field">
-                        <label htmlFor="title">Username:</label>
-                        <input id="username" name="title" onChange={onChange}  />
+                        <label htmlFor="username">Username:</label>
+                        <input id="username" value={form.username} name="username" onChange={onChange}  />
                     </div>
 
                     <div className="field">
                         <label htmlFor="title">Email Address:</label>
-                        <input id="username" type="email" name="title" onChange={onChange}  />
+                        <input id="email" type="email" value={form.email} name="email" onChange={onChange}  />
                     </div>
 
                     <div className="field">
                         <label htmlFor="password">Password:</label>
-                        <input id="password" name="password" onChange={onChange} />
+                        <input id="password" value={form.password} name="password" onChange={onChange} />
                     </div>
 
                     <div className="buttons">
