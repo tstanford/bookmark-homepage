@@ -19,6 +19,8 @@
 
 - hamburger menu on mobile device
 
+- in admin view: show the time of the users last activity
+
 - in admin view: when adding a user with a duplicate username, show an error rather than silently shallowing the 500 response.
 
 - in admin view: change any password
