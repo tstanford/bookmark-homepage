@@ -17,6 +17,10 @@ div.foldertitlebar div.dragger {
     cursor: move;
 }
 
+.tb1:focus {
+    color: YELLOW;
+}
+
 div.foldertitlebar span.material-symbols-outlined {
     font-size: 1.5em; /* Adjust size as needed */
 }
@@ -38,6 +42,10 @@ button.addButton {
 section.folder input.titleTextBox {
   border: 0;
   color: red;
+}
+
+section input.titleTextBox:focus {
+  color: yellow;
 }
 
 .folder label, .folder .titleTextBox {
