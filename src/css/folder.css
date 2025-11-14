@@ -4,6 +4,8 @@ div.foldertitlebar {
     background-color: #ffffff0d;
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
 }
 
 div.foldertitlebar div.dragger {
@@ -19,6 +21,13 @@ div.foldertitlebar span.material-symbols-outlined {
     font-size: 1.5em; /* Adjust size as needed */
 }
 
+button.addButton {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 
 .folder .titleTextBox {
   display: block;
@@ -26,15 +35,10 @@ div.foldertitlebar span.material-symbols-outlined {
   box-sizing: border-box;
 }
 
-section.folder button.addButton {
-
-}
-
 section.folder input.titleTextBox {
   border: 0;
   color: red;
 }
-
 
 .folder label, .folder .titleTextBox {
     padding:0.5rem;
@@ -50,8 +54,4 @@ section.folder input.titleTextBox {
 .folder input.titleTextBox:focus {
     outline: none;
     border: none;
-}
-
-button.addButton {
-  all: unset;
 }

@@ -109,7 +109,7 @@ const handleFolderDrop = (folder, ev) => {
             <div class="foldertitlebar">
             {editMode ?
             <>
-                <div className="dragger" onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">drag_indicator</span></div>
+                <div className="dragger" onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">reorder</span></div>
                 <input className="titleTextBox" draggable={false} value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
                 <button className="addButton" title="Add a new bookmark to this folder" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
             </>
