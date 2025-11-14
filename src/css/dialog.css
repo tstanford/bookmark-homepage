@@ -26,6 +26,10 @@
     gap: 1rem;
 }
 
+dialog.bookmark {
+    width: 30em;
+}
+
 dialog.bookmark form {
     display: grid;
     grid-template-columns: 0.0fr auto;
