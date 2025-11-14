@@ -8,12 +8,7 @@
 
 - Bug: login dialog is not centred vertically on Samsung TV
 
-- Bug: add bookmark icon breaks out of container and right aligned to the document
-
-- Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts
-
 - Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
-
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
@@ -48,6 +43,12 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts~~
+
+- ~~Only make folders draggable using a drag handle~~
+
+- ~~Bug: add bookmark icon breaks out of container and right aligned to the document~~
 
 - ~~in admin view: Show list of users~~
 

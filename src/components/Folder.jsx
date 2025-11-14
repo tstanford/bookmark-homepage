@@ -84,8 +84,7 @@ const handleFolderDrop = (folder, ev) => {
         setFolderName(e.target.value);
     };
 
-    var draggerMouseDown = (e) => {
-        //e.preventDefault();
+    var draggerMouseDown = () => {
         folderRef.current.setAttribute('draggable', true);
         folderRef.current.dispatchEvent(new DragEvent('dragstart', {
             bubbles: true,
@@ -110,15 +109,15 @@ const handleFolderDrop = (folder, ev) => {
             <div class="foldertitlebar">
             {editMode ?
             <>
-                <div class="dragger" onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">drag_indicator</span></div>
+                <div className="dragger" onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">drag_indicator</span></div>
                 <input className="titleTextBox" draggable={false} value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
-                <button className="addButton" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
+                <button className="addButton" title="Add a new bookmark to this folder" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
             </>
             :
             <>
-                <div class="dragger"></div>
+                <div></div>
                 <label>{item.name}</label>
-                <div class="dragger"></div>
+                <div></div>
             </>
             }   
             </div>         
