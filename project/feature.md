@@ -12,6 +12,8 @@
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
+- add touch events for mobile. drag folders, drag icons.
+
 - hamburger menu on mobile device
 
 - in admin view: show the time of the users last activity
