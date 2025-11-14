@@ -95,10 +95,12 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     };
 
     const deleteAll = () => {
-        fetch(SERVICE_URL + "/all", {
-            headers: {'Authorization': "Bearer "+loginStatus.token},
-            method: "DELETE"
-        }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+        if(confirm("This will delete everything, are you sure?")){
+            fetch(SERVICE_URL + "/all", {
+                headers: {'Authorization': "Bearer "+loginStatus.token},
+                method: "DELETE"
+            }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
+        }
     };
 
     const uploadImportFile = (event) => {

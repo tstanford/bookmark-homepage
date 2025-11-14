@@ -25,26 +25,26 @@ export default function PageHeading({ adminMode, editMode, toggleEditMode, downl
                 {!adminMode && editMode &&
                     <>
                         <div className="actionbutton logout">
-                            <button role="actionbutton">
+                            <button role="actionbutton" title="Log out">
                                 <span className="material-symbols-outlined" onClick={logout}>logout</span>
                             </button>
                         </div>
 
                         <div className="actionbutton exportfile">
-                            <button role="actionbutton">
+                            <button role="actionbutton" title="Export your bookmarks">
                                 <span className="material-symbols-outlined" onClick={downloadExportFile}>download</span>
                             </button>
                         </div>
 
                         <div className="actionbutton importfile">
                             <input type='file' id='file' ref={inputFile} onChange={uploadImportFile} accept=".yaml" style={{ display: 'none' }} />
-                            <button role="actionbutton">
+                            <button role="actionbutton" title="Import your bookmarks">
                                 <span className="material-symbols-outlined" onClick={selectedImportFile}>upload</span>
                             </button>
                         </div>
 
                         <div className="actionbutton deleteAll">
-                            <button role="actionbutton">
+                            <button role="actionbutton"  title="Delete all folders and bookmarks">
                                 <span className="material-symbols-outlined" onClick={deleteAll}>clear_all</span>
                             </button>
                         </div>
