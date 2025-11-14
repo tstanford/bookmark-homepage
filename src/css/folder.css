@@ -1,0 +1,57 @@
+div.foldertitlebar {
+    display: grid;
+    grid-template-columns: 2em auto 2em;
+    background-color: #ffffff0d;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+div.foldertitlebar div.dragger {
+    width: 100%; /* or any specific width */
+    height: 100%; /* or any specific height */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    cursor: move;
+}
+
+div.foldertitlebar span.material-symbols-outlined {
+    font-size: 1.5em; /* Adjust size as needed */
+}
+
+
+.folder .titleTextBox {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+section.folder button.addButton {
+
+}
+
+section.folder input.titleTextBox {
+  border: 0;
+  color: red;
+}
+
+
+.folder label, .folder .titleTextBox {
+    padding:0.5rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+    display: block;
+    text-align: center;
+    color: #ff5500;
+    text-transform: capitalize;
+    background-color: transparent;
+}
+
+.folder input.titleTextBox:focus {
+    outline: none;
+    border: none;
+}
+
+button.addButton {
+  all: unset;
+}

@@ -26,11 +26,7 @@ section.folder input.titleTextBox {
   color: orangered;
 }
 
-section.folder button.addButton {
-  display: block;
-  position: absolute;
-  right: 0;
-}
+
 
 header {
   text-shadow: inherit;

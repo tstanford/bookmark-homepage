@@ -26,11 +26,6 @@ body {
   display: none
 }
 
-.folder .titleTextBox {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-}
 
 #folders {
     display: flex;
@@ -50,18 +45,6 @@ body {
     border-radius: 1rem;
 }
 
-.folder label, .folder .titleTextBox {
-    padding:0.5rem;
-    font-weight: 900;
-    font-size: 1.5rem;
-    display: block;
-    text-align: center;
-    color: #ff5500;
-    background-color: #ffffff0d;
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
-    text-transform: capitalize;
-}
 
 .folder div.items {
   display: grid;
@@ -179,19 +162,6 @@ aside:has(button.addNewUser) {
   justify-content: center;
 }
 
-section.folder button.addButton {
-  margin-top: 0.7em;
-  margin-right: 1em;
-}
-
-section.folder input.titleTextBox {
-  border: 0;
-}
-
-section.folder input.titleTextBox {
-  color: red;
-}
-
 #editSwitch{
   float: right;
   margin-right: 1em;
@@ -201,7 +171,7 @@ header * {
   user-select: none;
 }
 
-button.deletebookmark, button.addButton {
+button.deletebookmark {
   all: unset;
 }
 
