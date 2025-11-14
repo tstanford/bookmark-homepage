@@ -8,13 +8,15 @@
 
 - Bug: login dialog is not centred vertically on Samsung TV
 
-- Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.
+- Bug: Mobile: fixed background shows white underlying background on scroll.
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
 - add touch events for mobile. drag folders, drag icons.
 
 - hamburger menu on mobile device
+
+- profile icon using gravatar
 
 - in admin view: show the time of the users last activity
 
@@ -45,6 +47,8 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~Bug: Onload (or refresh) there are 3 calls to amiadmin endpoint.~~
 
 - ~~Bug: Cant click textbox of group name to position cursor at the start of the text as drag behaviour starts~~
 
