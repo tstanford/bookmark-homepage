@@ -25,3 +25,29 @@
     justify-content: right;
     gap: 1rem;
 }
+
+dialog.bookmark {
+    width: 30em;
+}
+
+dialog.bookmark form {
+    display: grid;
+    grid-template-columns: 0.0fr auto;
+    gap:1.5em;
+}
+
+dialog.bookmark section:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog.bookmark div.icon {
+    height: 7em;
+    width: 7em;
+    border: 1px solid #999999;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 3em;
+    background-color: white;
+}
+
