@@ -16,6 +16,10 @@ Front end react client for the [bookmark service](https://github.com/tstanford/b
 
 ![Alt text](project/Screenshot3.png "screenshot of homepage running in a browser")
 
+## Screenshot showing editing a bookmark
+
+![Alt text](project/editicon.png "screenshot of homepage running in a browser")
+
 ## Feature Backlog:
 
 [Link to Backlog](project/feature.md)
