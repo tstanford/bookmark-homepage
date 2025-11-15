@@ -1,0 +1,66 @@
+
+/* index-Ddu21vKc.css | https://home.timcloud.uk/assets/index-Ddu21vKc.css */
+
+body {
+  /* background: linear-gradient(45deg,#221193,#3cbcc1); */
+  /* background-attachment: fixed; */
+  /* height: 100%; */
+  background-color: black;
+}
+
+header {
+  background-color: #000037;
+}
+
+header {
+  /* margin-top: 1em; */
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.folder {
+  /* border: inherit; */
+  /* background-color: #20212433; */
+  /* box-shadow: 0 0 10px #ffffff1a; */
+  /* backdrop-filter: blur(0px); */
+  border: 1px solid #7600b94f;
+  background-color: #2424247a;
+}
+
+input#query {
+  /* border: 0px; */
+  /* background-color: #000; */
+  /* opacity: .25; */
+  border: 1px solid #d200f036;
+  background-color: #353333;
+}
+
+#query {
+  /* box-shadow: 0 0 10px #ffffff80; */
+}
+
+section.folder input.titleTextBox {
+  /* color: #ff4500; */
+}
+
+.folder label, .folder .titleTextBox {
+  /* color: #f50; */
+}
+
+.folder label, .folder .titleTextBox {
+  /* color: orange; */
+}
+
+section.folder input.titleTextBox {
+  /* color: red; */
+  color: #ff00ef;
+}
+
+body {
+  /* color: #fff; */
+  color: #ff00e3;
+}
+
+div.logo {
+  /* background-image: url(/images/logo.svg); */
+}

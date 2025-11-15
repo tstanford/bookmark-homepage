@@ -13,10 +13,6 @@ body {
   backdrop-filter: blur(0px);
 }
 
-.folder.dragover {
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-}
-
 .folder label, .folder .titleTextBox {
   color: orange;
   font-family: "Oswald", sans-serif;
@@ -25,8 +21,6 @@ body {
 section.folder input.titleTextBox {
   color: orangered;
 }
-
-
 
 header {
   text-shadow: inherit;

@@ -2,6 +2,7 @@
 
 body {
   background-image: url("/public/images/trees-975091.jpg");
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
