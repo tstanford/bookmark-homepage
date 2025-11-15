@@ -13,6 +13,16 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const SEARCH_URL = window.env.BMS_SEARCH_URL;
     const APP_VERSION = window.env.BMS_VERSION;
 
+    if ('ontouchstart' in document) {
+        import('@justinribeiro/html5-dragdroptouch-shim/dist/esm.js').then(module => {
+            var shim = new module.default();
+            console.log(shim.className);
+            console.log('TOUCH DETECTED: DragDropTouch shim loaded!');
+        });
+    } else {
+        console.log('NATIVE DRAGDROP DETECTED: no shim loaded.');
+    }
+
     const [data, setData] = useState({
         isLoaded: false,
         items: [],

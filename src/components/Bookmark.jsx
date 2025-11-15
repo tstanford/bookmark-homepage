@@ -1,5 +1,9 @@
 export default function Bookmark({bookmark, editMode, editBookmark}){
     const dragstartHandler = (ev) => {
+        if(!editMode) {
+            ev.preventDefault();
+            return;
+        }
         console.log("drag start bookmark");
         ev.dataTransfer.setData("bookmark", bookmark.id);
         ev.dataTransfer.effectAllowed = "move";

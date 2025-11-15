@@ -11,6 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@justinribeiro/html5-dragdroptouch-shim": "^0.1.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

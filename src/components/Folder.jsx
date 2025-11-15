@@ -35,6 +35,7 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     const [beingDraggedOver, setBeingDraggedOver] = useState(false);
 
     const folderDropHandler = (ev) =>{
+        console.log("folderDropHandler fired");
         if(!editMode){
             return;
         }
@@ -42,9 +43,9 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
 
         setBeingDraggedOver(false);
 
-        if(ev.dataTransfer.getData("bookmark").length>0) {
+        if(ev.dataTransfer.getData("bookmark")) {
             handleBookmarkDrop(item, ev);
-        } else if(ev.dataTransfer.getData("groupid").length>0) {
+        } else if(ev.dataTransfer.getData("groupid")) {
             handleFolderDrop(item, ev);
         } else {
             handleOtherDrop(item, ev);
@@ -65,12 +66,14 @@ const handleFolderDrop = (folder, ev) => {
     const handleBookmarkDrop = (folder, ev) => {
         const folderName = folder.name;
         const bookmarkId = ev.dataTransfer.getData("bookmark");
+        console.log("bookmark dropped "+bookmarkId);
         if(bookmarkId){
             onBookmarkDrop(bookmarkId, folderName);
         } 
     };
 
     const handleOtherDrop = (folder, ev) => {
+        console.log("handleOtherDrop fired");
         let url = ev.dataTransfer.getData('text/uri-list');
         if(!url) {
             url = ev.dataTransfer.getData('text/plain');
@@ -84,7 +87,11 @@ const handleFolderDrop = (folder, ev) => {
         setFolderName(e.target.value);
     };
 
-    var draggerMouseDown = () => {
+    var draggerMouseDown = (ev) => {
+        if(!editMode){
+            ev.preventDefault();
+            return;
+        }
         folderRef.current.setAttribute('draggable', true);
         folderRef.current.dispatchEvent(new DragEvent('dragstart', {
             bubbles: true,
@@ -96,43 +103,43 @@ const handleFolderDrop = (folder, ev) => {
     return(
         <>
         {(editMode || item.bookmarks.filter(x => x.title.toLowerCase().includes(query)).length > 0) &&
-        <section 
-        ref={folderRef}
-        className={beingDraggedOver ? 'folder dragover' : 'folder'} 
-        onDrop={folderDropHandler} 
-        onDragOver={folderDragoverHandler} 
-        onDragStart={folderDragstartHandler} 
-        onDragLeave={folderDragoutHander} 
-        onDragEnd={folderDragEnterHandler}
-        >
+            <section 
+            ref={folderRef}
+            className={beingDraggedOver ? 'folder dragover' : 'folder'} 
+            onDrop={folderDropHandler} 
+            onDragOver={folderDragoverHandler} 
+            onDragStart={folderDragstartHandler} 
+            onDragLeave={folderDragoutHander} 
+            onDragEnd={folderDragEnterHandler}
+            >
 
-            <div class="foldertitlebar">
-            {editMode ?
-            <>
-                <div className="dragger" onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">reorder</span></div>
-                <input className="titleTextBox" draggable={false} value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
-                <button className="addButton" title="Add a new bookmark to this folder" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
-            </>
-            :
-            <>
-                <div></div>
-                <label>{item.name}</label>
-                <div></div>
-            </>
-            }   
-            </div>         
+                <div class="foldertitlebar">
+                {editMode ?
+                <>
+                    <div className="dragger" onTouchStart={draggerMouseDown} onMouseDown={draggerMouseDown}><span class="material-symbols-outlined">reorder</span></div>
+                    <input className="titleTextBox" draggable={false} value={folderName} onChange={onChangeFolderName} onBlur={() => renameFolderName(item, folderName, setFolderName)}/>
+                    <button className="addButton" title="Add a new bookmark to this folder" onClick={()=>{onAdd(item,"")}}> <span className="material-symbols-outlined">bookmark_add</span> </button>
+                </>
+                :
+                <>
+                    <div></div>
+                    <label>{item.name}</label>
+                    <div></div>
+                </>
+                }   
+                </div>         
 
-            <div className="items">
-            {item.bookmarks.length > 0 ? 
-                item.bookmarks.filter(x => query === "" || x.title.toLowerCase().includes(query)).map(bookmark => (
-                    <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark} />                
-                ))
-            :
-                <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>
-            }
+                <div className="items">
+                {item.bookmarks.length > 0 ? 
+                    item.bookmarks.filter(x => query === "" || x.title.toLowerCase().includes(query)).map(bookmark => (
+                        <Bookmark key={bookmark.id} bookmark={bookmark} editMode={editMode} editBookmark={editBookmark} />                
+                    ))
+                :
+                    <button className="flat" onClick={()=>{onDelete(item)}}>Delete this folder</button>
+                }
 
-            </div>
-        </section>
+                </div>
+            </section>
         }
         </>
     );
