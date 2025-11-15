@@ -297,6 +297,27 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
     }
 
+    const uploadIcon = (bookmark, bookmarkIcon) => {
+        fetch(SERVICE_URL + "/bookmarks/icon/"+bookmark.id, {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "text/plain"
+            },
+            method: "PUT",
+            body: bookmarkIcon
+        }).then(() => {
+            setData((prev) => ({
+                ...prev,
+                selectedBookmark: bookmark
+            }));
+
+            setFormData(() => ({
+                title: bookmark.title,
+                url: bookmark.url,
+            }));
+        });
+    };
+
     if (!data.isLoaded) {
         return (
             <div className="lds-hourglass"></div>
@@ -376,6 +397,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 onSubmit={onSubmitEditBookmark}
                 onChange={handleChange}
                 onDelete={deleteBookmarkBeingEdited}
+                uploadIcon={uploadIcon}
             />
             </Suspense>
 
