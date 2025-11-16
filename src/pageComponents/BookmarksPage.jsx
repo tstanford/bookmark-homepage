@@ -130,6 +130,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         })
         );
         setFormData(() => ({
+            title: "",
             url: url
             })
         );
@@ -371,6 +372,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             <AddNewBookmarkDialog
                 folder={data.selectedFolder}
                 prepopulatedUrl={formData.url}
+                prepopulatedTitle={formData.title}
                 dialogRef={addNewBookmarkDialogRef}
                 onDismiss={closeAddBookmarkDialog}
                 onSubmit={onSubmitBookmark}

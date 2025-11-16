@@ -1,5 +1,5 @@
 
-export default function AddNewBookmark({folder, prepopulatedUrl, dialogRef, onDismiss, onSubmit, onChange}){
+export default function AddNewBookmark({folder, prepopulatedUrl, prepopulatedTitle, dialogRef, onDismiss, onSubmit, onChange}){
     return(
         <dialog ref={dialogRef}>
 
@@ -8,7 +8,7 @@ export default function AddNewBookmark({folder, prepopulatedUrl, dialogRef, onDi
                 <form onSubmit={onSubmit}>
                     <div className="field">
                         <label htmlFor="title">Title:</label>
-                        <input id="title" name="title" onChange={onChange}  />
+                        <input id="title" name="title" value={prepopulatedTitle} onChange={onChange}  />
                     </div>
                     <div className="field">
                         <label htmlFor="url">URL:</label>
