@@ -7,7 +7,6 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
 
     const folderDragstartHandler = (ev) => {
         ev.stopPropagation();
-        console.log("drag start folder");
         ev.dataTransfer.setData("groupid", item.id);
         ev.dataTransfer.effectAllowed = "move";
     };
@@ -21,7 +20,6 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     const folderDragoverHandler = (ev) => {
         ev.stopPropagation();
         ev.preventDefault();
-        console.log("drag over folder");
         setBeingDraggedOver(true);
     };
 
