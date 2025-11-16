@@ -18,8 +18,6 @@
 
 - profile icon using gravatar
 
-- folder icons: zoom trasition on mouse over.
-
 - bookmark-service: make sure that jwt token contains the users roles
 
 - in admin view: show the time of the users last activity
@@ -49,6 +47,8 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- ~~folder icons: zoom trasition on mouse over.~~
 
 - ~~edit bookmark: change favicon~~
 
