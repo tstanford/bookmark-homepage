@@ -33,7 +33,6 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         )
             .then(res => {
                 if(res.status == 401 || res.status == 403) {
-                    console.log("logged out?");
                     setLoginStatus(() => ({isLoggedIn: false, token: null, isAdmin: false }));
                 }
                 return res.json()
@@ -53,11 +52,8 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
     const renameFolderName = async (folder, newName, setFolderName) => {
         if (folder.name === newName) {
-            console.log("name hasn't changed.")
             return;
         }
-
-        console.log("rename " + folder.id + " to " + newName);
 
         let response = await fetch(SERVICE_URL + "/group/" + folder.id, {
             method: "PUT",
@@ -82,7 +78,6 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             headers: {'Authorization': "Bearer "+loginStatus.token},
         }).then(async (res) => {
             var exportedData = await res.text();
-            console.log(exportedData);
             const dataUrl = 'data:text/plain;base64,' + btoa(exportedData);
             const link = document.createElement('a');
             link.href = dataUrl;
@@ -109,8 +104,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         const reader = new FileReader();
         reader.onload = (e) => {
             var importData = e.target.result;
-            console.log(importData);
-            fetch(SERVICE_URL + "/import", {
+              fetch(SERVICE_URL + "/import", {
                  headers: {
                     'Authorization': "Bearer "+loginStatus.token,
                     'Content-type': "text/plain"
@@ -144,8 +138,6 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
         event.preventDefault();
         event.stopPropagation();
-
-        console.log("editing " + bookmark.id);
 
         setData((prev) => ({
             ...prev,

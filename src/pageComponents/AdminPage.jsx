@@ -24,7 +24,6 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
         )
             .then(res => {
                 if(res.status == 401 || res.status == 403) {
-                    console.log("logged out?");
                     setLoginStatus(() => ({isLoggedIn: false, token: null, isAdmin: false }));
                 }
                 return res.json()
@@ -60,7 +59,6 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
     var onSubmitRegisterUser = async (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log(formData);
 
         if(formData.username != "" && formData.email != "" && formData.password != ""){
             await userController.register(formData.username, formData.email, formData.password);

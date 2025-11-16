@@ -16,7 +16,6 @@ export default function EditBookmark({dialogRef, bookmark, prepopulatedName, pre
         const reader = new FileReader();
         reader.onload = (e) => {
             var importData = e.target.result;
-            console.log(importData);
             bookmark.favicon = importData;
             uploadIcon(bookmark, importData);
         };
