@@ -163,18 +163,24 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const toggleEditMode = () => setEditMode(!editMode);
 
     const openAddGroupDialog = () => {
+        // setFormData(() => ({
+        //     name:""
+        // }));
         addNewGroupDialogRef.current.showModal();
     };    
 
-    const closeAddBookmarkDialog = () => {
+    const closeAddBookmarkDialog = (ev) => {
+        ev.preventDefault();
         addNewBookmarkDialogRef.current.close()
     };
 
-    const closeAddGroupDialog = () => {
+    const closeAddGroupDialog = (ev) => {
+        ev.preventDefault();
         addNewGroupDialogRef.current.close();
     };
 
-    const closeEditBookmarkDialog = () => {
+    const closeEditBookmarkDialog = (ev) => {
+        ev.preventDefault();
         editBookmarkDialogRef.current.close();
     };
 
@@ -217,7 +223,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
     const deleteBookmarkBeingEdited = (id) => {
         deleteBookmark(id)
-        closeEditBookmarkDialog();
+        editBookmarkDialogRef.current.close();
     };
 
     const deleteBookmark = (bookmarkId) => {
@@ -251,7 +257,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             })            
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
-        closeAddBookmarkDialog();
+        closeAddBookmarkDialog(event);
     };
 
     const onSubmitEditBookmark = (event) => {
@@ -269,7 +275,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             })
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
-        closeEditBookmarkDialog();
+        editBookmarkDialogRef.current.close();
     };
 
     const onSubmitGroup = (event) => {
@@ -382,6 +388,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
 
             <Suspense>
             <AddNewGroupDialog
+                prepopulatedName={formData.name}
                 dialogRef={addNewGroupDialogRef}
                 onDismiss={closeAddGroupDialog}
                 onSubmit={onSubmitGroup}

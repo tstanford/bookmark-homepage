@@ -1,6 +1,6 @@
 
 
-export default function AddNewGroup({dialogRef, onDismiss, onSubmit, onChange}){
+export default function AddNewGroup({dialogRef, prepopulatedName, onDismiss, onSubmit, onChange}){
     return(
 
         <dialog ref={dialogRef}>
@@ -9,7 +9,7 @@ export default function AddNewGroup({dialogRef, onDismiss, onSubmit, onChange}){
             <form onSubmit={onSubmit}>
                 <div className="field">
                     <label htmlFor="name">Name:</label>
-                    <input id="title" name="name" onChange={onChange} />
+                    <input id="title" name="name" value={prepopulatedName} onChange={onChange} />
                 </div>
                 
 

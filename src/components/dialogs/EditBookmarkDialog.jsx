@@ -31,7 +31,7 @@ export default function EditBookmark({dialogRef, bookmark, prepopulatedName, pre
     
     return(
 
-        <dialog ref={dialogRef} class="bookmark">                
+        <dialog ref={dialogRef} className="bookmark">                
                 <form onSubmit={onSubmit}>
 
                     {bookmark != null &&

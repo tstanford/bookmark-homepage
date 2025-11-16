@@ -1,7 +1,6 @@
 # Feature List
 
-
-- Bug: add group dialog has an old name use in the edit dialog
+- Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
 
 - Bug: page not loading on LG smart TV
 
@@ -47,7 +46,9 @@
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
-- Bug: add bookmark dialog has an old URL use in the edit dialog
+- ~~Bug: add bookmark dialog has an old URL use in the edit dialog~~
+
+- ~~Bug: add group dialog has an old name use in the edit dialog~~
 
 - ~~folder icons: zoom trasition on mouse over.~~
 
