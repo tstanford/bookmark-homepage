@@ -68,13 +68,24 @@ body {
     object-fit: contain;
 }
 
-.folder a {color:white;}
+.folder a {
+  color:white;
+}
 .folder a:visited {color:white;}
 .folder a:hover {
   color:yellow;
   text-decoration: underline;
   filter: brightness(2);
 }
+
+.folder a img {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.folder a:hover img {
+  transform: scale(1.1); /* Zoom in by 20% */
+}
+
 .folder a:active {color:white;} 
 
 input#query {
