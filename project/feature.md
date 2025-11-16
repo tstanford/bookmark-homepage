@@ -1,6 +1,5 @@
 # Feature List
 
-- Bug: add bookmark dialog has an old URL use in the edit dialog
 
 - Bug: add group dialog has an old name use in the edit dialog
 
@@ -47,6 +46,8 @@
 - change colour themes
 
 - package bookmark-service and bookmark-homepage together as an all in one deployment
+
+- Bug: add bookmark dialog has an old URL use in the edit dialog
 
 - ~~folder icons: zoom trasition on mouse over.~~
 
