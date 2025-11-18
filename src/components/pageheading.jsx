@@ -1,3 +1,5 @@
+import '../css/pageheading.scss';
+
 export default function PageHeading({ adminMode, editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
     return (
         <header>
@@ -5,7 +7,24 @@ export default function PageHeading({ adminMode, editMode, toggleEditMode, downl
             <div className="date">{new Date().toDateString()}</div>
 
             <div className="buttons">
-                {!adminMode && 
+
+                
+                <div className="profile-menu">
+                    <div className="profile-header">
+                        <img src="https://gravatar.com/avatar/18ead39197cc63882b03a41f0ffeb8a38fd6ed592b9640f8c03e8c2dde4d5173?v=1520101750000&size=64&d=initials" alt="Profile Icon"/>
+                        <div class="profile-name">Tim Stanford</div>
+                    </div>
+                    <ul className="menu-options">
+                        <li>Edit mode</li>
+                        <li>Import bookmarks</li>
+                        <li>Export bookmarks</li>
+                        <li className="delete">Delete all!</li>
+                    </ul>
+                </div>
+
+
+
+                {/* {!adminMode && 
                     <div id="editSwitch">
                         <label className="switch">
                             <input type="checkbox" checked={editMode} onChange={toggleEditMode} />
@@ -49,7 +68,7 @@ export default function PageHeading({ adminMode, editMode, toggleEditMode, downl
                             </button>
                         </div>
                     </>
-                }
+                } */}
             </div>
         </header>
     )
