@@ -14,19 +14,25 @@ export default function Folder({item, onAdd, onBookmarkDrop, onURIDrop, onDelete
     const folderDragEnterHandler = (ev) => {
         ev.stopPropagation();
         ev.preventDefault();
-        folderRef.current.setAttribute('draggable', false);
+        if(editMode){
+            folderRef.current.setAttribute('draggable', false);
+        }
     };
 
     const folderDragoverHandler = (ev) => {
         ev.stopPropagation();
         ev.preventDefault();
-        setBeingDraggedOver(true);
+        if(editMode){
+            setBeingDraggedOver(true);
+        }
     };
 
     const folderDragoutHander = (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
-        setBeingDraggedOver(false);
+        if(editMode){
+            setBeingDraggedOver(false);
+        }
     }
 
     const [folderName, setFolderName] = useState(item.name);
