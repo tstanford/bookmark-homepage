@@ -1,4 +1,4 @@
-# Feature List
+# Backlog
 
 - Bug: page not loading on LG smart TV
 
