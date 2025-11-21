@@ -10,6 +10,8 @@
 
 - add touch events for mobile. drag folders, drag icons.
 
+- implement jwt refresh tokens
+
 - hamburger menu on mobile device
 
 - profile icon using gravatar
