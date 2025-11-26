@@ -49,7 +49,10 @@ footer a {
   text-decoration:  underline;
 }
 
-
+input#query:focus {
+  outline: none;
+  box-shadow: 0 0 10px #ffffff80;
+}
 
 @media only screen and (max-width: 900px) {
     body {
