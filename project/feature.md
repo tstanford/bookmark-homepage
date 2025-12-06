@@ -6,6 +6,8 @@
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
+- when admin user logs in for first time. force a password change. 
+
 - add touch events for mobile. drag folders, drag icons.
 
 - implement jwt refresh tokens
