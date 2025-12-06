@@ -37,6 +37,19 @@ class UserController{
         return body;
     };
 
+    editUser = async (userId, email, password) => {
+        var response = await fetch(this.#SERVICE_URL + "/admin/user/"+userId, {
+            method: "PUT",
+            headers: {
+                'Authorization': "Bearer "+this.token,           
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify({emailAddress:email, password:password}),
+        });
+        var body = await response.text();
+        return body;
+    };
+
     login = async (username, password, successAction, failureAction) => {
         var loginResponse = await fetch(this.#SERVICE_URL + "/login", {
                 method: "POST",

@@ -3,6 +3,7 @@ import PageFooter from "../components/pagefooter";
 import PageHeading from "../components/pageheading";
 import { Suspense } from 'react';
 const RegisterUserDialog = React.lazy(() => import('../components/dialogs/RegisterUserDialog'));
+const EditUserDialog = React.lazy(() => import('../components/dialogs/EditUserDialog'));
 
 export default function Admin({userController, logout, loginStatus, setLoginStatus}){
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
@@ -17,6 +18,7 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
     const [refreshKey, setRefreshKey] = useState(0);
 
     var registerUserDialogRef = useRef();
+    var editUserDialogRef = useRef();
 
     useEffect(() => {
         fetch(SERVICE_URL + "/admin/users", 
@@ -50,10 +52,23 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
         registerUserDialogRef.current.showModal();
     };
 
+    var openEditUserDialog = (event, user) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setFormData( () => ({userId:user.userId, username:user.username, email:user.emailAddress||"", password:user.password}));
+        editUserDialogRef.current.showModal();
+    };
+
     var closeRegisterUser = (event) => {
         event.preventDefault();
         event.stopPropagation();
         registerUserDialogRef.current.close()
+    };
+
+    var closeEditUser = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        editUserDialogRef.current.close()
     };
 
     var onSubmitRegisterUser = async (event) => {
@@ -67,6 +82,15 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
         } else{
             alert("Please complete all fields");
         }
+    };
+
+    var onSubmitEditUser = async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        await userController.editUser(formData.userId, formData.email, formData.password);
+        setRefreshKey(oldKey => oldKey + 1);
+        editUserDialogRef.current.close();
     };
 
     const handleChange = (event) => {
@@ -100,7 +124,7 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
                         <td>{item.bookmarkCount}</td>
                         <td className="actions">
                             <div>
-                                <button class="flat mini">Edit</button>
+                                <button class="flat mini" onClick={(event) => openEditUserDialog(event, item)}>Edit</button>
                                 <button class="flat mini">Delete</button>
                             </div>
                         </td>
@@ -124,6 +148,14 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
                 dialogRef={registerUserDialogRef}
                 onDismiss={closeRegisterUser}
                 onSubmit={onSubmitRegisterUser}
+                onChange={handleChange}
+            />
+
+            <EditUserDialog
+                form={formData}
+                dialogRef={editUserDialogRef}
+                onDismiss={closeEditUser}
+                onSubmit={onSubmitEditUser}
                 onChange={handleChange}
             />
             </Suspense>
