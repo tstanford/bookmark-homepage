@@ -20,13 +20,9 @@
 
 - in admin view: show the time of the users last activity
 
-- in admin view: when adding a user with a duplicate username, show an error rather than silently shallowing the 500 response.
-
-- in admin view: change any password
+- in admin view: when adding a user with a duplicate username, show an error rather than silently swallowing the 500 response.
 
 - in admin view: delete a user
-
-- in admin view: edit a user.
 
 - create some basic react tests and run them as part of pipeline
 
@@ -47,6 +43,10 @@
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~in admin view: change any password~~
+
+- ~~in admin view: edit a user.~~
 
 - ~~Bug: its is possible to drag an item onto a folder when not in edit mode.~~
 
