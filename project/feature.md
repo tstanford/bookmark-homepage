@@ -6,8 +6,6 @@
 
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
-- add logging to the bookmark service
-
 - when admin user logs in for first time. force a password change. 
 
 - add touch events for mobile. drag folders, drag icons.
@@ -45,6 +43,8 @@
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~add logging to the bookmark service~~
 
 - ~~in admin view: change any password~~
 
