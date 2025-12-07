@@ -76,7 +76,13 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
         event.stopPropagation();
 
         if(formData.username != "" && formData.email != "" && formData.password != ""){
-            await userController.register(formData.username, formData.email, formData.password);
+            var result = await userController.register(formData.username, formData.email, formData.password);
+
+            if (result.startsWith("Username already exists:")){
+                alert("Username already exists, please choose another");
+                return;
+            }
+
             setRefreshKey(oldKey => oldKey + 1);
             registerUserDialogRef.current.close()        
         } else{
