@@ -50,6 +50,17 @@ class UserController{
         return body;
     };
 
+    deleteUser = async (userId) => {
+        var response = await fetch(this.#SERVICE_URL + "/admin/user/"+userId, {
+            method: "DELETE",
+            headers: {
+                'Authorization': "Bearer "+this.token,           
+                'Content-Type': "application/json",
+            }            
+        });
+        return response.status == 204;
+    };
+
     login = async (username, password, successAction, failureAction) => {
         var loginResponse = await fetch(this.#SERVICE_URL + "/login", {
                 method: "POST",

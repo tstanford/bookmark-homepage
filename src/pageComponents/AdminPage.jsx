@@ -99,6 +99,15 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
         editUserDialogRef.current.close();
     };
 
+    var deleteUser = async (event, item) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(confirm("This will delete the user and their bookmarks, Are you sure?")) {
+            await userController.deleteUser(item.userId);
+            setRefreshKey(oldKey => oldKey + 1);
+        }        
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -131,7 +140,7 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
                         <td className="actions">
                             <div>
                                 <button class="flat mini" onClick={(event) => openEditUserDialog(event, item)}>Edit</button>
-                                <button class="flat mini">Delete</button>
+                                <button class="flat mini" onClick={(event) => deleteUser(event, item)}>Delete</button>
                             </div>
                         </td>
                     </tr>
