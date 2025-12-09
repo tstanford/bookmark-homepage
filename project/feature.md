@@ -18,11 +18,9 @@
 
 - bookmark-service: make sure that jwt token contains the users roles
 
-- in admin view: show the time of the users last activity
+- admin view: show the time of the users last activity
 
-- in admin view: when adding a user with a duplicate username, show an error rather than silently swallowing the 500 response.
-
-- in admin view: delete a user
+- admin view: don't allow an admin user to be deleted
 
 - create some basic react tests and run them as part of pipeline
 
@@ -43,6 +41,10 @@
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~in admin view: when adding a user with a duplicate username, show an error rather than silently swallowing the 500 response.~~
+
+- ~~in admin view: delete a user~~
 
 - ~~add logging to the bookmark service~~
 
