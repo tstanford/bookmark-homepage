@@ -20,8 +20,6 @@
 
 - admin view: show the time of the users last activity
 
-- admin view: don't allow an admin user to be deleted
-
 - create some basic react tests and run them as part of pipeline
 
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
@@ -41,6 +39,8 @@
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~admin view: don't allow an admin user to be deleted~~
 
 - ~~in admin view: when adding a user with a duplicate username, show an error rather than silently swallowing the 500 response.~~
 

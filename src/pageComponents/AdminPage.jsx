@@ -140,7 +140,9 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
                         <td className="actions">
                             <div>
                                 <button class="flat mini" onClick={(event) => openEditUserDialog(event, item)}>Edit</button>
-                                <button class="flat mini" onClick={(event) => deleteUser(event, item)}>Delete</button>
+                                { !item.isAdmin &&
+                                    <button class="flat mini" onClick={(event) => deleteUser(event, item)}>Delete</button>
+                                }                                
                             </div>
                         </td>
                     </tr>
