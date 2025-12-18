@@ -22,7 +22,7 @@
 
 - bookmark-service: make sure that jwt token contains the users roles
 
-- admin view: show the time of the users last activity
+- admin view: show the time of the users last activity. this will involving updating user table to store the users last access on every api call.
 
 - create some basic react tests and run them as part of pipeline
 
