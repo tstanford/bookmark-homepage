@@ -4,6 +4,10 @@
 
 - Bug: login dialog is not centred vertically on Samsung TV
 
+- Write a firefox browser extension to detect when a page is bookmarked and give the option to add it to bookmarks home page.
+
+- Write a chrome browser extension to detect when a page is bookmarked and give the option to add it to bookmarks home page.
+
 - Refactor: extract all API calls in bookmarkspage to a new BookmarksController class.
 
 - when admin user logs in for first time. force a password change. 
