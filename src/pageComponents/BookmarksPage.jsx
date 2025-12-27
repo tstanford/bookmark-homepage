@@ -4,14 +4,18 @@ import Folder from "../components/Folder";
 import SearchBox from "../components/SearchBox";
 import PageHeading from '../components/pageheading';
 import PageFooter from '../components/pagefooter';
+import BookmarksController from '../controllers/BookmarksController';
 const AddNewGroupDialog = React.lazy(() => import('../components/dialogs/AddNewGroupDialog'));
 const AddNewBookmarkDialog = React.lazy(() => import('../components/dialogs/AddNewBookmarkDialog'));
 const EditBookmarkDialog = React.lazy(() => import('../components/dialogs/EditBookmarkDialog'));
+
+const bookmarkController = new BookmarksController();
 
 function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const SERVICE_URL = window.env.BMS_SERVICE_URL;
     const SEARCH_URL = window.env.BMS_SEARCH_URL;
     const APP_VERSION = window.env.BMS_VERSION;
+    
 
     const [data, setData] = useState({
         isLoaded: false,
@@ -28,16 +32,12 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
     const inputFile = useRef(null);
 
     useEffect(() => {
-        fetch(SERVICE_URL + "/bookmarks", 
-            {headers: {'Authorization': "Bearer "+loginStatus.token}}
-        )
-            .then(res => {
-                if(res.status == 401 || res.status == 403) {
-                    setLoginStatus(() => ({isLoggedIn: false, token: null, isAdmin: false }));
-                }
-                return res.json()
+        bookmarkController
+            .getBookmarks()
+            .onFail(() => {
+                setLoginStatus(() => ({isLoggedIn: false, token: null, isAdmin: false }));
             })
-            .then(json => {
+            .onComplete((json) => {
                 setData({
                     isLoaded: true,
                     filteredData: json,
@@ -47,7 +47,8 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                     changeMade: false
                 });
                 setFormData({});
-            });
+            })
+            .execute();
     }, [refreshKey, SERVICE_URL, loginStatus.token, setLoginStatus]);
 
     const renameFolderName = async (folder, newName, setFolderName) => {
