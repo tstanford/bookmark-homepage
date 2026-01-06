@@ -4,7 +4,7 @@ import Folder from "../components/Folder";
 import SearchBox from "../components/SearchBox";
 import PageHeading from '../components/pageheading';
 import PageFooter from '../components/pagefooter';
-import BookmarksController from '../controllers/BookmarksController';
+import {BookmarksController} from '../controllers/BookmarksController';
 const AddNewGroupDialog = React.lazy(() => import('../components/dialogs/AddNewGroupDialog'));
 const AddNewBookmarkDialog = React.lazy(() => import('../components/dialogs/AddNewBookmarkDialog'));
 const EditBookmarkDialog = React.lazy(() => import('../components/dialogs/EditBookmarkDialog'));

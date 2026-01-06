@@ -6,10 +6,11 @@ class BookmarksController{
 
     #getExecutionContext = () => {
         return {
+            onFailFunc: {},
             target: () => {},
             execute: () => {this.target(this)},
-            onFail: () => {},
-            onComplete: (data) => {}
+            onFail: (func) => {this.onFailFunc = func; return this.#getExecutionContext;},
+            onComplete: (func) => {this.onCompleteFunc = func; this.#getExecutionContext;},
         };
     };
 
@@ -24,12 +25,12 @@ class BookmarksController{
         )
         .then(res => {
             if(res.status == 401 || res.status == 403) {
-                context.onFail();
+                context.onFailFunc();
             }
             return res.json()
         })
         .then(json => {
-            context.onComplete(json);
+            context.onCompleteFunc(json);
         });
     };
 
