@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Bookmark Webhook",
+  "version": "1.0",
+
+  "description": "Detects new bookmarks and notifies an external API with URL and title.",
+
+  "permissions": [
+    "bookmarks",
+    "https://home.timcloud.uk/api"  
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "bookmark-webhook@timcloud.uk"
+    }
+  }
+}
