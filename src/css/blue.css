@@ -65,4 +65,7 @@ input#query:focus {
     width: 95%;
   }
 
+  div.actionbutton.profileicon  {
+    display: none;
+  }
 }
