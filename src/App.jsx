@@ -14,12 +14,17 @@ export default function App() {
         isLoggedIn: userController.token !== null,
         token: userController.token,
         isAdmin: userController.isAdminVar,
-        isChecked: false
+        isChecked: false,
+        emailAddress : ""
     });
 
     if(!loginStatus.isChecked) {
         userController.isAdmin().then((x) => {
             setLoginStatus((prev) => ({...prev, isAdmin:x, isChecked:true}));
+        });
+
+        userController.getEmail().then((emailAddress) => {
+            setLoginStatus((prev) => ({...prev, emailAddress:emailAddress}));
         });
     }
 

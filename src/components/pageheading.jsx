@@ -1,10 +1,21 @@
-export default function PageHeading({ adminMode, editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout }) {
+import CryptoJS from "crypto-js"
+
+export default function PageHeading({ adminMode, editMode, toggleEditMode, downloadExportFile, inputFile, uploadImportFile, selectedImportFile, deleteAll, logout, emailAddress }) {
     return (
         <header>
             <div className="logo"></div>
             <div className="date">{new Date().toDateString()}</div>
 
             <div className="buttons">
+
+                <div className="actionbutton profileicon">
+
+                    <span>
+                        <img src={"https://gravatar.com/avatar/"+CryptoJS.SHA256(emailAddress)}/>
+                    </span>
+
+                </div>
+
                 {!adminMode && 
                     <div id="editSwitch">
                         <label className="switch">

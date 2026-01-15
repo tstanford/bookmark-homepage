@@ -24,6 +24,18 @@ class UserController{
         return body == "true";
     }
 
+    getEmail = async () => {
+        var response = await fetch(this.#SERVICE_URL + "/getemail", {
+            method: "GET",
+            headers: {
+                'Authorization': "Bearer "+this.token                    
+            }
+        });
+        var body = await response.text();
+
+        return body;
+    }
+
     register = async (username, email, password) => {
         var response = await fetch(this.#SERVICE_URL + "/admin/user", {
             method: "POST",

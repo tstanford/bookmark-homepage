@@ -115,7 +115,7 @@ export default function Admin({userController, logout, loginStatus, setLoginStat
 
     return (
         <>
-            <PageHeading logout={logout} adminMode={true}></PageHeading>
+            <PageHeading logout={logout} adminMode={true} emailAddress={loginStatus.emailAddress}></PageHeading>
 
             <article className="tablecontainer headingspacer">
 

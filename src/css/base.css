@@ -219,6 +219,11 @@ div.actionbutton button {
   width: 34px;
 }
 
+div.actionbutton.profileicon img {
+  height: 2rem;
+  border-radius: 50%;
+}
+
 .actionbutton button:hover {
   cursor: pointer;
 }
