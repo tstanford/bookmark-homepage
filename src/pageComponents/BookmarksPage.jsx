@@ -335,6 +335,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 uploadImportFile={uploadImportFile}
                 selectedImportFile={selectedImportFile}
                 deleteAll={deleteAll}
+                emailAddress={loginStatus.emailAddress}
                 logout={logout}
             />
             </Suspense>
