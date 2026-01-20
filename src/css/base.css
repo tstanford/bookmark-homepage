@@ -224,7 +224,7 @@ div.actionbutton.profileicon img {
   border-radius: 50%;
 }
 
-.actionbutton button:hover {
+.actionbutton button:hover, .actionbutton.profileicon:hover {
   cursor: pointer;
 }
 
