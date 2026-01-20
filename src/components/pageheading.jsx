@@ -11,7 +11,7 @@ export default function PageHeading({ adminMode, editMode, toggleEditMode, downl
                 <div className="actionbutton profileicon">
 
                     <span>
-                        <img src={"https://gravatar.com/avatar/"+CryptoJS.SHA256(emailAddress)+"?d=robohash"}/>
+                        <img src={"https://gravatar.com/avatar/"+CryptoJS.SHA256(emailAddress)+"?d=robohash"} title="{emailAddress}"/>
                     </span>
 
                 </div>
