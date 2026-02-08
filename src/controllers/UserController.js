@@ -3,6 +3,7 @@ class UserController{
     #SERVICE_URL = "";   
     isAdminVar = false; 
     tokenExistedInStorage = false;
+    retryCount = 5;
 
     constructor() {
         this.#SERVICE_URL = window.env.BMS_SERVICE_URL;
@@ -19,8 +20,31 @@ class UserController{
                 'Authorization': "Bearer "+this.token                    
             }
         });
-        var body = await response.text();
 
+        if(response.status != 200) {
+            //try refresh token
+            let refreshToken = localStorage.getItem('refreshToken');
+
+            var refreshResponse = await fetch(this.#SERVICE_URL + "/refresh", {
+                method: "POST",
+                body: refreshToken
+            });
+
+            if(refreshResponse.status == 200) {
+                let jsonResponse = await refreshResponse.json();
+                localStorage.setItem('token', jsonResponse.authToken);
+                localStorage.setItem('refreshToken', jsonResponse.refreshToken);
+                this.token = this.result.authToken;
+                this.retryCount++;
+                if(this.retryCount < 5) {
+                    return await this.isAdmin();
+                } else {
+                    throw "retry period exceeded";
+                }
+            }
+        }
+
+        var body = await response.text();
         return body == "true";
     }
 
@@ -88,8 +112,10 @@ class UserController{
             localStorage.setItem("isAdminVar", false);
             failureAction();
         } else {
-            this.token = await loginResponse.text();
-            localStorage.setItem('token', this.token);
+            let result = await loginResponse.json();
+            localStorage.setItem('token', result.authToken);
+            localStorage.setItem('refreshToken', result.refreshToken);
+            this.token = result.authToken;
             successAction(this.token, await this.isAdmin());            
         }
     };
