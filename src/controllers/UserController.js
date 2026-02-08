@@ -44,6 +44,8 @@ class UserController{
             }
         }
 
+        this.retryCount = 0;
+
         var body = await response.text();
         return body == "true";
     }
