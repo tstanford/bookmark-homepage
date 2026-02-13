@@ -11,7 +11,12 @@ class UserController{
         this.token = localStorage.getItem('token');
         this.tokenExistedInStorage = localStorage.getItem('token') != null;
         this.isAdminVar = false;
+        this.setLoginStatus = ()=>{};
     }
+
+    setLoginStatusFunc = (func) => {
+        this.setLoginStatus = func;        
+    };
 
     isAdmin = async () => {
         var response = await fetch(this.#SERVICE_URL + "/amiadmin", {
@@ -21,9 +26,10 @@ class UserController{
             }
         });
 
-        if(response.status != 200) {
+        if(response.status == 401) {
             //try refresh token
             let refreshToken = localStorage.getItem('refreshToken');
+            console.log("Attemping to refresh token");
 
             var refreshResponse = await fetch(this.#SERVICE_URL + "/refresh", {
                 method: "POST",
@@ -31,14 +37,19 @@ class UserController{
             });
 
             if(refreshResponse.status == 200) {
+                console.log("refreshed!");
                 let jsonResponse = await refreshResponse.json();
                 localStorage.setItem('token', jsonResponse.authToken);
                 localStorage.setItem('refreshToken', jsonResponse.refreshToken);
-                this.token = this.result.authToken;
+                this.token = jsonResponse.authToken;
+                this.refreshToken = jsonResponse.refreshToken;
+            } else {
                 this.retryCount++;
                 if(this.retryCount < 5) {
                     return await this.isAdmin();
                 } else {
+                    this.setLoginStatus((prev) => ({...prev, refreshTokenExpired: true, isChecked: true}));
+                    console.log("refresh token expired. need to login again");
                     throw "retry period exceeded";
                 }
             }
@@ -47,6 +58,13 @@ class UserController{
         this.retryCount = 0;
 
         var body = await response.text();
+
+        this.setLoginStatus((prev) => ({...prev, 
+            isAdmin:body == "true", 
+            isChecked:true, 
+            isLoggedIn:true
+        }));
+
         return body == "true";
     }
 

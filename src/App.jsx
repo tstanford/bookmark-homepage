@@ -8,25 +8,36 @@ const PageFooter = React.lazy(() => import('./components/pagefooter'));
 
 export default function App() {
     const APP_VERSION = window.env.BMS_VERSION;
-    var userController = new UserController()
+    var userController = new UserController();
 
     const [loginStatus, setLoginStatus] = useState({
         isLoggedIn: userController.token !== null,
         token: userController.token,
         isAdmin: userController.isAdminVar,
         isChecked: false,
-        emailAddress : ""
+        emailAddress : "",
+        refreshTokenExpired : true
     });
 
-    if(!loginStatus.isChecked) {
-        userController.isAdmin().then((x) => {
-            setLoginStatus((prev) => ({...prev, isAdmin:x, isChecked:true}));
-        });
+    userController.setLoginStatusFunc(setLoginStatus);
 
-        userController.getEmail().then((emailAddress) => {
-            setLoginStatus((prev) => ({...prev, emailAddress:emailAddress}));
-        });
-    }
+     if(!loginStatus.isChecked) {
+        if(!loginStatus.isLoggedIn) {
+            setLoginStatus((prev) => ({...prev, isChecked: true}));
+        } else {
+            userController.isAdmin(setLoginStatus).then((x) => {
+                userController.getEmail().then((emailAddress) => {
+                    setLoginStatus((prev) => ({
+                        ...prev, 
+                        emailAddress:emailAddress, 
+                        refreshTokenExpired: false, 
+                        isLoggedIn: true, 
+                        token: userController.token,
+                    }));
+                });
+            });
+        }
+     }
 
     const [loginDialogState, setLoginDialogState] = useState({
         shaking: false
@@ -37,9 +48,9 @@ export default function App() {
 
         //todo: change this to fluent interface.
         userController.login(username, password, (token, isAdmin) => {
-            setLoginStatus(() => ({ isLoggedIn: true, token: token, isAdmin: isAdmin }));
+            setLoginStatus({ isLoggedIn: true, token: token, isAdmin: isAdmin, isChecked: false });
         }, () => {
-            setLoginStatus(() => ({ isLoggedIn: false, token: null, isAdmin: false }));
+            setLoginStatus({ isLoggedIn: false, token: null, isAdmin: false, isChecked: false });
             setLoginDialogState({shaking: true});
             setTimeout(() => {
                 setLoginDialogState({shaking: false});
@@ -53,28 +64,33 @@ export default function App() {
         setLoginStatus({ isLoggedIn: false, token: null, isAdmin: false });
     }
 
-    if (!loginStatus.isLoggedIn) {
-        return (
-            <Suspense>
-                <Login onSubmit={login} isShaking={loginDialogState.shaking} />
-                <div className="loginscreen">
-                    <PageFooter version={APP_VERSION}></PageFooter>
-                </div>
-            </Suspense>
-        );
-    } else {
-        if (loginStatus.isAdmin === true) {
+    if(loginStatus.isChecked) {
+        if (!loginStatus.isLoggedIn) {
+            //userController.logout();
+            console.log("aaa");
             return (
                 <Suspense>
-                    <AdminPage userController={userController} logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+                    <Login onSubmit={login} isShaking={loginDialogState.shaking} />
+                    <div className="loginscreen">
+                        <PageFooter version={APP_VERSION}></PageFooter>
+                    </div>
                 </Suspense>
             );
         } else {
-            return (
-                <Suspense>
-                    <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
-                </Suspense>
-            );
+            console.log("bbb");
+            if (loginStatus.isAdmin === true) {
+                return (
+                    <Suspense>
+                        <AdminPage userController={userController} logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+                    </Suspense>
+                );
+            } else {
+                return (
+                    <Suspense>
+                        <BookmarksPage logout={logout} loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+                    </Suspense>
+                );
+            }
         }
     }
 
