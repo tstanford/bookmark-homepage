@@ -15,7 +15,10 @@ export default function App() {
         token: userController.token,
         isAdmin: userController.isAdminVar,
         isChecked: false,
+<<<<<<< HEAD
         isChecking: false,
+=======
+>>>>>>> f757d1d (Fix refresh token logic)
         emailAddress : "",
         refreshTokenExpired : true
     });
@@ -26,6 +29,7 @@ export default function App() {
         if(!loginStatus.isLoggedIn) {
             setLoginStatus((prev) => ({...prev, isChecked: true}));
         } else {
+<<<<<<< HEAD
             if(!loginStatus.isChecking){
 
                 setLoginStatus((prev) => ({...prev, isChecking: true}));
@@ -43,6 +47,19 @@ export default function App() {
                     });
                 });
             }
+=======
+            userController.isAdmin(setLoginStatus).then((x) => {
+                userController.getEmail().then((emailAddress) => {
+                    setLoginStatus((prev) => ({
+                        ...prev, 
+                        emailAddress:emailAddress, 
+                        refreshTokenExpired: false, 
+                        isLoggedIn: true, 
+                        token: userController.token,
+                    }));
+                });
+            });
+>>>>>>> f757d1d (Fix refresh token logic)
         }
      }
 
@@ -73,7 +90,12 @@ export default function App() {
 
     if(loginStatus.isChecked) {
         if (!loginStatus.isLoggedIn) {
+<<<<<<< HEAD
             console.log("Displaying Login page");
+=======
+            //userController.logout();
+            console.log("aaa");
+>>>>>>> f757d1d (Fix refresh token logic)
             return (
                 <Suspense>
                     <Login onSubmit={login} isShaking={loginDialogState.shaking} />
@@ -83,7 +105,11 @@ export default function App() {
                 </Suspense>
             );
         } else {
+<<<<<<< HEAD
             console.log("Is logged in");
+=======
+            console.log("bbb");
+>>>>>>> f757d1d (Fix refresh token logic)
             if (loginStatus.isAdmin === true) {
                 return (
                     <Suspense>
