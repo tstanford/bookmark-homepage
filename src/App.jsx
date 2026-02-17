@@ -15,6 +15,7 @@ export default function App() {
         token: userController.token,
         isAdmin: userController.isAdminVar,
         isChecked: false,
+        isChecking: false,
         emailAddress : "",
         refreshTokenExpired : true
     });
@@ -25,17 +26,23 @@ export default function App() {
         if(!loginStatus.isLoggedIn) {
             setLoginStatus((prev) => ({...prev, isChecked: true}));
         } else {
-            userController.isAdmin(setLoginStatus).then((x) => {
-                userController.getEmail().then((emailAddress) => {
-                    setLoginStatus((prev) => ({
-                        ...prev, 
-                        emailAddress:emailAddress, 
-                        refreshTokenExpired: false, 
-                        isLoggedIn: true, 
-                        token: userController.token,
-                    }));
+            if(!loginStatus.isChecking){
+
+                setLoginStatus((prev) => ({...prev, isChecking: true}));
+
+                userController.isAdmin(setLoginStatus).then((x) => {
+                    userController.getEmail().then((emailAddress) => {
+                        setLoginStatus((prev) => ({
+                            ...prev, 
+                            emailAddress:emailAddress, 
+                            refreshTokenExpired: false, 
+                            isLoggedIn: true, 
+                            token: userController.token,
+                            isChecking: false
+                        }));
+                    });
                 });
-            });
+            }
         }
      }
 
@@ -66,8 +73,7 @@ export default function App() {
 
     if(loginStatus.isChecked) {
         if (!loginStatus.isLoggedIn) {
-            //userController.logout();
-            console.log("aaa");
+            console.log("Displaying Login page");
             return (
                 <Suspense>
                     <Login onSubmit={login} isShaking={loginDialogState.shaking} />
@@ -77,7 +83,7 @@ export default function App() {
                 </Suspense>
             );
         } else {
-            console.log("bbb");
+            console.log("Is logged in");
             if (loginStatus.isAdmin === true) {
                 return (
                     <Suspense>

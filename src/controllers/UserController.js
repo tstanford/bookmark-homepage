@@ -19,6 +19,7 @@ class UserController{
     };
 
     isAdmin = async () => {
+        console.log("checking isadmin")
         var response = await fetch(this.#SERVICE_URL + "/amiadmin", {
             method: "GET",
             headers: {
@@ -46,6 +47,7 @@ class UserController{
             } else {
                 this.retryCount++;
                 if(this.retryCount < 5) {
+                    console.log("retrying");
                     return await this.isAdmin();
                 } else {
                     this.setLoginStatus((prev) => ({...prev, refreshTokenExpired: true, isChecked: true}));
