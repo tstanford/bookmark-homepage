@@ -14,11 +14,7 @@
 
 - add touch events for mobile. drag folders, drag icons.
 
-- implement jwt refresh tokens
-
 - hamburger menu on mobile device
-
-- profile icon using gravatar
 
 - bookmark-service: make sure that jwt token contains the users roles
 
@@ -43,6 +39,10 @@
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~profile icon using gravatar~~
+
+- ~~implement jwt refresh tokens~~
 
 - ~~admin view: don't allow an admin user to be deleted~~
 
