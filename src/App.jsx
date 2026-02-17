@@ -16,9 +16,13 @@ export default function App() {
         isAdmin: userController.isAdminVar,
         isChecked: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
         isChecking: false,
 =======
 >>>>>>> f757d1d (Fix refresh token logic)
+=======
+        isChecking: false,
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
         emailAddress : "",
         refreshTokenExpired : true
     });
@@ -30,11 +34,18 @@ export default function App() {
             setLoginStatus((prev) => ({...prev, isChecked: true}));
         } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             if(!loginStatus.isChecking){
 
                 setLoginStatus((prev) => ({...prev, isChecking: true}));
 
+<<<<<<< HEAD
                 userController.isAdmin(setLoginStatus).then(() => {
+=======
+                userController.isAdmin(setLoginStatus).then((x) => {
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
                     userController.getEmail().then((emailAddress) => {
                         setLoginStatus((prev) => ({
                             ...prev, 
@@ -45,6 +56,7 @@ export default function App() {
                             isChecking: false
                         }));
                     });
+<<<<<<< HEAD
                 });
             }
 =======
@@ -60,6 +72,10 @@ export default function App() {
                 });
             });
 >>>>>>> f757d1d (Fix refresh token logic)
+=======
+                });
+            }
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
         }
      }
 
@@ -91,11 +107,15 @@ export default function App() {
     if(loginStatus.isChecked) {
         if (!loginStatus.isLoggedIn) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             console.log("Displaying Login page");
 =======
             //userController.logout();
             console.log("aaa");
 >>>>>>> f757d1d (Fix refresh token logic)
+=======
+            console.log("Displaying Login page");
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             return (
                 <Suspense>
                     <Login onSubmit={login} isShaking={loginDialogState.shaking} />
@@ -106,10 +126,14 @@ export default function App() {
             );
         } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
             console.log("Is logged in");
 =======
             console.log("bbb");
 >>>>>>> f757d1d (Fix refresh token logic)
+=======
+            console.log("Is logged in");
+>>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             if (loginStatus.isAdmin === true) {
                 return (
                     <Suspense>
