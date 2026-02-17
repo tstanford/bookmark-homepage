@@ -15,14 +15,7 @@ export default function App() {
         token: userController.token,
         isAdmin: userController.isAdminVar,
         isChecked: false,
-<<<<<<< HEAD
-<<<<<<< HEAD
         isChecking: false,
-=======
->>>>>>> f757d1d (Fix refresh token logic)
-=======
-        isChecking: false,
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
         emailAddress : "",
         refreshTokenExpired : true
     });
@@ -33,23 +26,11 @@ export default function App() {
         if(!loginStatus.isLoggedIn) {
             setLoginStatus((prev) => ({...prev, isChecked: true}));
         } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             if(!loginStatus.isChecking){
 
                 setLoginStatus((prev) => ({...prev, isChecking: true}));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 userController.isAdmin(setLoginStatus).then(() => {
-=======
-                userController.isAdmin(setLoginStatus).then((x) => {
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
-=======
-                userController.isAdmin(setLoginStatus).then(() => {
->>>>>>> 4adcaa2 (Fix errors)
                     userController.getEmail().then((emailAddress) => {
                         setLoginStatus((prev) => ({
                             ...prev, 
@@ -60,26 +41,8 @@ export default function App() {
                             isChecking: false
                         }));
                     });
-<<<<<<< HEAD
                 });
             }
-=======
-            userController.isAdmin(setLoginStatus).then((x) => {
-                userController.getEmail().then((emailAddress) => {
-                    setLoginStatus((prev) => ({
-                        ...prev, 
-                        emailAddress:emailAddress, 
-                        refreshTokenExpired: false, 
-                        isLoggedIn: true, 
-                        token: userController.token,
-                    }));
-                });
-            });
->>>>>>> f757d1d (Fix refresh token logic)
-=======
-                });
-            }
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
         }
      }
 
@@ -110,16 +73,7 @@ export default function App() {
 
     if(loginStatus.isChecked) {
         if (!loginStatus.isLoggedIn) {
-<<<<<<< HEAD
-<<<<<<< HEAD
             console.log("Displaying Login page");
-=======
-            //userController.logout();
-            console.log("aaa");
->>>>>>> f757d1d (Fix refresh token logic)
-=======
-            console.log("Displaying Login page");
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             return (
                 <Suspense>
                     <Login onSubmit={login} isShaking={loginDialogState.shaking} />
@@ -129,15 +83,7 @@ export default function App() {
                 </Suspense>
             );
         } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
             console.log("Is logged in");
-=======
-            console.log("bbb");
->>>>>>> f757d1d (Fix refresh token logic)
-=======
-            console.log("Is logged in");
->>>>>>> 2310c92 (Reduce calls to isadmin to 1)
             if (loginStatus.isAdmin === true) {
                 return (
                     <Suspense>
