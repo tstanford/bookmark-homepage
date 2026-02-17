@@ -42,10 +42,14 @@ export default function App() {
                 setLoginStatus((prev) => ({...prev, isChecking: true}));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 userController.isAdmin(setLoginStatus).then(() => {
 =======
                 userController.isAdmin(setLoginStatus).then((x) => {
 >>>>>>> 2310c92 (Reduce calls to isadmin to 1)
+=======
+                userController.isAdmin(setLoginStatus).then(() => {
+>>>>>>> 4adcaa2 (Fix errors)
                     userController.getEmail().then((emailAddress) => {
                         setLoginStatus((prev) => ({
                             ...prev, 
