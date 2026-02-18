@@ -8,12 +8,19 @@ import './css/table.css';
 import './css/folder.css';
 import './css/blue.css';
 import App from './App.jsx'
+import { DependencyProvider } from './DependencyContext';
+import { apiClient } from './controllers/ApiClient';
+
+
+const dependencies = { apiClient };
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 
-    <App/>
+    <DependencyProvider dependencies={dependencies}>
+      <App/>
+    </DependencyProvider>
 
-  </StrictMode>,
+  </StrictMode>
 )
 
