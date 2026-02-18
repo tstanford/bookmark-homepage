@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDependencies } from './DependencyContext';
+import { useDependencies } from './dependencies';
 
 export default function App() {
     const { apiClient } = useDependencies();

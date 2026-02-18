@@ -8,7 +8,7 @@ import './css/table.css';
 import './css/folder.css';
 import './css/blue.css';
 import App from './App.jsx'
-import { DependencyProvider } from './DependencyContext';
+import { DependencyProvider } from './dependencies';
 import { apiClient } from './controllers/ApiClient';
 
 
