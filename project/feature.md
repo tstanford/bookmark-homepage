@@ -1,8 +1,12 @@
 # Backlog
 
+- Bug: add group dialog not closing when group is added.
+
 - Bug: page not loading on LG smart TV
 
 - Bug: login dialog is not centred vertically on Samsung TV
+
+- Allow bookmarks to be copied and pasted
 
 - Write a firefox browser extension to detect when a page is bookmarked and give the option to add it to bookmarks home page.
 
