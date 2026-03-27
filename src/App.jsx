@@ -27,9 +27,7 @@ export default function App() {
             setLoginStatus((prev) => ({...prev, isChecked: true}));
         } else {
             if(!loginStatus.isChecking){
-
                 setLoginStatus((prev) => ({...prev, isChecking: true}));
-
                 userController.isAdmin(setLoginStatus).then(() => {
                     userController.getEmail().then((emailAddress) => {
                         setLoginStatus((prev) => ({
