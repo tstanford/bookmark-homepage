@@ -27,7 +27,7 @@
 - admin view: show the time of the users last activity. this will involving updating user table to store the users last access on every api call.
 
 - create some basic react tests and run them as part of pipeline
-
+p
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
 
 - error handling for drag and drop
