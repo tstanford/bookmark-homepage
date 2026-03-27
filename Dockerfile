@@ -8,6 +8,7 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install -g patch-package
 RUN npm install -g yarn
+RUN npm install -g vite
 RUN yarn install
 
 # Copy source files and build
