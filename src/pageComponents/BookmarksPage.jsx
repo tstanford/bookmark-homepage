@@ -282,7 +282,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
             body: formData.name
         }).then(() => { setRefreshKey(oldKey => oldKey + 1); });
 
-        closeAddGroupDialog();
+        closeAddGroupDialog(event);
     };
 
     const moveFolder = (targetFolder, draggedFolder) => {

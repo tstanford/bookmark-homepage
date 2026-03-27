@@ -14,7 +14,7 @@ export default function AddNewGroup({dialogRef, prepopulatedName, onDismiss, onS
                 
 
                 <div className="buttons">
-                    <button className="flat">Ok</button>
+                    <button type="submit" className="flat">Ok</button>
                     <button className="flat" onClick={onDismiss}>Cancel</button>                        
                 </div>
             </form>
