@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function EditBookmark({dialogRef, bookmark, prepopulatedName, prepopulatedUrl, onDismiss, onSubmit, onChange, onDelete, uploadIcon}){
+export default function EditBookmark({dialogRef, bookmark, prepopulatedName, prepopulatedUrl, onDismiss, onSubmit, onChange, onDelete, onDuplicate, uploadIcon}){
     const imagefile = useRef(null);
 
     var openImageFileDialog = (ev) => {
@@ -59,6 +59,7 @@ export default function EditBookmark({dialogRef, bookmark, prepopulatedName, pre
 
                             <div className="buttons">
                                 <button className="flat" onClick={onSubmit}>Apply Changes</button>
+                                <button className="flat" onClick={() => onDuplicate(bookmark.id)}>Duplicate</button>
                                 <button className="flat" onClick={() => onDelete(bookmark.id)}>Delete</button>
                                 <button className="flat" onClick={onDismiss}>Cancel</button>                        
                             </div>

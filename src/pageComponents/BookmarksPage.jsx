@@ -218,6 +218,20 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
         editBookmarkDialogRef.current.close();
     };
 
+    const duplicateBookmark = (bookmarkId) => {
+
+        fetch(SERVICE_URL + "/bookmarks/clone/" + bookmarkId, {
+            headers: {
+                'Authorization': "Bearer "+loginStatus.token,
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            method: "GET"}
+            )
+            .then(() => { setRefreshKey(oldKey => oldKey + 1); });
+
+        editBookmarkDialogRef.current.close();
+    };
+
     const deleteBookmark = (bookmarkId) => {
         fetch(SERVICE_URL + "/bookmarks/" + bookmarkId, {
             headers: {'Authorization': "Bearer "+loginStatus.token},
@@ -399,6 +413,7 @@ function BookmarksPage({loginStatus, setLoginStatus, logout}) {
                 onSubmit={onSubmitEditBookmark}
                 onChange={handleChange}
                 onDelete={deleteBookmarkBeingEdited}
+                onDuplicate={duplicateBookmark}
                 uploadIcon={uploadIcon}
             />
             </Suspense>

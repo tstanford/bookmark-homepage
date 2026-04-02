@@ -6,8 +6,6 @@
 
 - Bug: login dialog is not centred vertically on Samsung TV
 
-- Allow bookmarks to be copied and pasted
-
 - Write a firefox browser extension to detect when a page is bookmarked and give the option to add it to bookmarks home page.
 
 - Write a chrome browser extension to detect when a page is bookmarked and give the option to add it to bookmarks home page.
@@ -27,7 +25,7 @@
 - admin view: show the time of the users last activity. this will involving updating user table to store the users last access on every api call.
 
 - create some basic react tests and run them as part of pipeline
-p
+
 - experiment with different view types: list, small icons, large icons etc.. Can we allow the user the customise this per folder?
 
 - error handling for drag and drop
@@ -45,6 +43,8 @@ p
 - package bookmark-service and bookmark-homepage together as an all in one deployment
 
 - Bug : A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components react-dom-client.development.js:20854:22
+
+- ~~Allow bookmarks to be copied and pasted~~
 
 - ~~profile icon using gravatar~~
 
